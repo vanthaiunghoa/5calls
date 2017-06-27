@@ -2,6 +2,8 @@
 
 This is where development of the [5calls.org](http://5calls.org) frontend happens. Please check the issue list, pull requests and contributor guidelines before starting work so we can ensure you're not duplicating work! We're all volunteers and want to treat the time you dedicate to the site with respect. Ping  [@make5calls](https://twitter.com/make5calls) on Twitter with your email to get an invite to our Slack.
 
+[![Stories in Ready](https://badge.waffle.io/5calls/5calls.png?label=ready&title=Ready)](http://waffle.io/5calls/5calls)   [![CircleCI](https://circleci.com/gh/5calls/5calls.svg?style=svg)](https://circleci.com/gh/5calls/5calls)
+
 # Table of Contents
 * [Development](#Development)
     * [Front End](#Front_End)
