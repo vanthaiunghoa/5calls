@@ -46,7 +46,7 @@
       },
       "joinUs": {
         "title": "Join us",
-        "contactInvite": "This project is <a href='https://github.com/5calls'>open source</a> and volunteer made. If you’d like to join us in developing useful tools for citizens, please get in touch via <a href='https://twitter.com/make5calls'>Twitter</a> or <a href='mailto:{{contactEmail}'>email</a>."
+        "contactInvite": "This project is <a href='https://github.com/5calls'>open source</a> and volunteer made. If you’d like to join us in developing useful tools for citizens, please get in touch via <a href='https://twitter.com/make5calls'>Twitter</a> or <a href='mailto:{{contactEmail}}'>email</a>."
       }
     },    
     "callCount": {

@@ -46,7 +46,7 @@
       },
       "joinUs": {
         "title": "Únase a nosotros",
-        "contactInvite": "Este proyecto es <a href='https://github.com/5calls'>código abierto</a> y realizado por voluntarios. Si quiere unirse a nosotros para desarrollar herramientas útiles para los ciudadanos, contáctenos por <a href='https://twitter.com/make5calls'> Twitter </a> o <a href = 'mailto: { {ContactEmail} '> correo electrónico </a>."
+        "contactInvite": "Este proyecto es <a href='https://github.com/5calls'>código abierto</a> y realizado por voluntarios. Si quiere unirse a nosotros para desarrollar herramientas útiles para los ciudadanos, contáctenos por <a href='https://twitter.com/make5calls'> Twitter </a> o <a href='mailto:{{contactEmail}}'> correo electrónico </a>."
       }
     },    
     "callCount": {
