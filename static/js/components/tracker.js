@@ -159,7 +159,7 @@ module.exports = (state) => {
     }
     definitelyNo.forEach((senator) => {
       // add to hard list
-      if (!noVotes.includes(senator)) {
+      if (noVotes.indexOf(senator) === 0) {
         noVotes.push(senator);
       }
 
@@ -175,7 +175,7 @@ module.exports = (state) => {
     var definitelyYes = [];
     definitelyYes.forEach((senator) => {
       // add to hard list
-      if (!yesVotes.includes(senator)) {
+      if (yesVotes.indexOf(senator) === 0) {
         yesVotes.push(senator);
       }
 
@@ -191,7 +191,7 @@ module.exports = (state) => {
     var definitelyUnknown = [];
     definitelyUnknown.forEach((senator) => {
       // add to hard list
-      if (!unknownVotes.includes(senator)) {
+      if (unknownVotes.indexOf(senator) === 0) {
         unknownVotes.push(senator);
       }
 
