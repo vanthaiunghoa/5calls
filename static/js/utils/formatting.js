@@ -1,7 +1,7 @@
 // string formatting utilities
 
 module.exports = {
-   asNumber: (maybeNumber) => {
+  asNumber: (maybeNumber) => {
     let number = Number(maybeNumber);
     // Handle undefined input.
     // Number(undefined) is NaN, while Number("") is 0
@@ -19,4 +19,4 @@ module.exports = {
       return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
   }
-}
+};

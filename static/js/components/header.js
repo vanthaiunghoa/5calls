@@ -1,10 +1,9 @@
 const html = require('choo/html');
 const formatting = require('../utils/formatting');
 
-module.exports = (state, prev, send) => {
-  console.log("donations",state.donations,state.donations.length); 
+module.exports = (state) => {
   if (!state.donations || Object.keys(state.donations).length === 0) {
-    return html`<header class="logo__header" role="banner"></header>`
+    return html`<header class="logo__header" role="banner"></header>`;
   }
 
   let pctDone = (state.donations.total / state.donations.goal) * 100;
@@ -19,5 +18,5 @@ module.exports = (state, prev, send) => {
         <p class="logo__header__donatetext"><a href="https://secure.actblue.com/donate/5calls-donate">Donate today to keep 5 Calls running</a></p>
       </div>
     </header>
-  `
-}
+  `;
+};
