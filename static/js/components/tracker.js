@@ -148,7 +148,7 @@ module.exports = (state) => {
     if (state.ahcaCounts.unknown) {
       unknownVotes = state.ahcaCounts.unknown.sort(sortByParty);
     }
-
+    
     // hack-a-doo overrides
     var definitelyNo = [];
     // some people have been putting democrats in the yes column, fix that
@@ -159,7 +159,7 @@ module.exports = (state) => {
     }
     definitelyNo.forEach((senator) => {
       // add to hard list
-      if (noVotes.indexOf(senator) === 0) {
+      if (noVotes.indexOf(senator) === -1) {
         noVotes.push(senator);
       }
 
@@ -173,9 +173,14 @@ module.exports = (state) => {
     });
 
     var definitelyYes = [];
+    for (var senatorName in nameMap) {
+      if (nameMap[senatorName].party === "R" && senatorName != "AZ-JohnMcCain" && senatorName != "AK-LisaMurkowski" && senatorName != "ME-SusanMCollins") {
+        definitelyYes.push(senatorName);
+      }
+    }
     definitelyYes.forEach((senator) => {
       // add to hard list
-      if (yesVotes.indexOf(senator) === 0) {
+      if (yesVotes.indexOf(senator) === -1) {
         yesVotes.push(senator);
       }
 
