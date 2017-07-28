@@ -195,7 +195,7 @@ app.model({
     receiveDonations: (state, data) => {
       const donations = JSON.parse(data);
 
-      if (donations != null) {
+      if (donations != null && donations.goal != undefined) {
         const goal = donations.goal.amount;
         const total = donations.goal.total;
         return { donations: {goal: goal, total: total} };
