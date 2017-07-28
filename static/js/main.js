@@ -110,7 +110,6 @@ exports.state = {
   activeIssues: [],
   inactiveIssues: [],
   totalCalls: 0,
-  ahcaCounts: {},
   splitDistrict: false,
   donations: {},
 
@@ -180,17 +179,12 @@ app.model({
     receiveTotals: (state, data) => {
       const totals = JSON.parse(data);
       var totalCalls = 0;
-      var ahcaCounts = {};
       if (totals != null) {
         if (totals.count != null) {
           totalCalls = totals.count;
         }
-
-        if (totals.ahcaCounts != null) {
-          ahcaCounts = totals.ahcaCounts;
-        }
       }
-      return { totalCalls: totalCalls, ahcaCounts: ahcaCounts };
+      return { totalCalls: totalCalls };
     },
     receiveDonations: (state, data) => {
       const donations = JSON.parse(data);

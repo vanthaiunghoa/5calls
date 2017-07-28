@@ -173,7 +173,7 @@ module.exports = (state) => {
     });
 
     var definitelyYes = [];
-    for (var senatorName in nameMap) {
+    for (senatorName in nameMap) {
       if (nameMap[senatorName].party === "R" && senatorName != "AZ-JohnMcCain" && senatorName != "AK-LisaMurkowski" && senatorName != "ME-SusanMCollins") {
         definitelyYes.push(senatorName);
       }

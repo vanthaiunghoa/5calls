@@ -11,7 +11,8 @@ describe('outcomes component', () => {
       id: id,
       name: 'Bozo the nominee',
       reason: 'crazy',
-      script: 'Please vote against nominee Bozo'
+      script: 'Please vote against nominee Bozo',
+      outcomes: [ "skip" ]
     };
     let contact = {name: cname, party: 'Dem'};
     issue.contacts = [contact];
@@ -36,7 +37,8 @@ describe('outcomes component', () => {
       id: id, // does not match location issue id
       name: 'Bozo the nominee',
       reason: 'crazy',
-      script: 'Please vote against nominee Bozo'
+      script: 'Please vote against nominee Bozo',
+      outcomes: [ "skip" ]
     };
     let contact = {name: cname, party: 'Dem'};
     issue.contacts = [contact];
@@ -61,7 +63,8 @@ describe('outcomes component', () => {
       id: id,
       name: 'Bozo the nominee',
       reason: 'crazy',
-      script: 'Please vote against nominee Bozo'
+      script: 'Please vote against nominee Bozo',
+      outcomes: [ "skip" ]
     };
     let contact1 = {name: cname1, party: 'Dem'};
     let contact2 = {name: cname2, party: 'Dem'};
@@ -87,7 +90,8 @@ describe('outcomes component', () => {
       id: id,
       name: 'Bozo the nominee',
       reason: 'crazy',
-      script: 'Please vote against nominee Bozo'
+      script: 'Please vote against nominee Bozo',
+      outcomes: [ "skip" ]
     };
     let contact1 = {name: cname1, party: 'Dem'};
     let contact2 = {name: cname2, party: 'Dem'};
@@ -104,4 +108,57 @@ describe('outcomes component', () => {
     expect(result.textContent).to.not.contain('1 more');
   });
 
+  it('should have outcome button for oppose', () => {
+    let cname1 = 'Senator Blowhart';
+    let cname2 = 'Senator Hartblow';
+    let id = 1;
+    let location = {params: {issueid: id}};
+    let issue = {
+      id: id,
+      name: 'Bozo the nominee',
+      reason: 'crazy',
+      script: 'Please vote against nominee Bozo',
+      outcomes: [ "opposed", "skip" ]
+    };
+    let contact1 = {name: cname1, party: 'Dem'};
+    let contact2 = {name: cname2, party: 'Dem'};
+    issue.contacts = [contact1, contact2];
+    let issues = [issue];
+    let contactIndices = {};
+    contactIndices[id] = 1;
+    let state = {
+      issues,
+      location,
+      contactIndices
+    };
+    let result = outcomes(state);
+    expect(result.textContent).to.contain('opposed');
+  });
+
+  it('should not have outcome button for unavailable', () => {
+    let cname1 = 'Senator Blowhart';
+    let cname2 = 'Senator Hartblow';
+    let id = 1;
+    let location = {params: {issueid: id}};
+    let issue = {
+      id: id,
+      name: 'Bozo the nominee',
+      reason: 'crazy',
+      script: 'Please vote against nominee Bozo',
+      outcomes: [ "opposed", "skip" ]
+    };
+    let contact1 = {name: cname1, party: 'Dem'};
+    let contact2 = {name: cname2, party: 'Dem'};
+    issue.contacts = [contact1, contact2];
+    let issues = [issue];
+    let contactIndices = {};
+    contactIndices[id] = 1;
+    let state = {
+      issues,
+      location,
+      contactIndices
+    };
+    let result = outcomes(state);
+    expect(result.textContent).to.not.contain('unavailable');
+  });
 });

@@ -22,7 +22,8 @@ describe('call component', () => {
         id: id,
         name: 'Bozo the nominee',
         reason: 'crazy',
-        script: 'Please vote against everything'
+        script: 'Please vote against everything',
+        outcomes: [ "skip" ]
       };
       let contact = {name: cname, party: 'Dem'};
       let contactIndices = {};
@@ -43,7 +44,8 @@ describe('call component', () => {
         id: id,
         name: 'Bozo the nominee',
         reason: 'crazy',
-        script: 'Please vote against ...'
+        script: 'Please vote against ...',
+        outcomes: [ "skip" ]
       };
       issue.contacts = [null];
       let issues = [issue];
