@@ -18,9 +18,6 @@ module.exports = (state, prev, send) => {
 
       <div class="hypothesis__text">
         <p>${t('hypothesis.p3')}</p>
-        <p>${t('hypothesis.contribute')}</p>
-
-        <p class="hypothesis__callout"><a href="https://secure.actblue.com/contribute/page/5calls?refcode=web">${t('hypothesis.donateCallout')}</a></p>
 
         <h3 class="hypothesis__subtitle">${t('hypothesis.featuresTitle')}</h3>
         <ul class="hypothesis__list">
