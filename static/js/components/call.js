@@ -30,6 +30,9 @@ module.exports = (state, prev, send) => {
   function contactArea() {
     if (currentContact != null) {
       return contact(currentContact, state, prev, send);
+    } else if (issue.link != undefined && issue.link != "" && issue.linkTitle != undefined && issue.linkTitle != "") {
+      // For cases where there is no contact but a link, show nothing for the contact section
+      return;
     } else {
       return noContact(state, prev, send);
     }

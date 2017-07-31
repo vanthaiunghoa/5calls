@@ -36,8 +36,7 @@ describe('call component', () => {
       expect(element.textContent).to.contain(cname);
     });
 
-    it('should display "Set your location" link if contact data is NOT present in state', () => {
-      const expected = 'Set your location';
+    it('should display "Set your location" link if split district is detected', () => {
       let id = 1;
       let location = {params: {issueid: id}};
       let issue = {
@@ -51,11 +50,58 @@ describe('call component', () => {
       let issues = [issue];
       let contactIndices = {};
       contactIndices[id] = 0;
+      let state = {issues, location, contactIndices, splitDistrict: true, cachedCity: "Here"};
+      let result = call(state);
+      let element = result.querySelector('p a.location-link');
+      expect(element.textContent).to.be.defined;
+    });
+
+    it('should show a link when issue has a link but no contacts', () => {
+      let id = 1;
+      let location = {params: {issueid: id}};
+      let issue = {
+        id: id,
+        name: 'Bozo the nominee',
+        reason: 'crazy',
+        script: 'Please vote against ...',
+        outcomes: [ "skip" ],
+        link: "http://google.com",
+        linkTitle: "Google"
+      };
+      issue.contacts = [null];
+      let issues = [issue];
+      let contactIndices = {};
+      contactIndices[id] = 0;
       let state = {issues, location, contactIndices};
       let result = call(state);
-      let element = result.querySelector('h2 a');
+      let element = result.querySelector('h4.call__script__link');
       // Anchor should contain 'Set your location' text content
-      expect(element.textContent).to.contain(expected);
+      expect(element.textContent).to.be.defined;
+    });
+
+    it('should show a link when issue has a link and contacts', () => {
+      let cname = 'Senator Blowhart';
+      let id = 1;
+      let location = {params: {issueid: id}};
+      let issue = {
+        id: id,
+        name: 'Bozo the nominee',
+        reason: 'crazy',
+        script: 'Please vote against ...',
+        outcomes: [ "skip" ],
+        link: "http://google.com",
+        linkTitle: "Google"
+      };
+      let contact = {name: cname, party: 'Dem'};
+      let contactIndices = {};
+      contactIndices[id] = 0;
+      issue.contacts = [contact];
+      let issues = [issue];
+      let state = {issues, location, contactIndices};
+      let result = call(state);
+      let element = result.querySelector('h4.call__script__link');
+      // Anchor should contain 'Set your location' text content
+      expect(element.textContent).to.be.defined;
     });
   });
 });

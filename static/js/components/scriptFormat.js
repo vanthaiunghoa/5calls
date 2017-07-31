@@ -17,18 +17,21 @@ module.exports = (state) => {
     let script = issue.script;
 
     let location = state.cachedCity;
-    let title = '';
-    if (currentContact.area == 'House') {
-      title = 'Rep. ' + currentContact.name;
-    } else if (currentContact.area == 'Senate') {
-      title = 'Senator ' + currentContact.name;
-    }
-
-    if (title) {
-      script = script.replace(titleReg, title);
-    }
     if (location) {
       script = script.replace(locationReg, location);
+    }
+
+    if (currentContact != undefined) {
+      let title = '';
+      if (currentContact.area == 'House') {
+        title = 'Rep. ' + currentContact.name;
+      } else if (currentContact.area == 'Senate') {
+        title = 'Senator ' + currentContact.name;
+      }
+
+      if (title) {
+        script = script.replace(titleReg, title);
+      }
     }
 
     return script.split('\n').map((line) => scriptLine(line));

@@ -1,6 +1,7 @@
 const html = require('choo/html');
 const t = require('../utils/translation');
 
+
 module.exports = (state, prev, send) => {
   function initializeLocalizedAnchors(targetClassName) {
     let els = document.getElementsByClassName(`${targetClassName}`);
@@ -16,6 +17,7 @@ module.exports = (state, prev, send) => {
 
   function noContactsMessage(state) {
     const targetClassName = 'location-link';
+
     if (state.splitDistrict && (state.address || state.cachedCity)) {
       return html`<div onload=${() => initializeLocalizedAnchors(targetClassName)}>
                     <p>${t("noContact.oneOfTwoDistricts")}</p>
