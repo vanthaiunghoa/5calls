@@ -14,7 +14,7 @@ module.exports = (state) => {
     }
 
     return html`
-      <h4 class="call__script__link"><a href="${issue.link}">${linkTitle}</a></h4>
+      <h4 class="call__script__link"><a target="fcc-comment" href="${issue.link}">${linkTitle}</a></h4>
     `;
   }
 };

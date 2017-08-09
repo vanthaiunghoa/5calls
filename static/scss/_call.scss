@@ -91,6 +91,10 @@
     &__link {
       font-size: 36px;
       margin: 20px 0 10px 0;
+
+      a {
+        text-decoration: underline;
+      }
     }
 
     &__body {
