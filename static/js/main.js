@@ -8,7 +8,7 @@ const queryString = require('query-string');
 const store = require('./utils/localstorage.js');
 const localization = require('./utils/localization');
 const scrollIntoView = require('./utils/scrollIntoView.js');
-const townHallUtils = require('./utils/townHallUtils.js');
+// const townHallUtils = require('./utils/townHallUtils.js');
 
 const app = choo();
 const appURL = 'https://5calls.org';
@@ -145,7 +145,7 @@ app.model({
   reducers: {
     receiveActiveIssues: (state, data) => {
       const response = JSON.parse(data);
-      const divisions = townHallUtils.parseCivicData(response.divisions);
+      const divisions = [];//townHallUtils.parseCivicData(response.divisions);
       return {
         activeIssues: response.issues,
         splitDistrict: response.splitDistrict,
@@ -302,7 +302,7 @@ app.model({
         }
       }
       if (lat && lng){
-        eventsArr = townHallUtils.filterForLocalEvents(eventsArr, state.divisions, lat, lng);
+        eventsArr = [];//townHallUtils.filterForLocalEvents(eventsArr, state.divisions, lat, lng);
         // Only return (at most) the first three. Showing more than that could be overwhelming.
         return {
           localEvents: eventsArr.slice(0,3)
