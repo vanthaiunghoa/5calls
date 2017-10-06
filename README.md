@@ -1,6 +1,6 @@
 # 5calls
 
-This is where development of the [5calls.org](http://5calls.org) frontend happens. Please check the issue list, pull requests and contributor guidelines before starting work so we can ensure you're not duplicating work! We're all volunteers and want to treat the time you dedicate to the site with respect. Ping  [@make5calls](https://twitter.com/make5calls) on Twitter with your email to get an invite to our Slack.
+**This frontend is no longer used.** It has been replaced by the React version of the site, held in [5calls/react-dev](https://github.com/5calls/react-dev). The 5calls [issue list](https://github.com/5calls/5calls/issues), [wiki](https://github.com/5calls/5calls/wiki) and [contributor guidlines](./CONTRIBUTING.md) still live in this repository, but all frontend code now lives in 5calls/react-dev.
 
 [![Stories in Ready](https://badge.waffle.io/5calls/5calls.png?label=ready&title=Ready)](http://waffle.io/5calls/5calls)   [![CircleCI](https://circleci.com/gh/5calls/5calls.svg?style=svg)](https://circleci.com/gh/5calls/5calls)
 
