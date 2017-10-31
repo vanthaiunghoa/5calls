@@ -1,9 +1,0 @@
-{
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "mocha": true,
-    // turn node off in this directory because this content is all browser-only
-    "node": false
-  }
-}

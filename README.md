@@ -1,7 +1,5 @@
 # 5calls
 
-**This frontend is no longer used.** It has been replaced by the React version of the site, held in [5calls/react-dev](https://github.com/5calls/react-dev). The 5calls [issue list](https://github.com/5calls/5calls/issues), [wiki](https://github.com/5calls/5calls/wiki) and [contributor guidlines](./CONTRIBUTING.md) still live in this repository, but all frontend code now lives in 5calls/react-dev.
-
 [![Stories in Ready](https://badge.waffle.io/5calls/5calls.png?label=ready&title=Ready)](http://waffle.io/5calls/5calls)   [![CircleCI](https://circleci.com/gh/5calls/5calls.svg?style=svg)](https://circleci.com/gh/5calls/5calls)
 
 # Table of Contents
@@ -16,88 +14,72 @@
 * [Contributors](#Contributors)
 * [Other Client Projects](#Other_Client_Projects)
 
-<a id="Development"></a>
-## Development
+## Development Notes
 
-To make display changes, you likely won't need to handle the application
-server, and can instead rely on the production version of 5calls, running at [5calls.org](https://5calls.org) -- more on this below.
+The frontend is written in [React](https://facebook.github.io/react/) with [Redux](http://redux.js.org/) for state management and [Typescript](https://www.typescriptlang.org/) for type safety and documentation. The application server back end -- for data processing -- is written in [Go](https://golang.org/).
 
-The front end is written in Javascript using the [Choo](https://choo.io/) framework. The application server back end -- for data processing -- is written in [Go](https://golang.org/).
-
-5calls requires [Node.js][nodejs] and [Go][golang] version 1.7+. If you are on a Mac you'll need to install XCode and the CLI tools as well.
-
-[nodejs]: https://nodejs.org/en/
-[golang]: https://golang.org/
-
-<a id="Front_End"></a>
-### Front End
-
-Front end requirements must first be installed with:
-
-`npm install`
-
-To start developing:
-
-`npm start`
-
-This command will:
-
-* compile front end static assets
-* spin up an HTTP server for serving the site files on port `tcp/8000`.
-* watch and recompile front end files when any changes are detected
-
-To package assets for deployment:
-
-`npm run deploy`
-
-This command also builds the assets, applies additional transforms on the assets (such as minification of the JavaScript sources), but does not watch for changes.
-
-To turn on/off debug mode, which adds some reset buttons throughout the interface, run the following in your console:
-
+To build the application, you need to install [Yarn](https://yarnpkg.com/) and run the following commands:
 ```
-localStorage['org.5calls.debug'] = 'true' // turn on debug mode
-localStorage['org.5calls.debug'] = 'false' // turn off debug mode
+# install dependencies and
+#   compile .scss files to .css:
+yarn
+
+# Run unit tests in watch mode
+yarn test
+
+# Run unit tests with a code coverage report
+yarn test:coverage
+
+# start the app running in the
+#   webpack development server:
+yarn start
+
+# start the app running in https mode
+#   (needed for browser geolocation):
+yarn start:https
+
+# build the app into build folder
+#  for server deployment:
+yarn build
+
+# any updates to .scss files need
+#  to be compiled to css using:
+yarn clean-build-css
 ```
 
-<a id="Application_Server"></a>
-### Application Server
+Using `yarn add` to add new dependencies
+will throw an error related to node-sass-chokidar, which can be ignored.
 
-If you'd like to help us work on the backend code as well (written in Go), please reach out to join our Slack!
+For the best development experience, you should install both the React and Redux Development Tools extensions into your browser. Both browser extensions are available for Chrome and Firefox.
 
-<a id="QA"></a>
-## Quality Assurance
+### Unit testing
+Unit testing in this repository is done using [Jest](https://facebook.github.io/jest/) with [Enzyme](https://github.com/airbnb/enzyme) in addition to the [redux-mock-store](https://github.com/arnaudbenard/redux-mock-store) library to support Redux-related tests.
 
-<a id="JavaScript_Unit_Tests"></a>
-#### JavaScript Unit Tests
+## Architecture, Data Flow and Strong Typing
+A selection of files in this repository include code comments describing the architecture, data flow and strong typing conventions used in developing the React-Redux-TypeScript version of the 5 Calls application. These include files that illustrate the following (see the individual files for more details):
 
-JavaScript unit tests are written using ```Mocha``` and ```Chai``` and run in the ```Karma``` test runner. You must have the Google Chrome browser installed to run them.
+### Use of TypeScript to Strongly Type Request Parameters Passed by React-Router
+Also illustrates the use of Redux to loosely couple a component to data passed to its props.<br/>
+[CallPageContainer.tsx](https://github.com/5calls/react-dev/blob/master/src/components/call/CallPageContainer.tsx)<br/>
+[CallPage.tsx](https://github.com/5calls/react-dev/blob/master/src/components/call/CallPage.tsx)<br/>
 
-Run the unit tests with:
+### Data Flow through a Component Heirarcy
+Also note the TypeScript conventions used in these files.<br/>
+[CallPageContainer.tsx](https://github.com/5calls/react-dev/blob/master/src/components/call/CallPageContainer.tsx)<br/>
+[CallPage.tsx](https://github.com/5calls/react-dev/blob/master/src/components/call/CallPage.tsx)<br/>
+[Why5calls.tsx](https://github.com/5calls/react-dev/blob/master/src/components/call/Call.tsx)<br/>
 
-```npm test```
+### Redux Data Flow
 
-If you are working on JavaScript code, you can make the tests automatically re-run whenever you change a relevant file with:
+See code comments containing the token 'REDUX DATA FLOW'. Also note the use of TypeScript in these files.<br/>
+[CallPageContainer.tsx](https://github.com/5calls/react-dev/blob/master/src/components/call/CallPageContainer.tsx)<br/>
+[redux/callState/action.ts](https://github.com/5calls/react-dev/blob/master/src/redux/callState/action.ts)<br/>
+[redux/callState/actionCreator.ts](https://github.com/5calls/react-dev/blob/master/src/redux/callState/actionCreator.ts)<br/>
+[redux/callState/reducer.ts](https://github.com/5calls/react-dev/blob/master/src/redux/callState/reducer.ts)<br/>
 
-```npm run test:watch```
-
-<a id="End-to-end_Integration_Tests"></a>
-#### End-to-end Integration Tests
-
-End-to-end (e2e) integration testing is done using ```Selenium``` with ```Mocha``` and ```Chai``` using the [```WebdriverJS```](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/) API.
-
-To run the e2e tests:
-1. Start the front end application in a command window with the ```npm start``` command.
-2. In a second command window run the tests using the command ```npm run test:e2e```.
-
-<a id="ESLint"></a>
-#### JavaScript Linting
-
-Linting of the 5 Calls JavaScript code is done using [ESLint](http://eslint.org/) with rules defined in ```.eslintrc.json```. The following command runs ESLint: ```gulp eslint```
-
-<a id="Contributor_Guidelines"></a>
 ## Contributor Guidelines
 
-For the guide to contributing to this repository, please see [CONTRIBUTING.md](./CONTRIBUTING.md) file.
+Contributions to this repository are welcome. Please see the [Contributing.md](https://github.com/5calls/5calls/blob/master/CONTRIBUTING.md) file in the 5calls/5calls repository for information on contributing to this repository.
 
 <a id="Contributors"></a>
 ## Contributors
@@ -115,3 +97,11 @@ For the guide to contributing to this repository, please see [CONTRIBUTING.md](.
 ## Other Client Projects
  - [Android](https://github.com/5calls/android)
  - [iOS](https://github.com/5calls/ios)
+
+## Create React App Code Generation
+
+This project was created with [create-react-app](https://github.com/facebookincubator/create-react-app) (CRA, react-scripts ver 1.0.0) using [react-scripts-ts](https://github.com/wmonk/create-react-app-typescript) (ver 2.2.0) to add TypeScript support. In addition, the `node-sass-chokidar` library was added for preprocessing of SASS (.scss files) to CSS.
+
+Subsequently, the CRA-created configurations were exposed using the eject command (`yarn eject`). This created the `config` and `scripts` folders and added dependencies and other configurations to `package.json`.
+
+[CRA_README.md](CRA_README.md) is the original README.md file created when the create-react-app command was run.

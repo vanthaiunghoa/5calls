@@ -1,0 +1,116 @@
+.hypothesis {
+  hr {
+    margin: 20px 0;
+  }
+
+  &__header, &__list {
+    p, li {
+      font-size: $font-large;
+      @include bp(small) {
+        font-size: $font-small;
+      }
+    }
+  }
+
+  &__title {
+    margin: 24px 0;
+    font-size: $font-xxxlarge;
+    text-transform: uppercase;
+    text-align: center;
+
+    @include bp(small) {
+      font-size: $font-xlarge;
+    }
+  }
+
+  p {
+    margin-bottom: 30px;
+  }
+
+  &__text {
+    .progress {
+      margin-bottom: 30px;
+    }
+
+    &__mobile {
+      float: right;
+      margin: 20px 0;
+      width: 434px;
+      height: 370px;
+
+      @include bp(medium) {
+        display: none;
+      }
+    }
+
+    p {
+      font-size: $font-large;
+
+      @include bp(small) {
+        font-size: $font-small;
+      }
+
+      a {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 26px;
+    font-size: 32px;
+    font-weight: 100;
+    font-style: italic;
+    text-align: center;
+  }
+
+  &__list {
+    margin-top: 6px;
+    li {
+      margin-bottom: 12px;
+    }
+  }
+
+  &__callout {
+    text-align: center;
+  }
+
+  &__apps {
+    list-style: none;
+
+    li {
+      float: left;
+    }
+
+    .ios {
+      padding: 9px 0 0 0;
+      width: auto;
+    }
+    .play {
+      width: 150px;
+    }
+  }
+
+  .subscribe {
+    label {
+      display: block;
+      font-size: $font-large;
+      margin-bottom: 10px;
+    }
+
+    input[type=text] {
+      width: 180px;
+    }
+  }
+}
+
+.phonebank-promo {
+  h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  img {
+    width: 100%;
+  }
+}
