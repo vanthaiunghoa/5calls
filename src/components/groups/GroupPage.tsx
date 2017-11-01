@@ -1,13 +1,15 @@
 import * as React from 'react';
+import i18n from '../../services/i18n';
 import { LayoutContainer } from '../layout';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import * as ReactMarkdown from 'react-markdown';
 
 import { Group, Issue } from '../../common/model';
-import { formatNumber } from '../shared/utils';
+// import { formatNumber } from '../shared/utils';
 import { getGroup } from '../../services/apiServices';
 import { LocationState } from '../../redux/location/reducer';
 import { CallState } from '../../redux/callState/reducer';
+import { CallCount } from '../shared';
 import { queueUntilRehydration } from '../../redux/rehydrationUtil';
 
 interface RouteProps extends RouteComponentProps<{ groupid: string, issueid: string }> { }
@@ -109,14 +111,8 @@ class GroupPage extends React.Component<Props, State> {
           return <span/>;
         }
 
-        // const pctDone = (group.totalCalls / 1000) * 100;
-        // const pctStyle = {width: `${pctDone}%`};    
-
-        const introStyle = {
-          backgroundColor: '#ddd',
-          borderRadius: '6px',
-          padding: '10px 10px 1px 10px',
-        };
+        // test indivisible image "https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-1/p480x480/17361893_1705336226148921_129555445851392992_n.jpg?oh=8ff406f4c2c63ca8ae7ab712c78f8ef7&oe=5AABD91D"
+        const groupImage = group.photoURL ? group.photoURL : "/img/5calls-stars.png";
 
         return (
           <LayoutContainer 
@@ -125,15 +121,19 @@ class GroupPage extends React.Component<Props, State> {
             issueId={this.props.match.params.issueid}
           >
             <div className="page__group">
-            {group.photoURL !== '' ?
-             <div className="page__group__image"><img alt={group.name} src={group.photoURL} /></div>
-             :
-             <span/>
-            }
-              <h2 className="page__title">{group.name}</h2>
-              <h3>Together we've made {formatNumber(group.totalCalls)} calls!</h3>
+              <div className="page__header">
+                <div className="page__header__image"><img alt={group.name} src={groupImage}/></div>
+                <h1 className="page__title">{group.name}</h1>
+                <h2 className="page__subtitle">Y'all better make some calls for this team</h2>
+              </div>
+              <CallCount
+                totalCount={group.totalCalls}
+                minimal={true}
+                t={i18n.t}
+              />
+              {/* yes, this is terrible */}
               { (group.id === 'danicaroem') ?
-              <blockquote style={introStyle}>
+              <blockquote>
                 {/*tslint:disable-next-line:max-line-length*/}
                 <p>Welcome to the phone bank for Danica Roem, candidate for Virginia’s House of Delegates for District 13!</p>
                 {/*tslint:disable-next-line:max-line-length*/}
