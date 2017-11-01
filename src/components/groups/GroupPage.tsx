@@ -111,8 +111,7 @@ class GroupPage extends React.Component<Props, State> {
           return <span/>;
         }
 
-        // test indivisible image "https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-1/p480x480/17361893_1705336226148921_129555445851392992_n.jpg?oh=8ff406f4c2c63ca8ae7ab712c78f8ef7&oe=5AABD91D"
-        const groupImage = group.photoURL ? group.photoURL : "/img/5calls-stars.png";
+        const groupImage = group.photoURL ? group.photoURL : '/img/5calls-stars.png';
 
         return (
           <LayoutContainer 
@@ -144,16 +143,7 @@ class GroupPage extends React.Component<Props, State> {
                 <p>If you’ve never made voter calls before, that’s perfectly ok! <Link to="/phonebanks">Please head over here</Link> for tips on phone banking and a great video that will make you feel ready!</p>
               </blockquote>
               : <span />}
-              {/* <div className="progress">
-                <span style={pctStyle} className="progress__total">
-                    {formatNumber(group.totalCalls)} Calls
-                </span>
-              </div> */}
               <ReactMarkdown source={group.description}/>
-              {/* <p>{groupId === group.id ? 
-                  `You're contributing to the call total for this team!` : 
-                  `Join this group to start making your calls count towards this team's total.`
-              }</p> */}
             </div>
           </LayoutContainer>
         );
