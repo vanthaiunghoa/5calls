@@ -58,7 +58,6 @@ ShallowWrapper {
             </Trans>
         </p>
         <Translate(Component)
-            large={true}
             t={[Function]}
             totalCount={10000}
         />
@@ -115,7 +114,6 @@ ShallowWrapper {
                   </Trans>
             </p>
             <Translate(Component)
-                  large={true}
                   t={[Function]}
                   totalCount={10000}
             />
@@ -248,7 +246,6 @@ ShallowWrapper {
                               </Trans>
                     </p>
                     <Translate(Component)
-                              large={true}
                               t={[Function]}
                               totalCount={10000}
                     />
@@ -305,7 +302,6 @@ ShallowWrapper {
                               </Trans>
                     </p>
                     <Translate(Component)
-                              large={true}
                               t={[Function]}
                               totalCount={10000}
                     />
