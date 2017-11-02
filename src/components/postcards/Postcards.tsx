@@ -15,14 +15,14 @@ export const Postcards: React.StatelessComponent<Props> = (props: Props) => (
     <h2><a href="https://secure.actblue.com/donate/5calls-postcards">Get Your Voter Postcards Here</a></h2>
     {/*tslint:disable-next-line:max-line-length*/}
     <p>We specifically designed our postcards to help voters make a plan to vote, which research has shown to increase voter turnout. The $5 cost goes straight to printing, packaging, and postage, please consider a small additional donation to help support 5 Calls!</p>
-    <p><strong>If you're a group who wants to throw a postcard party,</strong> we're working with our printer to get bulk pricing, <a href={`mailto:${Constants.contact.email}`}>get in touch with us</a> for even more.</p>
+    <p><strong>If you're a group who wants to throw a postcard party,</strong> we're working with our printer to get bulk pricing, <a href={`mailto:${Constants.contact.email}`}>get in touch with us</a> for more information.</p>
     <h3>Why is it important to get out the vote for this election?</h3>
     <ul>
       {/*tslint:disable-next-line:max-line-length*/}
       <li>There is no early voting! Mail-in ballots are only available for special cases, therefore voting on election day is the only option for most people.</li>
       {/*tslint:disable-next-line:max-line-length*/}
       <li>Voter turnout for special elections is always challenging. This election falls in the holiday season, potentially suppressing turnout.</li>
-      <li>Recent polling has the 2 candidates running neck and neck, this election will be won on voter turnout.</li>
+      <li>Recent polling shows this is a very tight election, voter turnout will be pivotal.</li>
     </ul>
     <h3>Talking points you can include in your personal postcard message:</h3>
     <ul>

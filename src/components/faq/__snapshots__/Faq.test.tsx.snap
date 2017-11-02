@@ -24,11 +24,11 @@ ShallowWrapper {
         <h2
             className="callout"
         >
-            Your question not listed here? 
+            Your question not listed here? Get in touch at 
             <a
                 href="mailto:make5calls@gmail.com"
             >
-                Get in touch
+                make5calls@gmail.com
             </a>
         </h2>
         <h3>
@@ -223,11 +223,11 @@ ShallowWrapper {
             <h2
                   className="callout"
             >
-                  Your question not listed here? 
+                  Your question not listed here? Get in touch at 
                   <a
                         href="mailto:make5calls@gmail.com"
                   >
-                        Get in touch
+                        make5calls@gmail.com
                   </a>
             </h2>
             <h3>
@@ -456,11 +456,11 @@ ShallowWrapper {
                     <h2
                               className="callout"
                     >
-                              Your question not listed here? 
+                              Your question not listed here? Get in touch at 
                               <a
                                         href="mailto:make5calls@gmail.com"
                               >
-                                        Get in touch
+                                        make5calls@gmail.com
                               </a>
                     </h2>
                     <h3>
@@ -655,11 +655,11 @@ ShallowWrapper {
                     <h2
                               className="callout"
                     >
-                              Your question not listed here? 
+                              Your question not listed here? Get in touch at 
                               <a
                                         href="mailto:make5calls@gmail.com"
                               >
-                                        Get in touch
+                                        make5calls@gmail.com
                               </a>
                     </h2>
                     <h3>

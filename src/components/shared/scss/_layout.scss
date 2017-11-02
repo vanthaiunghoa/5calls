@@ -397,8 +397,8 @@ button {
 .postcards {
   &__example {
     float: left;
-    width: 250px;
-    margin: -10px 20px 10px 0;
+    width: 320px;
+    margin: -20px 20px 10px 0;
 
     @include bp(medium) {
       float: none;
