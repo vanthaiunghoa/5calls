@@ -14,6 +14,7 @@ interface OwnProps {
   readonly issues?: Issue[];
   readonly currentGroupId?: string;
   readonly children?: {};
+  readonly postcards?: boolean;
   readonly extraComponent?: {};
 }
 

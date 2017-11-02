@@ -10,6 +10,7 @@ import { SidebarHeader, Sidebar, Footer, Header } from './index';
 interface Props {
   readonly children?: {};
   readonly extraComponent?: {};
+  readonly postcards?: boolean;
   readonly issueId: string;
   readonly issues: Issue[];
   readonly currentIssue?: Issue;
@@ -27,7 +28,9 @@ const Layout: React.StatelessComponent<Props> = (props: Props) => (
     <Helmet>
       <title>5 Calls: Make your voice heard</title>
     </Helmet>
-    <Header />
+    <Header
+      postcards={props.postcards}
+    />
     <div className="layout">
       <aside id="nav" role="contentinfo" className="layout__side">
         <div className="issues">
