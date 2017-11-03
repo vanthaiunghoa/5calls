@@ -14,8 +14,8 @@ export const Postcards: React.StatelessComponent<Props> = (props: Props) => (
     <p><strong>For $5, you'll get 5 pre-stamped, pre-addressed postcards to critical voters in Alabama</strong>. After receiving your set of 5 cards in the mail, simply add your own personal message and put them right back in the mail. No need to get supplies or even leave your home!</p>
     <h2><a href="https://secure.actblue.com/donate/5calls-postcards">Get Your Voter Postcards Here</a></h2>
     {/*tslint:disable-next-line:max-line-length*/}
-    <p>We specifically designed our postcards to help voters make a plan to vote, which research has shown to increase voter turnout. The $5 cost goes straight to printing, packaging, and postage, please consider a small additional donation to help support 5 Calls!</p>
-    <p><strong>If you're a group who wants to throw a postcard party,</strong> we're working with our printer to get bulk pricing, <a href={`mailto:${Constants.contact.email}`}>get in touch with us</a> for more information.</p>
+    <p>We specifically designed our postcards to help voters make a plan to vote, which research has shown to increase voter turnout. The $5 cost goes straight to printing, packaging, and postage. Please also consider a small additional donation to help support 5 Calls!</p>
+    <p><strong>Want to throw a postcard party?</strong> Getting a group of friends together to write postcards is a fun and easy way to amplify your efforts. <a href={`mailto:${Constants.contact.email}`}>Get in touch with us</a> for bulk pricing and support.</p>
     <h3>Why is it important to get out the vote for this election?</h3>
     <ul>
       {/*tslint:disable-next-line:max-line-length*/}
@@ -31,13 +31,13 @@ export const Postcards: React.StatelessComponent<Props> = (props: Props) => (
       <li>Polling locations can be found at <a href="http://www.alabamavotes.gov" target="_blank">www.alabamavotes.gov</a></li>
       {/*tslint:disable-next-line:max-line-length*/}
       <li>Since 2014, voters in Alabama have been required to bring ID to the polls. They can find information on acceptable ID or how to get a free ID at <a href="http://www.alabamavotes.gov" target="_blank">www.alabamavotes.gov</a></li>
-      <li>Remember to keep postcard messaging positive and encouraging. The best messaging is sincere and authentic.</li>
+      <li>Keep messaging positive and encouraging. The best way to connect with other voters is to be sincere and authentic.</li>
     </ul>
     <h3>Postcard message examples:</h3>
     <blockquote>
       <p>Dear Voter,</p> 
       {/*tslint:disable-next-line:max-line-length*/}
-      <p>Participating in elections is a critical way to make your voice heard in our democracy! Every vote counts! Don’t miss your chance to vote in the special election on Dec. 12. Polls are open from 7 am-7 pm, more info can be found at www.alabamavotes.gov</p>
+      <p>Participating in elections is a critical way to make your voice heard in our democracy! Every vote counts! Don’t miss your chance to vote in the special election on Dec. 12. Polls are open from 7am - 7pm, more info can be found at www.alabamavotes.gov</p>
       <p>Thank you for being a voter!</p>
       <p>Eleanor</p>
       <p>Durham, NC</p>
