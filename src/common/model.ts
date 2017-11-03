@@ -87,6 +87,7 @@ export interface UserStat {
 export interface Group {
   id: string;
   name: string;
+  subtitle: string;
   description: string;
   totalCalls: number;
   photoURL: string;

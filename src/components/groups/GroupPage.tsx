@@ -123,7 +123,7 @@ class GroupPage extends React.Component<Props, State> {
               <div className="page__header">
                 <div className="page__header__image"><img alt={group.name} src={groupImage}/></div>
                 <h1 className="page__title">{group.name}</h1>
-                <h2 className="page__subtitle">Y'all better make some calls for this team</h2>
+                <h2 className="page__subtitle">{group.subtitle}</h2>
               </div>
               <CallCount
                 totalCount={group.totalCalls}
