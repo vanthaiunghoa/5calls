@@ -32,7 +32,6 @@ export const Done: React.StatelessComponent<Props> = (props: Props) => {
 
         <CallCount
           totalCount={props.totalCount}
-          large={true}
           t={props.t}
         />
       </div>

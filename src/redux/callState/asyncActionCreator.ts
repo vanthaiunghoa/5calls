@@ -121,5 +121,12 @@ export function submitFlexibleOutcome(data: FlexibleOutcomeData) {
         // tslint:disable-next-line:no-console
         .catch(e => console.error('Problem posting outcome data', e));
     }
+
+    // these are really only relevant for non-fetch contact lists
+    if (data.numberContactsLeft === 0) {
+      return dispatch(completeIssueActionCreator());
+    } else {
+      return dispatch(moveToNextActionCreator());
+    }
   };
 }

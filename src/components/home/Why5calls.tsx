@@ -26,7 +26,6 @@ export const Why5calls: React.StatelessComponent<Props> = (props: Props) => (
     <div className="hypothesis__text">
       <CallCount
         totalCount={props.totalCount}
-        large={true}
         t={i18n.t}
       />
       <hr />
