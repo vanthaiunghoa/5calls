@@ -54,7 +54,13 @@ class Outcomes extends React.Component<Props & RouteComponentProps<any>, State> 
 
     // navigate to /done when finished
     if (this.props.numberContactsLeft === 0 && this.props.history) {
-      this.props.history.push(`/done/${this.props.currentIssue.id}`);
+      // it feels like this history push should be further up (maybe in onsubmitoutcome?)
+      if (this.props.match.params.groupid) {
+        this.props.history.push(`/team/${this.props.match.params.groupid}`);
+      } else {
+        this.props.history.push(`/done/${this.props.currentIssue.id}`);        
+      }
+
       window.scroll(1, 1);
     } else {
       // scroll to the contact element
