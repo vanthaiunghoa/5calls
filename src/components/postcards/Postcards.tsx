@@ -21,7 +21,7 @@ export const Postcards: React.StatelessComponent<Props> = (props: Props) => (
       {/*tslint:disable-next-line:max-line-length*/}
       <li>There is no early voting! Mail-in ballots are only available for special cases, therefore voting on election day is the only option for most people.</li>
       {/*tslint:disable-next-line:max-line-length*/}
-      <li>Voter turnout for special elections is always challenging. This election falls in the holiday season, potentially suppressing turnout.</li>
+      <li>Getting out the vote for a special election has always been hard. But GOTV is even tougher during the holidays.</li>
       <li>Recent polling shows this is a very tight election, voter turnout will be pivotal.</li>
     </ul>
     <h3>Talking points you can include in your personal postcard message:</h3>
