@@ -11,7 +11,8 @@ const Faq: React.StatelessComponent<Props> = (props: Props) => {
         <div className="about">
           <h2 className="about__title">Frequently Asked Questions</h2>
           <h2 className="callout">
-            Your question not listed here? <a href={`mailto:${Constants.contact.email}`}>Get in touch</a>
+            {/*tslint:disable-next-line:max-line-length*/}
+            Your question not listed here? Get in touch at <a href={`mailto:${Constants.contact.email}`}>{Constants.contact.email}</a>
           </h2>
           <h3>How do I use {Constants.APP_NAME}?</h3>
           <ul>

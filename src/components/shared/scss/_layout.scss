@@ -46,7 +46,33 @@
 
     @include bp(medium) {
       display: block;
-      // width: 100%;
+    }
+
+    ul {
+      position: absolute;
+      top: 16px;
+      right: 50px;
+      list-style: none;
+      margin: 0;
+
+      li {
+        float: left;
+        margin-right: 40px;
+
+        @include bp(medium) {
+          margin-right: 20px;
+        }
+        
+        a {
+          font-size: 20px;
+          font-weight: 600;
+          color: $blue;
+
+          &.active {
+            text-decoration: underline;
+          }
+        }
+      }
     }
 
     img {
@@ -365,5 +391,49 @@ button {
     font-size: 28px;
     height: 40px;
     line-height: 40px;
+  }
+}
+
+.postcards {
+  &__example {
+    float: left;
+    width: 320px;
+    margin: -20px 20px 10px 0;
+
+    @include bp(medium) {
+      float: none;
+      width: 100%;
+      margin: 10px;
+    }
+  }
+
+  h1 {
+    font-size: 50px;
+    text-transform: none;
+  }
+
+  h2 {
+    clear: both;
+    font-size: 32px;
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    li {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+  }
+
+  blockquote {
+    background-color: #ddd;
+    border-radius: 4px;
+    padding: 10px 14px;
+
+    p {
+      margin-bottom: 5px;
+    }
   }
 }

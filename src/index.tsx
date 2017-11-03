@@ -16,6 +16,7 @@ import { setUserStatsActionCreator } from './redux/userStats';
 import { HomePageContainer } from './components/home';
 import { AboutPage } from './components/about';
 import { PhonebanksPage } from './components/phonebanks';
+import { PostcardsPage } from './components/postcards';
 import { FaqPage } from './components/faq';
 import { DonePageContainer } from './components/done';
 import { MoreIssuesContainer } from './components/issues';
@@ -66,6 +67,7 @@ ReactDOM.render(
           <Route path="/faq" exact={true} component={FaqPage} />
           <Route path="/about" exact={true} component={AboutPage} />
           <Route path="/phonebanks" exact={true} component={PhonebanksPage} />
+          <Route path="/postcards" exact={true} component={PostcardsPage} />
           <Route path="*" component={HomePageContainer} />
         </Switch>
       </ConnectedRouter>
