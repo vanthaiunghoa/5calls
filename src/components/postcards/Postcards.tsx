@@ -9,7 +9,7 @@ export const Postcards: React.StatelessComponent<Props> = (props: Props) => (
     <h1 className="hypothesis__title">Send 5 Cards to Voters</h1>
     <img className="postcards__example" src="/img/postcards.png" alt="5 Calls Postcards"/>
     {/*tslint:disable-next-line:max-line-length*/}
-    <p>Support the upcoming <strong>special election in Alabama</strong> with handwritten postcards to help get out the vote in this critical Senate race!</p>
+    <p>Support the upcoming <strong>special election in Alabama on December 12th, 2017</strong> with handwritten postcards to help get out the vote in this critical Senate race!</p>
     {/*tslint:disable-next-line:max-line-length*/}
     <p><strong>For $5, you'll get 5 pre-stamped, pre-addressed postcards to critical voters in Alabama</strong>. After receiving your set of 5 cards in the mail, simply add your own personal message and put them right back in the mail. No need to get supplies or even leave your home!</p>
     <h2><a href="https://secure.actblue.com/donate/5calls-postcards">Get Your Voter Postcards Here</a></h2>
