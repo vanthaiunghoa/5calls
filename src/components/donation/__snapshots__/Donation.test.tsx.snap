@@ -14,34 +14,68 @@ ShallowWrapper {
     <div
         className="layout"
     >
-        <div
-            className="logo__header__donatebar"
-        >
-            <span
-                className="logo__header__donatebar__total"
-                style={
-                    Object {
-                        "width": "100%",
-                      }
-                }
-            >
-                $1,345
-            </span>
-            <span
-                className="logo__header__donatebar__goal"
-            >
-                $5,000
-            </span>
-        </div>
         <p
             className="logo__header__donatetext"
         >
             <a
                 href="https://secure.actblue.com/donate/5calls-donate"
+                target="_blank"
             >
-                Donate today to keep 5 Calls running
+                5 Calls is powered by donations from members like you
             </a>
         </p>
+        <div
+            className="logo__header__donatebutton"
+        >
+            <a
+                href="https://secure.actblue.com/donate/5calls-donate?amount=5"
+                target="_blank"
+            >
+                $5
+            </a>
+            <p>
+                Supports 100 calls to Congress
+            </p>
+        </div>
+        <div
+            className="logo__header__donatebutton"
+        >
+            <a
+                href="https://secure.actblue.com/donate/5calls-donate?amount=15"
+                target="_blank"
+            >
+                $15
+            </a>
+            <p>
+                Supports outreach to new activists
+            </p>
+        </div>
+        <div
+            className="logo__header__donatebutton"
+        >
+            <a
+                href="https://secure.actblue.com/donate/5calls-donate?amount=25"
+                target="_blank"
+            >
+                $25
+            </a>
+            <p>
+                Support issue research and writeups
+            </p>
+        </div>
+        <div
+            className="logo__header__donatebutton"
+        >
+            <a
+                href="https://secure.actblue.com/donate/5calls-donate?amount=100"
+                target="_blank"
+            >
+                $100
+            </a>
+            <p>
+                Keeps the server running for a month
+            </p>
+        </div>
     </div>
 </div>,
   "nodes": Array [
@@ -51,34 +85,68 @@ ShallowWrapper {
       <div
             className="layout"
       >
-            <div
-                  className="logo__header__donatebar"
-            >
-                  <span
-                        className="logo__header__donatebar__total"
-                        style={
-                              Object {
-                                    "width": "100%",
-                                  }
-                        }
-                  >
-                        $1,345
-                  </span>
-                  <span
-                        className="logo__header__donatebar__goal"
-                  >
-                        $5,000
-                  </span>
-            </div>
             <p
                   className="logo__header__donatetext"
             >
                   <a
                         href="https://secure.actblue.com/donate/5calls-donate"
+                        target="_blank"
                   >
-                        Donate today to keep 5 Calls running
+                        5 Calls is powered by donations from members like you
                   </a>
             </p>
+            <div
+                  className="logo__header__donatebutton"
+            >
+                  <a
+                        href="https://secure.actblue.com/donate/5calls-donate?amount=5"
+                        target="_blank"
+                  >
+                        $5
+                  </a>
+                  <p>
+                        Supports 100 calls to Congress
+                  </p>
+            </div>
+            <div
+                  className="logo__header__donatebutton"
+            >
+                  <a
+                        href="https://secure.actblue.com/donate/5calls-donate?amount=15"
+                        target="_blank"
+                  >
+                        $15
+                  </a>
+                  <p>
+                        Supports outreach to new activists
+                  </p>
+            </div>
+            <div
+                  className="logo__header__donatebutton"
+            >
+                  <a
+                        href="https://secure.actblue.com/donate/5calls-donate?amount=25"
+                        target="_blank"
+                  >
+                        $25
+                  </a>
+                  <p>
+                        Support issue research and writeups
+                  </p>
+            </div>
+            <div
+                  className="logo__header__donatebutton"
+            >
+                  <a
+                        href="https://secure.actblue.com/donate/5calls-donate?amount=100"
+                        target="_blank"
+                  >
+                        $100
+                  </a>
+                  <p>
+                        Keeps the server running for a month
+                  </p>
+            </div>
       </div>
 </div>,
   ],
@@ -128,34 +196,68 @@ ShallowWrapper {
           <div
                     className="layout"
           >
-                    <div
-                              className="logo__header__donatebar"
-                    >
-                              <span
-                                        className="logo__header__donatebar__total"
-                                        style={
-                                                  Object {
-                                                            "width": "100%",
-                                                          }
-                                        }
-                              >
-                                        $1,345
-                              </span>
-                              <span
-                                        className="logo__header__donatebar__goal"
-                              >
-                                        $5,000
-                              </span>
-                    </div>
                     <p
                               className="logo__header__donatetext"
                     >
                               <a
                                         href="https://secure.actblue.com/donate/5calls-donate"
+                                        target="_blank"
                               >
-                                        Donate today to keep 5 Calls running
+                                        5 Calls is powered by donations from members like you
                               </a>
                     </p>
+                    <div
+                              className="logo__header__donatebutton"
+                    >
+                              <a
+                                        href="https://secure.actblue.com/donate/5calls-donate?amount=5"
+                                        target="_blank"
+                              >
+                                        $5
+                              </a>
+                              <p>
+                                        Supports 100 calls to Congress
+                              </p>
+                    </div>
+                    <div
+                              className="logo__header__donatebutton"
+                    >
+                              <a
+                                        href="https://secure.actblue.com/donate/5calls-donate?amount=15"
+                                        target="_blank"
+                              >
+                                        $15
+                              </a>
+                              <p>
+                                        Supports outreach to new activists
+                              </p>
+                    </div>
+                    <div
+                              className="logo__header__donatebutton"
+                    >
+                              <a
+                                        href="https://secure.actblue.com/donate/5calls-donate?amount=25"
+                                        target="_blank"
+                              >
+                                        $25
+                              </a>
+                              <p>
+                                        Support issue research and writeups
+                              </p>
+                    </div>
+                    <div
+                              className="logo__header__donatebutton"
+                    >
+                              <a
+                                        href="https://secure.actblue.com/donate/5calls-donate?amount=100"
+                                        target="_blank"
+                              >
+                                        $100
+                              </a>
+                              <p>
+                                        Keeps the server running for a month
+                              </p>
+                    </div>
           </div>
 </div>,
         "_debugID": 2,
@@ -165,34 +267,68 @@ ShallowWrapper {
           <div
                     className="layout"
           >
-                    <div
-                              className="logo__header__donatebar"
-                    >
-                              <span
-                                        className="logo__header__donatebar__total"
-                                        style={
-                                                  Object {
-                                                            "width": "100%",
-                                                          }
-                                        }
-                              >
-                                        $1,345
-                              </span>
-                              <span
-                                        className="logo__header__donatebar__goal"
-                              >
-                                        $5,000
-                              </span>
-                    </div>
                     <p
                               className="logo__header__donatetext"
                     >
                               <a
                                         href="https://secure.actblue.com/donate/5calls-donate"
+                                        target="_blank"
                               >
-                                        Donate today to keep 5 Calls running
+                                        5 Calls is powered by donations from members like you
                               </a>
                     </p>
+                    <div
+                              className="logo__header__donatebutton"
+                    >
+                              <a
+                                        href="https://secure.actblue.com/donate/5calls-donate?amount=5"
+                                        target="_blank"
+                              >
+                                        $5
+                              </a>
+                              <p>
+                                        Supports 100 calls to Congress
+                              </p>
+                    </div>
+                    <div
+                              className="logo__header__donatebutton"
+                    >
+                              <a
+                                        href="https://secure.actblue.com/donate/5calls-donate?amount=15"
+                                        target="_blank"
+                              >
+                                        $15
+                              </a>
+                              <p>
+                                        Supports outreach to new activists
+                              </p>
+                    </div>
+                    <div
+                              className="logo__header__donatebutton"
+                    >
+                              <a
+                                        href="https://secure.actblue.com/donate/5calls-donate?amount=25"
+                                        target="_blank"
+                              >
+                                        $25
+                              </a>
+                              <p>
+                                        Support issue research and writeups
+                              </p>
+                    </div>
+                    <div
+                              className="logo__header__donatebutton"
+                    >
+                              <a
+                                        href="https://secure.actblue.com/donate/5calls-donate?amount=100"
+                                        target="_blank"
+                              >
+                                        $100
+                              </a>
+                              <p>
+                                        Keeps the server running for a month
+                              </p>
+                    </div>
           </div>
 </div>,
       },
