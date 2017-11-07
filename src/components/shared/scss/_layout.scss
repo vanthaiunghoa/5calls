@@ -92,54 +92,65 @@
   &__donate {
     background-color: $red;
 
-    @include bp(medium) {
-      padding: 14px 10px 0 10px;
+    .layout {
+      display: flex;
+
+      @include bp(medium) {
+        display: inline-block;
+        width: 100%;
+      }  
     }
+
+    // @include bp(medium) {
+    //   padding: 14px 10px 0 10px;
+    // }
   }
 
-  &__donatebar {
-    position: relative;
-    width: 100%;
-    height: 30px;
-    margin: 12px 30px 0 30px;;
-    background-color: white;
-    border-radius: 15px;
+  &__donatebutton {
+    max-width: 200px;
+    margin-right: 10px;
+    // float: left;
 
     @include bp(medium) {
-      margin: 0;
-      // padding: 0 10px;
+      max-width: 100%;
+      margin: 0 20px;
+      // float: none;
     }
 
-    &__total {
+    a {
+      float: left;
       display: inline-block;
-      min-width: 5%;
-      height: 30px;
-      background-color: $blue;
-      border-radius: 15px;
-      // border-bottom-left-radius: 15px;
-      // border-top-left-radius: 15px;
+      width: 60px;
+      background-color: #fff;
+      margin: 6px 5px 0 0;
+      padding: 8px 0;
+      border: 2px solid $blue;
+      border-radius: 5px;
+      color: $blue;
+      text-align: center;
+      font-size: 18px;
 
-      color: white;
-      text-align: right;
-      padding-right: 5px;
-      line-height: 32px;
+      @include bp(medium) {
+        width: 100%;
+      }
     }
 
-    &__goal {
-      position: absolute;
-      right: 5px;
-      display: inline-block;
-      line-height: 32px;
+    p {
+      margin: 7px 0 0 0;
+      color: #fff;      
+      font-size: 14px;
     }
   }
 
   &__donatetext {
+    max-width: 200px;
     line-height: inherit;
-    margin: 5px 30px 0 0;
+    margin: 5px 20px 0 30px;
 
-    // @include bp(medium) {
-    //   margin: 0;
-    // }
+    @include bp(medium) {
+      width: 100%;
+      max-width: inherit;
+    }
 
     a {
       color: white;

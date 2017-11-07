@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { formatNumber } from '../shared/utils';
+import * as Constants from '../../common/constants';
 
 interface Props {
   readonly total: number;
@@ -10,26 +10,31 @@ interface State {}
 
 export class Donation extends React.Component<Props, State> {
   render () {
-    // if goal is zero, percent = 100 to avoid divide by zero error
-    // const pctDone = this.props.goal && this.props.goal !== 0 ? (this.props.total / this.props.goal) * 100 : 100;
-    const pctDoneStyle = {width: `100%`};
-    if (this.props.goal !== 0 && this.props.total !== 0) {
-      return (
-        <div className="logo__header__donate">
-          <div className="layout">
-            <div className="logo__header__donatebar">
-              <span style={pctDoneStyle} className="logo__header__donatebar__total">
-                  {`\$${formatNumber(this.props.total)}`}
-              </span>
-              <span className="logo__header__donatebar__goal">{`\$${formatNumber(this.props.goal)}`}</span>
-            </div>
-            <p className="logo__header__donatetext">
-              <a href="https://secure.actblue.com/donate/5calls-donate">Donate today to keep 5 Calls running</a>
-            </p>
+
+    return (
+      <div className="logo__header__donate">
+        <div className="layout">
+          <p className="logo__header__donatetext">
+            <a href={Constants.DONATE_URL} target="_blank">5 Calls is powered by donations from members like you</a>
+          </p>
+          <div className="logo__header__donatebutton">
+            <a href={`${Constants.DONATE_URL}?amount=5`} target="_blank">$5</a>
+            <p>Supports 100 calls to Congress</p>
           </div>
-        </div>);
-    } else {
-      return <span/>;
-    }
+          <div className="logo__header__donatebutton">
+            <a href={`${Constants.DONATE_URL}?amount=15`} target="_blank">$15</a>
+            <p>Supports outreach to new activists</p>
+          </div>
+          <div className="logo__header__donatebutton">
+            <a href={`${Constants.DONATE_URL}?amount=25`} target="_blank">$25</a>
+            <p>Support issue research and writeups</p>
+          </div>
+          <div className="logo__header__donatebutton">
+            <a href={`${Constants.DONATE_URL}?amount=100`} target="_blank">$100</a>
+            <p>Keeps the server running for a month</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
