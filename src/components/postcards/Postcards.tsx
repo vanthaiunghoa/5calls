@@ -15,7 +15,7 @@ export const Postcards: React.StatelessComponent<Props> = (props: Props) => (
     <h2><a href="https://secure.actblue.com/donate/5calls-postcards">Get Your Voter Postcards Here</a></h2>
     {/*tslint:disable-next-line:max-line-length*/}
     <p>We specifically designed our postcards to help voters make a plan to vote, which research has shown to increase voter turnout. The $5 cost goes straight to printing, packaging, and postage. Please also consider a small additional donation to help support 5 Calls!</p>
-    <p><strong>Want to throw a postcard party?</strong> Getting a group of friends together to write postcards is a fun and easy way to amplify your efforts. <a href={`mailto:${Constants.contact.email}`}>Get in touch with us</a> for bulk pricing and support.</p>
+    <p><strong>Want to throw a postcard party?</strong> Getting a group of friends together to write postcards is a fun and easy way to amplify your efforts. Because of your requests, we've made 50- and 100-packs available on the ordering page. Need even more? <a href={`mailto:${Constants.contact.email}`}>Get in touch with us</a> for bulk pricing and support.</p>
     <h3>Why is it important to get out the vote for this election?</h3>
     <ul>
       {/*tslint:disable-next-line:max-line-length*/}
