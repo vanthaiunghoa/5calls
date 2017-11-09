@@ -150,7 +150,12 @@ class CallPage extends React.Component<Props, State> {
           currentGroupId={this.props.currentGroupId ? this.props.currentGroupId : undefined}
         >
           <Helmet>
-            <title>{this.props.currentIssue ? `${this.props.currentIssue.name}: 5 Calls` : '5 Calls: Make your voice heard'}</title>
+            <title>
+              {this.props.currentIssue ?
+              `${this.props.currentIssue.name}: 5 Calls`
+              :
+              '5 Calls: Make your voice heard'}
+            </title>
           </Helmet>
           <CallTranslatable
             issue={this.props.currentIssue}
