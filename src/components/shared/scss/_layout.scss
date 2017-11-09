@@ -340,7 +340,7 @@ button {
   p.totaltext {
     z-index: 3;
     position: absolute;
-    margin: 0 8px;
+    margin: 1px 8px;
 
     font-size: 28px;
     color: #fff;
@@ -365,7 +365,7 @@ button {
     z-index: 1;
     position: absolute;
     width: 100%;
-    border: 1px solid $blue-light;    
+    background-color: $blue-light;
     border-radius: 5px;
   }
 
@@ -378,7 +378,7 @@ button {
     height: 20px;
     padding-right: 5px;
     line-height: 21px;
-    color: $blue-light;
+    color: #fff;
 
     @include bp(medium) {
       display: none;

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import i18n from '../../services/i18n';
 import { RouteComponentProps } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import { CallTranslatable, FetchCall } from './index';
 import { LayoutContainer } from '../layout';
@@ -148,6 +149,9 @@ class CallPage extends React.Component<Props, State> {
           issueId={this.props.currentIssue ? this.props.currentIssue.id : undefined}
           currentGroupId={this.props.currentGroupId ? this.props.currentGroupId : undefined}
         >
+          <Helmet>
+            <title>{this.props.currentIssue ? `${this.props.currentIssue.name}: 5 Calls` : '5 Calls: Make your voice heard'}</title>
+          </Helmet>
           <CallTranslatable
             issue={this.props.currentIssue}
             callState={this.props.callState}
