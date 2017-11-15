@@ -49,5 +49,13 @@ export const Postcards: React.StatelessComponent<Props> = (props: Props) => (
       <p>Jennifer</p>
       <p>Phoenix, Arizona</p>
     </blockquote>
+    <blockquote>
+      <p>Hi Alabama Voter!</p>
+      {/*tslint:disable-next-line:max-line-length*/}
+      <p>How exciting! You have a special election on December 12th, giving you a chance to have your voice counted in our democracy. Making time to vote can be challenging, specially in the busy holiday season, so making a plan to vote ahead of time is a great way to ensure you don’t miss out. You can use the front of this card to make your plan! Polls are open from 7am-7pm, and information about polling location can be found at www.alabamavotes.gov</p>
+      <p>Thanks for being a voter and participating in our democracy!</p>
+      <p>Mary</p>
+      <p>Youngstown, OH</p>
+    </blockquote>
   </section>
 );
