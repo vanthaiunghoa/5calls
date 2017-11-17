@@ -4,8 +4,9 @@ import i18n from '../../services/i18n';
 import { TranslationFunction } from 'i18next';
 import { translate } from 'react-i18next';
 import { Issue, Contact } from '../../common/model';
-import { CallHeaderTranslatable, ContactDetails, Outcomes, ScriptTranslatable, NoContactSplitDistrict } from './index';
-import { CallState, OutcomeData } from '../../redux/callState';
+import { CallHeaderTranslatable, ContactDetails, Outcomes,
+  ScriptTranslatable, NoContactSplitDistrict, IssueLink } from './index';
+import { CallState, FlexibleOutcomeData } from '../../redux/callState';
 import { LocationState } from '../../redux/location/reducer';
 
 // This defines the props that we must pass into this component.
@@ -15,7 +16,7 @@ export interface Props {
   readonly locationState: LocationState;
   readonly t: TranslationFunction;
   readonly clearLocation: () => void;
-  readonly onSubmitOutcome: (data: OutcomeData) => Function;
+  readonly onSubmitOutcome: (data: FlexibleOutcomeData) => Function;
 }
 
 export interface State {
@@ -82,6 +83,9 @@ export class Call extends React.Component<Props, State> {
           contactIndex={this.state.currentContactIndex}
           t={i18n.t}
         />}
+        <IssueLink
+          issue={this.state.issue}
+        />
         <ScriptTranslatable
           issue={this.state.issue}
           contactIndex={this.state.currentContactIndex}
