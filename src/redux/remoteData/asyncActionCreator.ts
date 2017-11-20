@@ -211,6 +211,19 @@ export const startup = () => {
     // clear contact indexes loaded from local storage
     dispatch(clearContactIndexes());
 
+    // if a location is passed as a query, override or set the location address manually
+    let addressQuery = 'forceAddress';
+    let query = window.location.search.substring(1);
+    let vars = query.split('&');
+    for (let i = 0; i < vars.length; i++) {
+        let pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) === addressQuery) {
+          state.locationState.address = pair[1];
+          state.locationState.cachedCity = '';
+        }
+    }
+    window.history.replaceState(null, '', window.location.pathname);
+
     const loc = state.locationState.address;
     if (loc) {
       // console.log('Using cached address');
