@@ -6,8 +6,7 @@ import { Issue } from '../../common/model';
 import { getIssue } from '../shared/utils';
 import { getGroupIssuesIfNeeded } from '../../redux/remoteData';
 import { LocationState } from '../../redux/location/reducer';
-import { CallState, OutcomeData, FlexibleOutcomeData,
-  submitFlexibleOutcome, selectIssueActionCreator } from '../../redux/callState';
+import { CallState, OutcomeData, submitOutcome, selectIssueActionCreator } from '../../redux/callState';
 import { clearAddress } from '../../redux/location';
 
 import { RouteComponentProps } from 'react-router-dom';
@@ -53,7 +52,7 @@ const mapStateToProps = (state: ApplicationState, ownProps: OwnProps): StateProp
 const mapDispatchToProps = (dispatch: Dispatch<ApplicationState>, ownProps: OwnProps): DispatchProps => {
   return bindActionCreators(
     {
-      onSubmitOutcome: (data: FlexibleOutcomeData) => {
+      onSubmitOutcome: (data: OutcomeData) => {
         return (nextDispatch: Dispatch<ApplicationState>,
                 getState: () => ApplicationState) => {
           // if we're calling from a group page (only case right now, but whatevs)
@@ -63,7 +62,7 @@ const mapDispatchToProps = (dispatch: Dispatch<ApplicationState>, ownProps: OwnP
             adjustedData.groupId = ownProps.match.params.groupid;
           }
 
-          dispatch(submitFlexibleOutcome(adjustedData));
+          dispatch(submitOutcome(adjustedData));
         };
       },
       onSelectIssue: selectIssueActionCreator,

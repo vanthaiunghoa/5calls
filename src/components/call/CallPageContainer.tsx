@@ -6,7 +6,7 @@ import { Issue } from '../../common/model';
 import { CallPage } from './index';
 import { ApplicationState } from '../../redux/root';
 import { getIssuesIfNeeded } from '../../redux/remoteData';
-import { CallState, OutcomeData, submitFlexibleOutcome, selectIssueActionCreator } from '../../redux/callState';
+import { CallState, OutcomeData, submitOutcome, selectIssueActionCreator } from '../../redux/callState';
 import { clearAddress } from '../../redux/location';
 import { LocationState } from '../../redux/location/reducer';
 
@@ -88,7 +88,7 @@ const mapDispatchToProps = (dispatch: Dispatch<ApplicationState>): DispatchProps
             will be dispatched.
         See /src/redux/callState/actionCreator.ts for next step in Redux Data Flow
       */
-      onSubmitOutcome: submitFlexibleOutcome,
+      onSubmitOutcome: submitOutcome,
       onSelectIssue: selectIssueActionCreator,
       onGetIssuesIfNeeded: getIssuesIfNeeded,
       clearLocation: clearAddress

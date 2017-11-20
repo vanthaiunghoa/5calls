@@ -1,4 +1,4 @@
-import { OutcomeData, FlexibleOutcomeData } from './../redux/callState/asyncActionCreator';
+import { OutcomeData } from './../redux/callState/asyncActionCreator';
 import axios from 'axios';
 import * as querystring from 'querystring';
 import { ApiData, CountData, DonationGoal, Group, GroupIssues, VoterContact } from './../common/model';
@@ -23,29 +23,6 @@ export const getCountData = (): Promise<CountData> => {
 };
 
 export const postOutcomeData = (data: OutcomeData) => {
-  const postData = querystring.stringify({
-    location: data.location,
-    result: data.outcome,
-    contactid: data.contactId,
-    issueid: data.issueId,
-    groupid: data.groupId,
-    via: data.via
-  });
-  // console.log('postOutcomeData() posted data:', postData)
-  return axios.post(
-      `${Constants.REPORT_API_URL}`,
-      postData,
-      {
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-      })
-    .then(response => {
-    // console.log('postOutcomeData() response: ', response.data);
-    return Promise.resolve(null);
-  })
-    .catch(e => Promise.reject(e));
-};
-
-export const postFlexibleOutcomeData = (data: FlexibleOutcomeData) => {
   const postData = querystring.stringify({
     location: data.location,
     result: data.outcome,

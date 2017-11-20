@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { TranslationFunction } from 'i18next';
 import { translate } from 'react-i18next';
-import { FlexibleOutcomeData } from '../../redux/callState';
+import { OutcomeData } from '../../redux/callState';
 import { Issue } from '../../common/model';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
   readonly currentContactId: string;
   readonly numberContactsLeft: number;
   readonly t: TranslationFunction;
-  readonly onSubmitOutcome: (data: FlexibleOutcomeData) => void;
+  readonly onSubmitOutcome: (data: OutcomeData) => void;
 }
 interface State { }
 

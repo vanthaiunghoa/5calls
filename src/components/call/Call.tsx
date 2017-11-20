@@ -6,7 +6,7 @@ import { translate } from 'react-i18next';
 import { Issue, Contact } from '../../common/model';
 import { CallHeaderTranslatable, ContactDetails, Outcomes,
   ScriptTranslatable, NoContactSplitDistrict, IssueLink } from './index';
-import { CallState, FlexibleOutcomeData } from '../../redux/callState';
+import { CallState, OutcomeData } from '../../redux/callState';
 import { LocationState } from '../../redux/location/reducer';
 
 // This defines the props that we must pass into this component.
@@ -16,7 +16,7 @@ export interface Props {
   readonly locationState: LocationState;
   readonly t: TranslationFunction;
   readonly clearLocation: () => void;
-  readonly onSubmitOutcome: (data: FlexibleOutcomeData) => Function;
+  readonly onSubmitOutcome: (data: OutcomeData) => Function;
 }
 
 export interface State {
