@@ -3,7 +3,6 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { TranslationFunction } from 'i18next';
 import { translate } from 'react-i18next';
 import { OutcomeData } from '../../redux/callState';
-import { UserContactEventType } from '../../redux/userStats';
 import { Issue } from '../../common/model';
 
 interface Props {
@@ -24,28 +23,10 @@ class Outcomes extends React.Component<Props & RouteComponentProps<any>, State> 
       https://github.com/DefinitelyTyped/DefinitelyTyped/pull/12239
     */
     e.currentTarget.blur();
-    let outcomeType: UserContactEventType;
-    switch (outcome) {
-      case 'unavailable': {
-        outcomeType = UserContactEventType.UNAVAILABLE;
-        break;
-      }
-      case 'voicemail': {
-        outcomeType = UserContactEventType.VOICEMAIL;
-        break;
-      }
-      case 'contact': {
-        outcomeType = UserContactEventType.CONTACT;
-        break;
-      }
-      default: {
-        outcomeType = UserContactEventType.SKIP;
-      }
-    }
 
     this.props.onSubmitOutcome(
       {
-        outcome: outcomeType,
+        outcome: outcome,
         numberContactsLeft: this.props.numberContactsLeft,
         issueId: this.props.currentIssue.id,
         contactId: this.props.currentContactId,
@@ -74,20 +55,32 @@ class Outcomes extends React.Component<Props & RouteComponentProps<any>, State> 
 
   render() {
     if (this.props.currentIssue) {
-      return (
-        <div className="call__outcomes">
-          <h3 className="call__outcomes__header">
-            {this.props.t('outcomes.enterYourCallResult')}
-          </h3>
-          <div className="call__outcomes__items">
-            {this.props.currentIssue.outcomeModels.map((outcome, index) =>
-              <button key={index} onClick={(e) => this.dispatchOutcome(e, outcome.label)}>
-                {this.props.t('outcomes.' + outcome.label)}
+      if (this.props.currentIssue.contactType === 'ACTION') {
+        return (
+          <div className="call__outcomes">
+            <div className="call__outcomes__items">
+              <button onClick={(e) => this.dispatchOutcome(e, 'completed')}>
+                I Did It!
               </button>
-            )}
+            </div>
+          </div>          
+        );
+      } else {
+        return (
+          <div className="call__outcomes">
+            <h3 className="call__outcomes__header">
+              {this.props.t('outcomes.enterYourCallResult')}
+            </h3>
+            <div className="call__outcomes__items">
+              {this.props.currentIssue.outcomeModels.map((outcome, index) =>
+                <button key={index} onClick={(e) => this.dispatchOutcome(e, outcome.label)}>
+                  {this.props.t('outcomes.' + outcome.label)}
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-      );  
+        );    
+      }
     } else {
       return <span />;
     }

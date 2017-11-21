@@ -8,10 +8,13 @@ export enum UserContactEventType {
   SKIP = 'skip'
 }
 
+// for the most part we use the event type enum, but we also want to support arbitrary result strings
+export type UserOutcomeResult =  UserContactEventType | string;
+
 export interface UserContactEvent {
   contactid: string;
   issueid: string;
-  result: UserContactEventType;
+  result: UserOutcomeResult;
   time: number;
 }
 

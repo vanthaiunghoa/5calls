@@ -4,7 +4,6 @@ import { TranslationFunction } from 'i18next';
 import { translate } from 'react-i18next';
 import { Contact, Issue } from '../../common/model';
 import { LocationState } from '../../redux/location/reducer';
-import { IssueLink } from './index';
 
 interface Props {
   readonly issue: Issue;
@@ -41,9 +40,6 @@ export const Script: React.StatelessComponent<Props> = ({ issue, contactIndex = 
     let formattedScript = scriptFormat(issue, locationState, contactIndex);
     return (
       <div className="call__script">
-        <IssueLink
-          issue={issue}
-        />
         <h3 className="call__script__header">{t('script.yourScript')}</h3>
         <div className="call__script__body">
           <ReactMarkdown source={formattedScript}/>

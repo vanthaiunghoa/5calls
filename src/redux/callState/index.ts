@@ -7,4 +7,4 @@ export {
 export {completeIssueActionCreator, moveToNextActionCreator,
   selectIssueActionCreator, clearContactIndexes, joinGroupActionCreator } from './actionCreator';
 export { callStateReducer, CallState } from './reducer';
-export { OutcomeData, FlexibleOutcomeData, submitOutcome, submitFlexibleOutcome } from './asyncActionCreator';
+export { OutcomeData, submitOutcome } from './asyncActionCreator';

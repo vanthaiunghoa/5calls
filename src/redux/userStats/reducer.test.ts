@@ -1,5 +1,6 @@
 import { userStatsReducer, UserStatsState, UserStatsActionType, 
   SetUserStatsAction, AddCallEventAction, UserContactEventType } from './index';
+import { UserOutcomeResult } from './reducer';
 
 let defaultState;
 beforeEach(() => {
@@ -55,7 +56,7 @@ test('UserStats reducer processes addCallEventActionCreator action correctly', (
   expect(newState.all.length).toEqual(2);
 });
 
-const getUserContactObject = (result: UserContactEventType) => {
+const getUserContactObject = (result: UserOutcomeResult) => {
   return {
     result,
     contactid: 'fake-contact-id',

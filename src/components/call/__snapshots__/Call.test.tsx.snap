@@ -46,6 +46,22 @@ ShallowWrapper {
         }
         t={[Function]}
     />
+    <IssueLink
+        issue={
+            Object {
+                "categories": Array [],
+                "id": "1",
+                "inactive": false,
+                "link": "",
+                "linkTitle": "",
+                "name": "testName",
+                "outcomeModels": Array [],
+                "reason": "",
+                "script": "",
+                "slug": "",
+              }
+        }
+    />
     <Translate(Component)
         contactIndex={0}
         issue={
@@ -133,6 +149,22 @@ ShallowWrapper {
                       }
             }
             t={[Function]}
+      />
+      <IssueLink
+            issue={
+                  Object {
+                        "categories": Array [],
+                        "id": "1",
+                        "inactive": false,
+                        "link": "",
+                        "linkTitle": "",
+                        "name": "testName",
+                        "outcomeModels": Array [],
+                        "reason": "",
+                        "script": "",
+                        "slug": "",
+                      }
+            }
       />
       <Translate(Component)
             contactIndex={0}
@@ -348,6 +380,22 @@ ShallowWrapper {
                     }
                     t={[Function]}
           />
+          <IssueLink
+                    issue={
+                              Object {
+                                        "categories": Array [],
+                                        "id": "1",
+                                        "inactive": false,
+                                        "link": "",
+                                        "linkTitle": "",
+                                        "name": "testName",
+                                        "outcomeModels": Array [],
+                                        "reason": "",
+                                        "script": "",
+                                        "slug": "",
+                                      }
+                    }
+          />
           <Translate(Component)
                     contactIndex={0}
                     issue={
@@ -435,6 +483,22 @@ ShallowWrapper {
                                       }
                     }
                     t={[Function]}
+          />
+          <IssueLink
+                    issue={
+                              Object {
+                                        "categories": Array [],
+                                        "id": "1",
+                                        "inactive": false,
+                                        "link": "",
+                                        "linkTitle": "",
+                                        "name": "testName",
+                                        "outcomeModels": Array [],
+                                        "reason": "",
+                                        "script": "",
+                                        "slug": "",
+                                      }
+                    }
           />
           <Translate(Component)
                     contactIndex={0}
