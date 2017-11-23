@@ -9,6 +9,7 @@ import { issuesActionCreator, groupIssuesActionCreator, callCountActionCreator }
 import { clearContactIndexes } from '../callState/';
 import { ApplicationState } from '../root';
 import { LocationUiState } from '../../common/model';
+
 /**
  * Timer for calling fetchLocationByIP() if
  * fetchBrowserGeolocation() fails or times out.
@@ -207,7 +208,6 @@ export const startup = () => {
     // dispatch donations
     dispatch(fetchDonations());
     dispatch(setUiState(LocationUiState.FETCHING_LOCATION));
-    const state = getState();
     // clear contact indexes loaded from local storage
     dispatch(clearContactIndexes());
 
@@ -218,13 +218,15 @@ export const startup = () => {
     for (let i = 0; i < vars.length; i++) {
         let pair = vars[i].split('=');
         if (decodeURIComponent(pair[0]) === addressQuery) {
-          state.locationState.address = pair[1];
-          state.locationState.cachedCity = '';
+          dispatch(setLocation(pair[1]));
+          dispatch(setCachedCity(''));
         }
     }
     window.history.replaceState(null, '', window.location.pathname);
-
+    
+    const state = getState();
     const loc = state.locationState.address;
+    
     if (loc) {
       // console.log('Using cached address');
       dispatch(fetchAllIssues(loc))
