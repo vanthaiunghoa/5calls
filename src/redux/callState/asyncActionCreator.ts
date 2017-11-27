@@ -47,7 +47,10 @@ export function submitOutcome(data: OutcomeData) {
       const viaParameter = window.location.host === '5calls.org' ? 'web' : 'test';
       data.via = viaParameter;
 
-      data.groupId = state.callState.group ? state.callState.group.id : '';
+      // we've gone back and forth on how this data is set, but don't overwrite it
+      if (data.groupId === undefined) {
+        data.groupId = state.callState.group ? state.callState.group.id : '';        
+      }
 
       const userContactData = {
         result: data.outcome,
