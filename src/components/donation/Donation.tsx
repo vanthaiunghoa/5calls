@@ -18,8 +18,8 @@ export class Donation extends React.Component<Props, State> {
             <a href={Constants.DONATE_URL} target="_blank">5 Calls is powered by donations from members like you</a>
           </p>
           <div className="logo__header__donatebutton">
-            <a href={`${Constants.DONATE_URL}?amount=5`} target="_blank">$5</a>
-            <p>Supports 100 calls to Congress</p>
+            <a href={`${Constants.DONATE_URL}?amount=10`} target="_blank">$10</a>
+            <p>Supports 200 calls to Congress</p>
           </div>
           <div className="logo__header__donatebutton">
             <a href={`${Constants.DONATE_URL}?amount=15`} target="_blank">$15</a>

@@ -28,13 +28,13 @@ ShallowWrapper {
             className="logo__header__donatebutton"
         >
             <a
-                href="https://secure.actblue.com/donate/5calls-donate?amount=5"
+                href="https://secure.actblue.com/donate/5calls-donate?amount=10"
                 target="_blank"
             >
-                $5
+                $10
             </a>
             <p>
-                Supports 100 calls to Congress
+                Supports 200 calls to Congress
             </p>
         </div>
         <div
@@ -99,13 +99,13 @@ ShallowWrapper {
                   className="logo__header__donatebutton"
             >
                   <a
-                        href="https://secure.actblue.com/donate/5calls-donate?amount=5"
+                        href="https://secure.actblue.com/donate/5calls-donate?amount=10"
                         target="_blank"
                   >
-                        $5
+                        $10
                   </a>
                   <p>
-                        Supports 100 calls to Congress
+                        Supports 200 calls to Congress
                   </p>
             </div>
             <div
@@ -210,13 +210,13 @@ ShallowWrapper {
                               className="logo__header__donatebutton"
                     >
                               <a
-                                        href="https://secure.actblue.com/donate/5calls-donate?amount=5"
+                                        href="https://secure.actblue.com/donate/5calls-donate?amount=10"
                                         target="_blank"
                               >
-                                        $5
+                                        $10
                               </a>
                               <p>
-                                        Supports 100 calls to Congress
+                                        Supports 200 calls to Congress
                               </p>
                     </div>
                     <div
@@ -281,13 +281,13 @@ ShallowWrapper {
                               className="logo__header__donatebutton"
                     >
                               <a
-                                        href="https://secure.actblue.com/donate/5calls-donate?amount=5"
+                                        href="https://secure.actblue.com/donate/5calls-donate?amount=10"
                                         target="_blank"
                               >
-                                        $5
+                                        $10
                               </a>
                               <p>
-                                        Supports 100 calls to Congress
+                                        Supports 200 calls to Congress
                               </p>
                     </div>
                     <div
