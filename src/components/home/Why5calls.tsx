@@ -2,8 +2,8 @@ import * as React from 'react';
 import i18n from '../../services/i18n';
 import { TranslationFunction } from 'i18next';
 import { translate } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { CallCount } from '../shared';
+import { Tracker } from '../stance/Tracker';
 import * as Constants from '../../common/constants';
 
 interface Props {
@@ -29,13 +29,7 @@ export const Why5calls: React.StatelessComponent<Props> = (props: Props) => (
         t={i18n.t}
       />
       <hr />
-      {/*tslint:disable-next-line:max-line-length*/}
-      <Link to="/postcards"><img className="postcards__example" src="/img/postcards.png" alt="5 Calls Postcards"/></Link>
-      {/*tslint:disable-next-line:max-line-length*/}
-      <p>Support the upcoming <strong>special election in Alabama on December 12th, 2017</strong> with handwritten postcards to help get out the vote in this critical Senate race.</p>
-      <p className="postcards__link"><Link to="/postcards">Get your postcards today</Link></p>
-      {/*tslint:disable-next-line:max-line-length*/}
-      <p>Postcards are a great way to personally connect with a voter in another state and encourage them to make their voice heard!</p>
+      <Tracker />
       <div style={{'clear': 'both'}} />
       <hr />
       <a href={Constants.contact.apps}><img src="/img/5calls-apps.png" className="hypothesis__text__mobile" /></a>
