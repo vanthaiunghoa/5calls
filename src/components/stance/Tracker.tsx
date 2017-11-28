@@ -138,8 +138,6 @@ let unknownReps: string[] = [];
 let unknownVotes: string[] = unknownReps.sort(sortByParty);
 
 let definitelyNo: string[] = [
-  'WI-RonJohnson',
-  'MT-SteveDaines',
 ];
 for (let senatorName in nameMap) {
   if (nameMap[senatorName].party !== 'R') {
@@ -189,6 +187,8 @@ let definitelyUnknown = [
   'TN-BobCorker',
   'OK-JamesLankford',
   'IN-ToddYoung',
+  'WI-RonJohnson',
+  'MT-SteveDaines',
 ];
 definitelyUnknown.forEach((senator) => {
   // add to hard list
