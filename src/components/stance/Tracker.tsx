@@ -185,7 +185,6 @@ let definitelyUnknown = [
   'AK-LisaMurkowski',
   'KS-JerryMoran',
   'TN-BobCorker',
-  'OK-JamesLankford',
   'IN-ToddYoung',
   'WI-RonJohnson',
   'MT-SteveDaines',
