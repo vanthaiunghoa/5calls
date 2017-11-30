@@ -179,7 +179,6 @@ definitelyYes.forEach((senator) => {
 });
 
 let definitelyUnknown = [
-  'AZ-JohnMcCain',
   'AZ-JeffFlake',
   'ME-SusanMCollins',
   'KS-JerryMoran',
