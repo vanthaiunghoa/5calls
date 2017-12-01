@@ -181,11 +181,7 @@ definitelyYes.forEach((senator) => {
 let definitelyUnknown = [
   'AZ-JeffFlake',
   'ME-SusanMCollins',
-  'KS-JerryMoran',
   'TN-BobCorker',
-  'IN-ToddYoung',
-  'WI-RonJohnson',
-  'MT-SteveDaines',
 ];
 definitelyUnknown.forEach((senator) => {
   // add to hard list
