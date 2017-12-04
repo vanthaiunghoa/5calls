@@ -138,6 +138,7 @@ let unknownReps: string[] = [];
 let unknownVotes: string[] = unknownReps.sort(sortByParty);
 
 let definitelyNo: string[] = [
+  'TN-BobCorker',  
 ];
 for (let senatorName in nameMap) {
   if (nameMap[senatorName].party !== 'R') {
@@ -179,9 +180,6 @@ definitelyYes.forEach((senator) => {
 });
 
 let definitelyUnknown = [
-  'AZ-JeffFlake',
-  'ME-SusanMCollins',
-  'TN-BobCorker',
 ];
 definitelyUnknown.forEach((senator) => {
   // add to hard list
@@ -201,7 +199,7 @@ definitelyUnknown.forEach((senator) => {
 export const Tracker: React.StatelessComponent<Props> = (props: Props) => {
   return (
     <div className="tracker">
-      <h3>Tax Scam Tracker</h3>
+      <h3>Tax Scam Tracker (passed Senate)</h3>
       <p className="tracker__required">50 Yes votes needed to pass</p>
       <div className="tracker__votes">
         <div className="tracker__votes__no" style={{width: `${noVotes.length}%`}}>No</div>

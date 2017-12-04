@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Constants from '../../common/constants';
+// import * as Constants from '../../common/constants';
 
 export interface Props {
 }
@@ -11,11 +11,11 @@ export const Postcards: React.StatelessComponent<Props> = (props: Props) => (
     {/*tslint:disable-next-line:max-line-length*/}
     <p>Support the upcoming <strong>special election in Alabama on December 12th, 2017</strong> with handwritten postcards to help get out the vote in this critical Senate race!</p>
     {/*tslint:disable-next-line:max-line-length*/}
-    <p><strong>For $5, you'll get 5 pre-stamped, pre-addressed postcards to critical voters in Alabama</strong>. After receiving your set of 5 cards in the mail, simply add your own personal message and put them right back in the mail. No need to get supplies or even leave your home!</p>
-    <h2>Postcard Orders Ended 11/27</h2>
+    <p>We specifically designed our postcards to help voters make a plan to vote, which research has shown to increase voter turnout.</p>
+    {/* <p><strong>For $5, you'll get 5 pre-stamped, pre-addressed postcards to critical voters in Alabama</strong>. After receiving your set of 5 cards in the mail, simply add your own personal message and put them right back in the mail. No need to get supplies or even leave your home!</p> */}
+    <h2>Postcard Program Ended 11/27</h2>
     {/*tslint:disable-next-line:max-line-length*/}
-    <p>We specifically designed our postcards to help voters make a plan to vote, which research has shown to increase voter turnout. The $5 cost goes straight to printing, packaging, and postage. Please also consider a small additional donation to help support 5 Calls!</p>
-    <p><strong>Want to throw a postcard party?</strong> Getting a group of friends together to write postcards is a fun and easy way to amplify your efforts. Because of your requests, we've made 50- and 100-packs available on the ordering page. Need even more? <a href={`mailto:${Constants.contact.email}`}>Get in touch with us</a> for bulk pricing and support.</p>
+    <p><strong>Want to throw a postcard party?</strong> Getting a group of friends together to write postcards is a fun and easy way to amplify your efforts.</p>
     <h3>Why is it important to get out the vote for this election?</h3>
     <ul>
       {/*tslint:disable-next-line:max-line-length*/}
