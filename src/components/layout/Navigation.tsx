@@ -48,7 +48,7 @@ const Navigation: React.StatelessComponent<Props> = (props: Props) => {
         </li>
       </ul>
       <div className="colophon__center">
-        <p>© 2017 5 Calls Civic Action is a 501(c)4 non-profit that helps citizens make their voices heard.</p>
+        <p>© 2018 5 Calls Civic Action is a 501(c)4 non-profit that helps citizens make their voices heard.</p>
         <p><a href="http://ipinfo.io" target="_blank">{props.t('footer.ipGeolocation')}</a></p>
       </div>
       <div style={{'clear': 'both'}} />
