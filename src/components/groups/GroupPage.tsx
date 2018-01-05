@@ -22,7 +22,7 @@ interface Props extends RouteProps {
   readonly setLocation: (location: string) => void;
   readonly clearLocation: () => void;
   readonly onSelectIssue: (issueId: string) => Function;
-  readonly onGetIssuesIfNeeded: (groupid: string) => Function;
+  readonly onGetIssuesIfNeeded: () => Function;
   readonly onJoinGroup: (group: Group) => Function;
   readonly currentGroup?: CacheableGroup;
   readonly cacheGroup: (group: Group) => Function;
@@ -70,7 +70,7 @@ class GroupPage extends React.Component<Props, State> {
           }
           // Dispatch call to add to cache
           this.props.cacheGroup(group);
-          this.props.onGetIssuesIfNeeded(group.id);
+          this.props.onGetIssuesIfNeeded();
         })
         .catch((error: Error) =>  {
           // If 404 error, set loading state to NOTFOUND
@@ -87,11 +87,14 @@ class GroupPage extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    if (!this.props.issues) {
+      queueUntilRehydration(() => {
+        this.props.onGetIssuesIfNeeded();
+      });
+    }
+
     if (this.state.pageGroupState) {
       this.setState({loadingState: GroupLoadingState.FOUND});
-      queueUntilRehydration(() => {
-        this.props.onGetIssuesIfNeeded(this.props.match.params.groupid);
-      });
     } else {
       this.setState({loadingState: GroupLoadingState.LOADING});
     }

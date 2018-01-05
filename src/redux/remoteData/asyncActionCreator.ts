@@ -46,7 +46,6 @@ export const getGroupIssuesIfNeeded = (groupid: string) => {
     // directly to a route with an issue id
     if (!state.remoteDataState.groupIssues || state.remoteDataState.groupIssues.length === 0 ||
         state.remoteDataState.currentGroupId !== groupid) {
-
       const loc = state.locationState.address;
       if (loc) {
         dispatch(fetchGroupIssues(groupid, loc));
@@ -228,11 +227,10 @@ export const startup = () => {
     const loc = state.locationState.address;
 
     if (loc) {
-      // console.log('Using cached address');
       dispatch(fetchAllIssues(loc))
-        .then(() => {
-          setLocationFetchType(LocationFetchType.CACHED_ADDRESS);
-        });
+      .then(() => {
+        setLocationFetchType(LocationFetchType.CACHED_ADDRESS);
+      });
     } else {
       dispatch(fetchBrowserGeolocation());
     }

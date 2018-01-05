@@ -23,7 +23,7 @@ interface StateProps {
 
 interface DispatchProps {
   readonly onSelectIssue: (issueId: string) => void;
-  readonly onGetIssuesIfNeeded: (groupid: string) => void;
+  readonly onGetIssuesIfNeeded: () => void;
   readonly onJoinGroup: (group: Group) => void;
   readonly cacheGroup: (group: Group) => Function;
 }
@@ -50,11 +50,18 @@ const mapStateToProps = (state: ApplicationState, ownProps: OwnProps): StateProp
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<ApplicationState>): DispatchProps => {
+const mapDispatchToProps = (dispatch: Dispatch<ApplicationState>, ownProps: OwnProps): DispatchProps => {
   return bindActionCreators(
     {
       onSelectIssue: selectIssueActionCreator,
-      onGetIssuesIfNeeded: getGroupIssuesIfNeeded,
+      onGetIssuesIfNeeded: () => {
+        return (nextDispatch: Dispatch<ApplicationState>,
+                getState: () => ApplicationState) => {
+          // this page knows about the path params, and sub-components may not,
+          // attach the groupid to this method here
+          dispatch(getGroupIssuesIfNeeded(ownProps.match.params.groupid));
+        };
+      },
       onJoinGroup: joinGroupActionCreator,
       cacheGroup: addToCache
     },
