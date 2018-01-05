@@ -123,6 +123,11 @@ class CallPage extends React.Component<Props, State> {
 
   getView() {
     const currentGroup = this.props.currentGroup ? this.props.currentGroup : undefined;
+    let groupImage = '/img/5calls-stars.png';
+    if (currentGroup && currentGroup.group.photoURL) {
+      groupImage = currentGroup.group.photoURL;
+    }
+    
     if (this.props.currentIssue &&
         this.props.currentIssue.contactType &&
         this.props.currentIssue.contactType === 'FETCH') {
@@ -132,6 +137,24 @@ class CallPage extends React.Component<Props, State> {
           issueId={this.props.currentIssue ? this.props.currentIssue.id : undefined}
           currentGroup={currentGroup}
         >
+          { currentGroup ? 
+          <div className="page__group">
+            <div className="page__header">
+              <div className="page__header__image"><img alt={currentGroup.group.name} src={groupImage}/></div>
+              <h1 className="page__title">{currentGroup.group.name}</h1>
+              <h2 className="page__subtitle">{currentGroup.group.subtitle}&nbsp;</h2>
+            </div>
+            <FetchCall
+              issue={this.props.currentIssue}
+              currentGroup={currentGroup}
+              callState={this.props.callState}
+              locationState={this.props.locationState}
+              clearLocation={this.props.clearLocation}
+              onSubmitOutcome={this.props.onSubmitOutcome}
+              t={i18n.t}
+            />
+          </div>
+          :
           <FetchCall
             issue={this.props.currentIssue}
             currentGroup={currentGroup}
@@ -141,6 +164,7 @@ class CallPage extends React.Component<Props, State> {
             onSubmitOutcome={this.props.onSubmitOutcome}
             t={i18n.t}
           />
+          }
         </LayoutContainer>
       );
     } else {
@@ -158,6 +182,23 @@ class CallPage extends React.Component<Props, State> {
               '5 Calls: Make your voice heard'}
             </title>
           </Helmet>
+          { currentGroup ? 
+          <div className="page__group">
+            <div className="page__header">
+              <div className="page__header__image"><img alt={currentGroup.group.name} src={groupImage}/></div>
+              <h1 className="page__title">{currentGroup.group.name}</h1>
+              <h2 className="page__subtitle">{currentGroup.group.subtitle}&nbsp;</h2>
+            </div>
+            <CallTranslatable
+              issue={this.props.currentIssue}
+              callState={this.props.callState}
+              locationState={this.props.locationState}
+              clearLocation={this.props.clearLocation}
+              onSubmitOutcome={this.props.onSubmitOutcome}
+              t={i18n.t}
+            />
+          </div>
+          :
           <CallTranslatable
             issue={this.props.currentIssue}
             callState={this.props.callState}
@@ -166,6 +207,7 @@ class CallPage extends React.Component<Props, State> {
             onSubmitOutcome={this.props.onSubmitOutcome}
             t={i18n.t}
           />
+          }
         </LayoutContainer>
       );
     }

@@ -41,8 +41,13 @@ function mapStateToProps(state: ApplicationState, ownProps: OwnProps): StateProp
   }
 
   let issues: Issue[] = [];
-  // overrise issues from above the layout container if needed
-  issues = ownProps.issues ? ownProps.issues : state.remoteDataState.issues;
+  // overrise issues from above the layout container if needed and not on a group page
+  // group pages will load issues themselves, and shouldn't default to normal issues
+  if (ownProps.currentGroup) {
+    issues = ownProps.issues ? ownProps.issues : [];
+  } else {
+    issues = ownProps.issues ? ownProps.issues : state.remoteDataState.issues;
+  }
 
   return {
     issues: issues,
