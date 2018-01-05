@@ -65,6 +65,23 @@ export class Call extends React.Component<Props, State> {
     this.setState(this.setStateFromProps(newProps));
   }
 
+  // this should obviously be somewhere on issue but as an interface and not a class I don't know where...
+  // split district as we define it now applies to house reps, not state level. This helps us ignore it if
+  // reps are only Senate or only State level
+  hasHouseReps(issue: Issue | undefined): boolean {
+    let hasHouseRep = false;
+
+    if (issue && issue.contacts) {
+      issue.contacts.forEach(contact => {
+        if (contact.area === 'US House') {
+          hasHouseRep = true;
+        }
+      });
+    }
+
+    return hasHouseRep;
+  }
+
   render() {
     return (
       <section className="call">
@@ -72,7 +89,7 @@ export class Call extends React.Component<Props, State> {
           currentIssue={this.state.issue}
           t={i18n.t}
         />
-        {this.props.locationState.splitDistrict ?
+        {this.props.locationState.splitDistrict && this.hasHouseReps(this.props.issue) ?
         <NoContactSplitDistrict
           splitDistrict={this.props.locationState.splitDistrict}
           clearLocation={this.props.clearLocation}
@@ -92,7 +109,7 @@ export class Call extends React.Component<Props, State> {
           locationState={this.props.locationState}
           t={i18n.t}
         />
-        {this.props.locationState.splitDistrict || 
+        {(this.props.locationState.splitDistrict && this.hasHouseReps(this.props.issue)) || 
          this.props.issue && 
          (this.props.issue.contacts && this.props.issue.contacts.length === 0) ? <span/> :
         <Outcomes
