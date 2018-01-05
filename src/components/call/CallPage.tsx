@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 
 import { CallTranslatable, FetchCall } from './index';
 import { LayoutContainer } from '../layout';
-import { Issue } from '../../common/model';
+import { Issue, CacheableGroup } from '../../common/model';
 import { CallState, OutcomeData } from '../../redux/callState';
 import { LocationState } from '../../redux/location/reducer';
 import { queueUntilRehydration } from '../../redux/rehydrationUtil';
@@ -45,7 +45,7 @@ interface RouteProps extends RouteComponentProps<any> { }
 interface Props extends RouteProps {
   readonly issues: Issue[];
   readonly currentIssue: Issue;
-  readonly currentGroupId?: string;
+  readonly currentGroup?: CacheableGroup;
   readonly callState: CallState;
   readonly locationState: LocationState;
   readonly onSubmitOutcome: (data: OutcomeData) => Function;
@@ -122,18 +122,19 @@ class CallPage extends React.Component<Props, State> {
   }
 
   getView() {
-    if (this.props.currentIssue && 
-        this.props.currentIssue.contactType && 
+    const currentGroup = this.props.currentGroup ? this.props.currentGroup : undefined;
+    if (this.props.currentIssue &&
+        this.props.currentIssue.contactType &&
         this.props.currentIssue.contactType === 'FETCH') {
-      return (
+        return (
         <LayoutContainer
           issues={this.props.issues}
           issueId={this.props.currentIssue ? this.props.currentIssue.id : undefined}
-          currentGroupId={this.props.currentGroupId ? this.props.currentGroupId : undefined}
+          currentGroup={currentGroup}
         >
           <FetchCall
             issue={this.props.currentIssue}
-            currentGroupId={this.props.currentGroupId}
+            currentGroup={currentGroup}
             callState={this.props.callState}
             locationState={this.props.locationState}
             clearLocation={this.props.clearLocation}
@@ -147,7 +148,7 @@ class CallPage extends React.Component<Props, State> {
         <LayoutContainer
           issues={this.props.issues}
           issueId={this.props.currentIssue ? this.props.currentIssue.id : undefined}
-          currentGroupId={this.props.currentGroupId ? this.props.currentGroupId : undefined}
+          currentGroup={currentGroup}
         >
           <Helmet>
             <title>
@@ -166,7 +167,7 @@ class CallPage extends React.Component<Props, State> {
             t={i18n.t}
           />
         </LayoutContainer>
-      );  
+      );
     }
   }
 
