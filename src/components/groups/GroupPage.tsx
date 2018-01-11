@@ -83,7 +83,6 @@ class GroupPage extends React.Component<Props, State> {
           }
         });
     }
-
   }
 
   componentDidMount() {

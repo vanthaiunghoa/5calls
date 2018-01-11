@@ -35,9 +35,12 @@ export const IssuesList: React.StatelessComponent<Props> = (props: Props) => {
     }
   };
 
-  return (
-    <ul className="issues-list" role="navigation">
-      {props.issues && props.issues.map ? props.issues.map(issue =>
+  const listItems = () => {
+    if (props.currentGroup && props.issues.length === 0) {
+      return <li><a className="issues__footer-link"><span>Getting your team calls...</span></a></li>;
+    } else if (props.issues && props.issues.map) {
+      return props.issues.map(issue =>
+        (
         <IssuesListItem
           key={issue.id}
           issue={issue}
@@ -48,7 +51,16 @@ export const IssuesList: React.StatelessComponent<Props> = (props: Props) => {
           isIssueActive={currentIssueId === issue.id}
           currentGroup={props.currentGroup}
           onSelectIssue={props.onSelectIssue}
-        />) : <div style={{ textAlign: 'center' }}>{props.t('noCalls.title')}</div>}
+        />
+      ));
+    } else {
+      return <div style={{ textAlign: 'center' }}>{props.t('noCalls.title')}</div>;
+    }
+  };
+
+  return (
+    <ul className="issues-list" role="navigation">
+      {listItems()}
       {listFooter()}
     </ul>
   );
