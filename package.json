@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@types/enzyme-adapter-react-16": "^1.0.1",
+    "auth0-js": "^9.1.0",
     "axios": "^0.16.2",
     "i18next": "^8.4.3",
     "i18next-browser-languagedetector": "^2.0.0",
