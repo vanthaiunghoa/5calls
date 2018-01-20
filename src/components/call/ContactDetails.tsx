@@ -32,10 +32,14 @@ const ContactDetails: React.StatelessComponent<Props> = ({ currentIssue, contact
             contactIndex={contactIndex}
             t={t}
           />
-          <h3 className="call__contact__reason__header">
-            {t('contact.whyYouAreCallingThisOffice')}
-          </h3>
-          <p className="call__contact__reason">{contact.reason}</p>
+          { contact.reason ?
+          <div>
+            <h3 className="call__contact__reason__header">
+              {t('contact.whyYouAreCallingThisOffice')}
+            </h3>
+            <p className="call__contact__reason">{contact.reason}</p>
+          </div>
+          : <span/> }
         </div>
       );
     }
