@@ -83,6 +83,7 @@ export interface Group {
   description: string;
   totalCalls: number;
   photoURL: string;
+  customCalls: boolean;
 }
 
 /**
@@ -99,7 +100,8 @@ export const getDefaultGroup = (groupId: string): Group => {
     subtitle: '',
     description: '',
     totalCalls: 0,
-    photoURL: ''
+    photoURL: '',
+    customCalls: false,
   };
 };
 
