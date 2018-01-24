@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 
 import { CallTranslatable, FetchCall } from './index';
 import { LayoutContainer } from '../layout';
-import { Issue, CacheableGroup } from '../../common/model';
+import { Issue, Group } from '../../common/model';
 import { CallState, OutcomeData } from '../../redux/callState';
 import { LocationState } from '../../redux/location/reducer';
 import { queueUntilRehydration } from '../../redux/rehydrationUtil';
@@ -45,18 +45,21 @@ interface RouteProps extends RouteComponentProps<any> { }
 interface Props extends RouteProps {
   readonly issues: Issue[];
   readonly currentIssue: Issue;
-  readonly currentGroup?: CacheableGroup;
+  readonly currentGroup?: Group;
   readonly callState: CallState;
   readonly locationState: LocationState;
   readonly onSubmitOutcome: (data: OutcomeData) => Function;
   readonly onSelectIssue: (issueId: string) => Function;
   readonly onGetIssuesIfNeeded: () => Function;
   readonly clearLocation: () => void;
+  readonly cacheGroup: (group: Group) => Function;
+  readonly hasBeenCached: boolean;
 }
 
 export interface State {
   currentIssue: Issue;
   callState: CallState;
+  hasBeenCached: boolean;
 }
 
 /*
@@ -85,12 +88,14 @@ class CallPage extends React.Component<Props, State> {
     return {
       currentIssue: props.currentIssue,
       callState: props.callState,
+      hasBeenCached: props.hasBeenCached,
     };
   }
 
   componentWillReceiveProps(newProps: Props) {
-    this.setState(this.setStateFromProps(newProps));
-
+    if (newProps.hasBeenCached) {
+      this.setState({...this.state, hasBeenCached: true });
+    }
     // in the case that we have come here directly by the url(not first to home page)
     // the issues won't be loaded when first rendered.
     // On the second render, we'll have the issues and the current issue will have been identified
@@ -103,6 +108,25 @@ class CallPage extends React.Component<Props, State> {
        || (newProps.currentIssue && this.props.callState.currentIssueId !== newProps.currentIssue.id)) {
       this.props.onSelectIssue(newProps.currentIssue.id);
     }
+
+    // if group has changed, then reset the hasBeenCached flag
+    if (this.props.currentGroup
+      && newProps.currentGroup &&
+      this.props.currentGroup.id !== newProps.currentGroup.id) {
+        // console.log('CallPage Resetting hasBeenCached');
+        this.setState({...this.state, hasBeenCached: false});
+    }
+
+    if (!this.state.hasBeenCached && newProps.currentGroup) {
+      // cache group and assigned it to currentGroup
+      this.setState({...this.state, hasBeenCached: true});
+      // cache group and assigned it to currentGroup
+      queueUntilRehydration(() => {
+        let group = newProps.currentGroup as Group;
+        this.props.cacheGroup(group);
+      });
+    }
+
   }
 
   componentDidMount() {
@@ -124,10 +148,10 @@ class CallPage extends React.Component<Props, State> {
   getView() {
     const currentGroup = this.props.currentGroup ? this.props.currentGroup : undefined;
     let groupImage = '/img/5calls-stars.png';
-    if (currentGroup && currentGroup.group.photoURL) {
-      groupImage = currentGroup.group.photoURL;
+    if (currentGroup && currentGroup.photoURL) {
+      groupImage = currentGroup.photoURL;
     }
-    
+
     if (this.props.currentIssue &&
         this.props.currentIssue.contactType &&
         this.props.currentIssue.contactType === 'FETCH') {
@@ -137,12 +161,12 @@ class CallPage extends React.Component<Props, State> {
           issueId={this.props.currentIssue ? this.props.currentIssue.id : undefined}
           currentGroup={currentGroup}
         >
-          { currentGroup ? 
+          { currentGroup ?
           <div className="page__group">
             <div className="page__header">
-              <div className="page__header__image"><img alt={currentGroup.group.name} src={groupImage}/></div>
-              <h1 className="page__title">{currentGroup.group.name}</h1>
-              <h2 className="page__subtitle">{currentGroup.group.subtitle}&nbsp;</h2>
+              <div className="page__header__image"><img alt={currentGroup.name} src={groupImage}/></div>
+              <h1 className="page__title">{currentGroup.name}</h1>
+              <h2 className="page__subtitle">{currentGroup.subtitle}&nbsp;</h2>
             </div>
             <FetchCall
               issue={this.props.currentIssue}
@@ -182,12 +206,12 @@ class CallPage extends React.Component<Props, State> {
               '5 Calls: Make your voice heard'}
             </title>
           </Helmet>
-          { currentGroup ? 
+          { currentGroup ?
           <div className="page__group">
             <div className="page__header">
-              <div className="page__header__image"><img alt={currentGroup.group.name} src={groupImage}/></div>
-              <h1 className="page__title">{currentGroup.group.name}</h1>
-              <h2 className="page__subtitle">{currentGroup.group.subtitle}&nbsp;</h2>
+              <div className="page__header__image"><img alt={currentGroup.name} src={groupImage}/></div>
+              <h1 className="page__title">{currentGroup.name}</h1>
+              <h2 className="page__subtitle">{currentGroup.subtitle}&nbsp;</h2>
             </div>
             <CallTranslatable
               issue={this.props.currentIssue}

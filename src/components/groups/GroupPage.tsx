@@ -3,13 +3,12 @@ import i18n from '../../services/i18n';
 import { LayoutContainer } from '../layout';
 import { RouteComponentProps } from 'react-router-dom';
 import * as ReactMarkdown from 'react-markdown';
-import { Group, Issue, CacheableGroup } from '../../common/model';
+import { Group, Issue } from '../../common/model';
 import { LocationState } from '../../redux/location/reducer';
 import { CallState } from '../../redux/callState/reducer';
 import { CallCount } from '../shared';
 import { queueUntilRehydration } from '../../redux/rehydrationUtil';
-import { getGroup } from '../../services/apiServices';
-import { hasGroupCacheTimeoutExceeded, cacheableGroupFactory } from '../../redux/cache/cache';
+import { GroupLoadingActionStatus } from '../../redux/group/action';
 
 interface RouteProps extends RouteComponentProps<{ groupid: string, issueid: string }> { }
 
@@ -24,20 +23,15 @@ interface Props extends RouteProps {
   readonly onSelectIssue: (issueId: string) => Function;
   readonly onGetIssuesIfNeeded: () => Function;
   readonly onJoinGroup: (group: Group) => Function;
-  readonly currentGroup?: CacheableGroup;
+  readonly currentGroup?: Group;
   readonly cacheGroup: (group: Group) => Function;
+  readonly loadingStatus: GroupLoadingActionStatus;
 }
 
 export interface State {
-  loadingState: GroupLoadingState;
-  pageGroupState?: CacheableGroup;
-}
-
-enum GroupLoadingState {
-  LOADING = 'LOADING',
-  FOUND = 'FOUND',
-  NOTFOUND = 'NOTFOUND',
-  ERROR = 'ERROR',
+  loadingState: GroupLoadingActionStatus;
+  group?: Group;
+  hasBeenCached: boolean;
 }
 
 class GroupPage extends React.Component<Props, State> {
@@ -45,43 +39,36 @@ class GroupPage extends React.Component<Props, State> {
     super(props);
     // set initial state
     this.state = this.setStateFromProps(props);
-    this.setGroup(props);
   }
 
   setStateFromProps(props: Props): State {
     return {
-      loadingState: GroupLoadingState.LOADING,
-      pageGroupState: props.currentGroup ? props.currentGroup : undefined
+      loadingState: props.loadingStatus,
+      group: props.currentGroup ? props.currentGroup : undefined,
+      hasBeenCached: false
     };
   }
 
-  setGroup(props: Props) {
-    let cgroup = this.state.pageGroupState;
-    // Call the API when page first loads and group
-    // is not in the cache or if the cached value has timed out
-    if (!cgroup || hasGroupCacheTimeoutExceeded({timestamp: cgroup.timestamp})) {
-      getGroup(props.match.params.groupid)
-        .then(group => {
-          if (group) {
-            this.setState({pageGroupState: cacheableGroupFactory(group)});
-            this.setState({loadingState: GroupLoadingState.FOUND});
-          } else {
-            this.setState({loadingState: GroupLoadingState.NOTFOUND});
-          }
-          // Dispatch call to add to cache
-          this.props.cacheGroup(group);
-          this.props.onGetIssuesIfNeeded();
-        })
-        .catch((error: Error) =>  {
-          // If 404 error, set loading state to NOTFOUND
-          if (error.message.includes('404')) {
-            this.setState({loadingState: GroupLoadingState.NOTFOUND});
-          } else {
-            // tslint:disable-next-line:no-console
-            console.error('Problem calling cache/asyncActionCreator.getGroup()', error);
-            this.setState({loadingState: GroupLoadingState.ERROR});
-          }
-        });
+  componentWillReceiveProps(nextProps: Props) {
+    // set new state
+    this.setState({...this.state, loadingState: nextProps.loadingStatus, group: nextProps.currentGroup });
+    // if current group has changed,
+    // set hasBeenCached to false to
+    // update current group
+    if (this.props.currentGroup
+      && nextProps.currentGroup &&
+      this.props.currentGroup.id !== nextProps.currentGroup.id) {
+        // console.log('Resetting hasBeenCached');
+        this.setState({...this.state, hasBeenCached: false});
+    }
+    if (!this.state.hasBeenCached && nextProps.currentGroup) {
+      // cache group and assigned it to currentGroup
+      this.setState({...this.state, hasBeenCached: true});
+      queueUntilRehydration(() => {
+        let group = nextProps.currentGroup as Group;
+        // console.log('Calling cachedGroup with group: ', group);
+        this.props.cacheGroup(group);
+      });
     }
   }
 
@@ -92,93 +79,89 @@ class GroupPage extends React.Component<Props, State> {
       });
     }
 
-    if (this.state.pageGroupState) {
-      this.setState({loadingState: GroupLoadingState.FOUND});
-    } else {
-      this.setState({loadingState: GroupLoadingState.LOADING});
-    }
   }
 
   joinTeam = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.blur();
 
     if (this.props.currentGroup) {
-      this.props.onJoinGroup(this.props.currentGroup.group);
+      this.props.onJoinGroup(this.props.currentGroup);
     }
   }
 
+  wrapWithLayout(wrappedHeader: JSX.Element, group?: Group, ...additionalComponents: JSX.Element[]) {
+    return (
+      <LayoutContainer
+        currentGroup={group ? group : undefined}
+        issues={this.props.issues}
+        issueId={this.props.match.params.issueid}
+      >
+        <div className="page__group">
+          {wrappedHeader}
+          {...additionalComponents}
+        </div>
+      </LayoutContainer>
+    );
+  }
+
   render() {
+    let group = this.state.group;
     switch (this.state.loadingState) {
-      case GroupLoadingState.LOADING:
-        return (
-          <LayoutContainer
-            currentGroup={this.state.pageGroupState ? this.state.pageGroupState : undefined}
-            issues={this.props.issues}
-            issueId={this.props.match.params.issueid}
-          >
-            <div className="page__group">
-              <h2 className="page__title">Getting team...</h2>
-            </div>
-          </LayoutContainer>
+      case GroupLoadingActionStatus.LOADING:
+        const wrappedLoading = (
+          <h2 className="page__title">Getting team...</h2>
         );
-      case GroupLoadingState.FOUND:
-        // I hate handling optionals this way, swift is so much better on this
-        let group: Group;
-        if (this.state.pageGroupState) {
-          group = this.state.pageGroupState.group;
-        } else {
-          return <span/>;
-        }
+        return (
+          this.wrapWithLayout(wrappedLoading, group)
+        );
+      case GroupLoadingActionStatus.FOUND:
 
-        const groupImage = group.photoURL ? group.photoURL : '/img/5calls-stars.png';
+        const groupImage = group && group.photoURL ? group.photoURL : '/img/5calls-stars.png';
+        const wrappedFound = (
+          <div>
+            <div className="page__header">
+              <div className="page__header__image"><img alt={group ? group.name : ''} src={groupImage}/></div>
+              <h1 className="page__title">{group ? group.name : ''}</h1>
+              <h2 className="page__subtitle">{group ? group.subtitle : ''}&nbsp;</h2>
+            </div>
+          </div>
+        );
+        // Keys are needed to prevent React key warnings
+        // when wrapWithLayout() is called.
+        const count: JSX.Element = (
+          <span key={1}>
+            <CallCount
+              totalCount={group ? group.totalCalls : 0}
+              minimal={true}
+              t={i18n.t}
+            />
+          </span>
+        );
+        const markdown: JSX.Element =  (
+          <div key={2}>
+            <ReactMarkdown source={group ? group.description : ''}/>
+          </div>
+        );
 
         return (
-          <LayoutContainer
-            currentGroup={this.state.pageGroupState ? this.state.pageGroupState : undefined}
-            issues={this.props.issues}
-            issueId={this.props.match.params.issueid}
-          >
-            <div className="page__group">
-              <div className="page__header">
-                <div className="page__header__image"><img alt={group.name} src={groupImage}/></div>
-                <h1 className="page__title">{group.name}</h1>
-                <h2 className="page__subtitle">{group.subtitle}&nbsp;</h2>
-              </div>
-              <CallCount
-                totalCount={group.totalCalls}
-                minimal={true}
-                t={i18n.t}
-              />
-              <ReactMarkdown source={group.description}/>
-            </div>
-          </LayoutContainer>
+          this.wrapWithLayout(wrappedFound, group, count, markdown)
         );
-      case GroupLoadingState.NOTFOUND:
+      case GroupLoadingActionStatus.NOTFOUND:
+        const wrappedNotFound = (
+          <h2 className="page__title">There's no team with an ID of '{this.props.match.params.groupid}' 😢</h2>
+        );
         return (
-          <LayoutContainer
-            currentGroup={this.state.pageGroupState ? this.state.pageGroupState : undefined}
-            issues={this.props.issues}
-            issueId={this.props.match.params.issueid}
-          >
-            <div className="page__group">
-              <h2 className="page__title">There's no team with an ID of '{this.props.match.params.groupid}' 😢</h2>
-            </div>
-          </LayoutContainer>
+          this.wrapWithLayout(wrappedNotFound, group)
         );
-        default:
-          return (
-            <LayoutContainer
-              currentGroup={this.state.pageGroupState ? this.state.pageGroupState : undefined}
-              issues={this.props.issues}
-              issueId={this.props.match.params.issueid}
-            >
-              <div className="page__group">
-                { // tslint:disable-next-line:max-line-length
-                }
-                <h2 className="page__title">An error occurred during a request for team '{this.props.match.params.groupid}' 😢</h2>
-              </div>
-            </LayoutContainer>
-          );
+      default:
+        const wrappedDefault = (
+          <h2 className="page__title">
+            An error occurred during a request for team '{this.props.match.params.groupid}' 😢
+          </h2>
+        );
+        return (
+          this.wrapWithLayout(wrappedDefault, group)
+        );
     }
   }
 }
