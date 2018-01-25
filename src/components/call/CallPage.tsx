@@ -8,6 +8,7 @@ import { LayoutContainer } from '../layout';
 import { Issue, Group } from '../../common/model';
 import { CallState, OutcomeData } from '../../redux/callState';
 import { LocationState } from '../../redux/location/reducer';
+import { GroupDisclaimer } from '../groups/GroupPage';
 import { queueUntilRehydration } from '../../redux/rehydrationUtil';
 
 /*
@@ -152,6 +153,11 @@ class CallPage extends React.Component<Props, State> {
       groupImage = currentGroup.photoURL;
     }
 
+    let extraComponent;
+    if (currentGroup) {
+      extraComponent = <GroupDisclaimer/>;
+    }
+
     if (this.props.currentIssue &&
         this.props.currentIssue.contactType &&
         this.props.currentIssue.contactType === 'FETCH') {
@@ -160,6 +166,7 @@ class CallPage extends React.Component<Props, State> {
           issues={this.props.issues}
           issueId={this.props.currentIssue ? this.props.currentIssue.id : undefined}
           currentGroup={currentGroup}
+          extraComponent={extraComponent}
         >
           { currentGroup ?
           <div className="page__group">
@@ -197,6 +204,7 @@ class CallPage extends React.Component<Props, State> {
           issues={this.props.issues}
           issueId={this.props.currentIssue ? this.props.currentIssue.id : undefined}
           currentGroup={currentGroup}
+          extraComponent={extraComponent}
         >
           <Helmet>
             <title>

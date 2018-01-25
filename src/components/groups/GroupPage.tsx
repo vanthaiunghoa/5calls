@@ -34,6 +34,13 @@ export interface State {
   hasBeenCached: boolean;
 }
 
+export const GroupDisclaimer = () => {
+  return (
+    /*tslint:disable-next-line:max-line-length*/
+    <div className="extraDisclaimer"><p>Content on this page is the responsibility of the Team owner and is not endorsed by 5 Calls. <a href="mailto:make5calls@gmail.com">Report abusive behavior</a></p></div>
+  );
+};
+
 class GroupPage extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -95,6 +102,7 @@ class GroupPage extends React.Component<Props, State> {
         currentGroup={group ? group : undefined}
         issues={this.props.issues}
         issueId={this.props.match.params.issueid}
+        extraComponent={<GroupDisclaimer/>}
       >
         <div className="page__group">
           {wrappedHeader}

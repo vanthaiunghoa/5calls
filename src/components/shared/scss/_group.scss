@@ -2,23 +2,30 @@
   position: relative;
 
   .page__header {
+    height: 90px;
     margin: 24px 0 28px 0;
 
     img {
+      display: inline-block;
       float: left;
-      height: 60px;
+      height: 100px;
       max-width: 120px;
       margin: 0 15px 4px 0;
+    }
+
+    &__image {
+
     }
   }
 
   .page__title {
-    font-size: 28px;
+    font-size: 42px;
     margin: 0 0 4px 75px;
+    padding-top: 10px;
   }
 
   .page__subtitle {
-    font-size: 22px;
+    font-size: 25px;
     font-weight: normal;
     margin: 0 0 0 75px;
   }

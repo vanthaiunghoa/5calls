@@ -13,6 +13,7 @@ exports[`Test Group Page error 1`] = `
       "totalCalls": 0,
     }
   }
+  extraComponent={<Unknown />}
   issueId="100"
   issues={Array []}
 >
@@ -84,6 +85,7 @@ exports[`Test Group Page loading 1`] = `
       "totalCalls": 0,
     }
   }
+  extraComponent={<Unknown />}
   issueId="100"
   issues={Array []}
 >
@@ -112,6 +114,7 @@ exports[`Test Group Page not found 1`] = `
       "totalCalls": 0,
     }
   }
+  extraComponent={<Unknown />}
   issueId="100"
   issues={Array []}
 >
