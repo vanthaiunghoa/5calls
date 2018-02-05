@@ -19,12 +19,16 @@
   }
 
   .page__title {
+    white-space: nowrap;
+    overflow: hidden;
     font-size: 42px;
     margin: 0 0 4px 75px;
     padding-top: 10px;
   }
 
   .page__subtitle {
+    white-space: nowrap;
+    overflow: hidden;
     font-size: 25px;
     font-weight: normal;
     margin: 0 0 0 75px;
