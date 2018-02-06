@@ -29,6 +29,7 @@
 .layout__main {
   flex: 2;
   margin: 16px 24px 24px 6px;
+  max-width: 830px;
 
   @include bp(medium) {
     margin: 0 24px 24px;
