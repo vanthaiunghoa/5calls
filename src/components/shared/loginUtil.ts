@@ -10,7 +10,7 @@ export default class Auth {
     redirectUri: window.location.host.includes('localhost') ? 'http://localhost:3000/auth0callback' : 'https://admin.5calls.org/auth0callback',
     audience: 'https://5callsos.auth0.com/userinfo',
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile'
   });
 
   constructor() {
