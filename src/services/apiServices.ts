@@ -11,7 +11,11 @@ export const getAllIssues = (address: string): Promise<ApiData> => {
 };
 
 export const getGroupIssues = (groupid: string, address: string): Promise<GroupIssues> => {
-  return axios.get(`${Constants.GROUP_API_URL}/${groupid}/issues?address=${encodeURIComponent(address)}`)
+  return axios.get(
+    `${Constants.GROUP_API_URL}/${groupid}/issues?address=${encodeURIComponent(address)}`,
+    {
+      headers: {'Cache-Control': 'max-age=0'}
+    })
     .then(response => Promise.resolve(response.data))
     .catch(e => Promise.reject(e));
 };

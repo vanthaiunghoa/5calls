@@ -43,9 +43,9 @@ const ContactDetails: React.StatelessComponent<Props> = ({ currentIssue, contact
         </div>
       );
     }
-  } else {
-    return <span />;
   }
+
+  return <span />;
 };
 
 export default translate()(ContactDetails);

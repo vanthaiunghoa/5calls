@@ -98,32 +98,41 @@ const Faq: React.StatelessComponent<Props> = (props: Props) => {
           <h3>Where are my reps’ district office numbers?</h3>
           <ul>
             <li>
-              <strong>On the website:</strong>
+              <strong>On the website:&nbsp;</strong>
               When you’re on an issue page, click the link that says "Busy line? Click here to see local office numbers"
               under your rep’s big red DC phone number. Their local numbers will pop up.
             </li>
             <li>
-              <strong>On the iOS app:</strong>
+              <strong>On the iOS app:&nbsp;</strong>
               Tap the “Line Busy” link under your rep’s photo and you’ll see their local numbers.</li>
             <li>
-              <strong>On the Android app:</strong>
+              <strong>On the Android app:&nbsp;</strong>
               Tap the “Call a local office” link.</li>
           </ul>
           <h3>I only see one of my members of Congress. How can I call the rest?</h3>
           <ul>
             <li>
-              <strong>On the website:</strong>
+              <strong>On the website:&nbsp;</strong>
               Each issue page has your first rep and their contact info.
               After you call them and enter the results (“made contact,” “left voicemail,” etc.),
               the page will reload and you’ll see your next rep.
             </li>
             <li>
-              <strong>On the apps:</strong>
+              <strong>On the apps:&nbsp;</strong>
               Each issue page has all of the reps you should call at the bottom.
               Tap the first one, call, enter the results (“made contact,” “left voicemail,” etc.)
               and you’ll see the next person to call.
             </li>
           </ul>
+          <h3>Why do I need to enter an address when I already entered a zip code?</h3>
+          <p>
+            {/*tslint:disable-next-line:max-line-length*/}
+            More than 30% of zip codes are in multiple Congressional districts so sometimes you'll be asked for a more accurate location (like an address or cross streets) to help us find your rep for you.
+          </p>
+          <p>
+            {/*tslint:disable-next-line:max-line-length*/}
+            This is especially likely when calling your State-level representatives because they represent an even smaller area which is much less likely to match up with your zip code.
+          </p>
           <h3>How do I change my location?</h3>
           <p>
             We use your location to match you with the members of Congress you should be calling,
@@ -131,12 +140,12 @@ const Faq: React.StatelessComponent<Props> = (props: Props) => {
           </p>
           <ul>
             <li>
-              <strong>On the website:</strong>
+              <strong>On the website:&nbsp;</strong>
               Your current city or ZIP code is under the {Constants.APP_NAME} logo on the top left of the page.
               Click and you’ll be able to enter new information.
             </li>
             <li>
-              <strong>On the apps:</strong>
+              <strong>On the apps:&nbsp;</strong>
               Your current city or ZIP code is under the {Constants.APP_NAME} logo on the top of the screen.
               Tap and you’ll be able to enter new information.
             </li>

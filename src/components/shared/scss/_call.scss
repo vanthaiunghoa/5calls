@@ -79,13 +79,18 @@
   }
 
   &__nocontact {
-    h1 {
-      font-size: $font-xxlarge;
-      text-align: center;
-    }
-    div {
+    background-color: #eee;
+    padding: 3px 18px;
+    border-radius: 10px;
+    
+    h2 {
       font-size: $font-xlarge;
-      font-weight: bold;
+      margin-top: 12px;
+      // text-align: center;
+    }
+    p {
+      // font-size: $font-xlarge;
+      // font-weight: bold;
       line-height: 1.4em;
       margin: 0 0 16px 0;
     }
