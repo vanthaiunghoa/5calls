@@ -82,6 +82,31 @@ export class Call extends React.Component<Props, State> {
     return hasHouseRep;
   }
 
+  // use this to get split district scenarios
+  missingContacts(issue: Issue | undefined): boolean {
+    let missingContacts = false;
+
+    if (issue && issue.contactAreas) {
+      issue.contactAreas.forEach(area => {
+        let foundArea = false;
+
+        if (issue.contacts) {
+          issue.contacts.forEach(contact => {
+            if (contact.area === area) {
+              foundArea = true;
+            }
+          });
+        }
+
+        if (foundArea === false) {
+          missingContacts = true;
+        }
+      });
+    }
+
+    return missingContacts;
+  }
+
   render() {
     return (
       <section className="call">
@@ -89,7 +114,7 @@ export class Call extends React.Component<Props, State> {
           currentIssue={this.state.issue}
           t={i18n.t}
         />
-        {this.props.locationState.splitDistrict && this.hasHouseReps(this.props.issue) ?
+        {this.missingContacts(this.props.issue) ?
         <NoContactSplitDistrict
           splitDistrict={this.props.locationState.splitDistrict}
           clearLocation={this.props.clearLocation}
@@ -109,9 +134,9 @@ export class Call extends React.Component<Props, State> {
           locationState={this.props.locationState}
           t={i18n.t}
         />
-        {(this.props.locationState.splitDistrict && this.hasHouseReps(this.props.issue)) || 
+        { this.missingContacts(this.props.issue) || (
          this.props.issue && 
-         (this.props.issue.contacts && this.props.issue.contacts.length === 0) ? <span/> :
+         (this.props.issue.contacts && this.props.issue.contacts.length === 0)) ? <span/> :
         <Outcomes
           currentIssue={this.state.issue}
           numberContactsLeft={this.state.numberContactsLeft}
@@ -120,7 +145,7 @@ export class Call extends React.Component<Props, State> {
           t={i18n.t}
         />}
         {/* TODO: Fix people/person text for 1 contact left. Move logic to a function */}
-        {this.props.locationState.splitDistrict ? <span/> :
+        { this.missingContacts(this.props.issue) ? <span/> :
         this.state.numberContactsLeft > 0 ?
           <h3 aria-live="polite" className="call__contacts__left" >
             {this.props.t('outcomes.contactsLeft', { contactsRemaining: this.state.numberContactsLeft })}

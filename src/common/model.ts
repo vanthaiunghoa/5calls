@@ -4,6 +4,7 @@ export interface Issue {
   name: string;
   reason: string;
   script: string;
+  contactAreas?: string[];
   contacts?: Contact[];
   contactType?: string;
   categories: Category[];
