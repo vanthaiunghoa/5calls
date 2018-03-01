@@ -90,6 +90,11 @@ export class Call extends React.Component<Props, State> {
       issue.contactAreas.forEach(area => {
         let foundArea = false;
 
+        // skip other contacts, these are non-rep types
+        if (area === 'Other') {
+          return;
+        }
+
         if (issue.contacts) {
           issue.contacts.forEach(contact => {
             if (contact.area === area) {
