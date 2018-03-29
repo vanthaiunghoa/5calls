@@ -12,8 +12,8 @@ export const CONTACTS_API_URL = `${API_URL}/contacts`;
 export const IP_INFO_URL = 'https://ipinfo.io/json';
 export const DONATE_URL = 'https://secure.actblue.com/donate/5calls-donate';
 
-export const AUTH0_CLIENT_ID = 'FwIqp0B2etjiPlC4lUOQvkseGzr6Yz2e';
-export const AUTH0_CLIENT_SECRET = 'VKwE2BEUHfRVM-zF0JXLhsu8vbv6C4qKHwbJWeO19KTHpvxGMncj3fT4kqmXtiBw';
+export const AUTH0_CLIENT_ID = 'bVxfNRGD4azuJLWPDPHNNsfMElENPKjF';
+export const AUTH0_CLIENT_SECRET = '3MGWBSsG56ml2euRwvihwsrF-soS6SKi4WOPcbL2uh7rqMj6ig2-0gG4Q_Ha4vrX';
 export const AUTH0_DOMAIN = '5callsos.auth0.com';
 
 export const zipCodeRegex: RegExp = /^\d{5}(-\d{4})?$/;
