@@ -39,11 +39,12 @@ export default class Auth {
     // history.push("/");
   }
 
-  handleAuthentication() {
+  handleAuthentication(completion: (auth: auth0base.Auth0DecodedHash) => void) {
     this.auth0.parseHash((err, authResult) => {
       console.log("got token",authResult.accessToken);
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
+        completion(authResult);
         // history.replace('/home');
       } else if (err) {
         // history.replace('/home');

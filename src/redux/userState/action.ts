@@ -1,4 +1,7 @@
 import { Action } from 'redux';
+import { Dispatch } from 'react-redux';
+
+import { ApplicationState } from '../root';
 import { UserAuth } from './index';
 
 export enum UserStateActionType {
@@ -21,3 +24,14 @@ export const setAuthTokenActionCreator = (userAuth: UserAuth): SetAuthToken => {
     payload: userAuth
   };
 };
+
+export const setAuthToken = (userAuth: UserAuth) => {
+  console.log("set auth",userAuth);
+  // do any auth decoding here?
+
+  return (
+    dispatch: Dispatch<ApplicationState>,
+    getState: () => ApplicationState) => {
+      setAuthTokenActionCreator(userAuth);
+    };
+}
