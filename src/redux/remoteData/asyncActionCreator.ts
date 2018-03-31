@@ -211,6 +211,7 @@ export const startup = () => {
     dispatch(clearContactIndexes());
 
     // if a location is passed as a query, override or set the location address manually
+    // this will remove hashes, so... don't use them? Or fix this.
     let addressQuery = 'forceAddress';
     let query = window.location.search.substring(1);
     let vars = query.split('&');

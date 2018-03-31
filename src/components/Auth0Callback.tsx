@@ -26,7 +26,9 @@ class Auth0Callback extends React.Component<StateProps & DispatchProps, Internal
   }
 
   componentDidMount() {
-    new Auth().handleAuthentication();
+    new Auth().handleAuthentication((auth) => {
+      this.props.onGotToken(auth);
+    });
     this.setState({ doneRedirect: true });
   }
 
@@ -48,7 +50,13 @@ const mapStateToProps = (state: ApplicationState): StateProps => {
 const mapDispatchToProps = (dispatch: Dispatch<ApplicationState>): DispatchProps => {
   return bindActionCreators(
     {
-      onGotToken: () => setAuthTokenActionCreator,
+      onGotToken: (userAuth: UserAuth) => {
+        // genuinely no idea why we have to wrap this in dispatch sometimes
+        return (nextDispatch: Dispatch<ApplicationState>,
+          getState: () => ApplicationState) => {
+            dispatch(setAuthTokenActionCreator(userAuth));    
+        }
+      },
     },
     dispatch);
 };
