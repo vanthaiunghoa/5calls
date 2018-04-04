@@ -1,5 +1,5 @@
 export {
   UserStateAction, UserStateActionType,
-  setAuthToken, setAuthTokenActionCreator
+  setAuthTokenActionCreator, setProfileActionCreator
 } from './action';
-export { userStateReducer, UserState, UserAuth } from './reducer';
+export { userStateReducer, UserState, UserAuth, UserProfile } from './reducer';

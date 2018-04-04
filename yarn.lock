@@ -44,6 +44,10 @@
   version "19.2.4"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-19.2.4.tgz#543651712535962b7dc615e18e4a381fc2687442"
 
+"@types/jwt-decode@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@types/jwt-decode/-/jwt-decode-2.2.1.tgz#afdf5c527fcfccbd4009b5fd02d1e18241f2d2f2"
+
 "@types/moxios@^0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@types/moxios/-/moxios-0.4.3.tgz#4d5b882f7189094dc6ee3cf473993978debe9e15"
