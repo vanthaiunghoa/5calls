@@ -18,6 +18,14 @@ export const Header: React.StatelessComponent<Props> = (props: Props) => {
   }
   // console.log("user is ",profile);
 
+  const loginClick = () => {
+    if (profile != undefined) {
+      // logout?
+    } else {
+      auth.login();
+    }
+  }
+
   return (
     <header className="logo__header" role="banner" >
       <div className="logo__header__logo layout">
@@ -29,16 +37,12 @@ export const Header: React.StatelessComponent<Props> = (props: Props) => {
           <li><Link className={props.postcards ? '' : 'active'} to="/">Calls</Link></li>
           <li><Link className={props.postcards ? 'active' : ''} to="/postcards">Postcards</Link></li>
         </ul> */}
-        {profile ?
-        <a onClick={auth.login}>
-          {profile.name}
-          <img className="stars" src="/img/5calls-stars.png" alt="Make your voice heard" />
-        </a>
-        :
-        <a onClick={auth.login}>
-          <img className="stars" src="/img/5calls-stars.png" alt="Make your voice heard" />
-        </a>
-        }
+        <div className="userHeader">
+          <a onClick={loginClick}>
+            <img className="stars" src="/img/5calls-stars.png" alt="Make your voice heard" />
+          </a>
+          <p><a onClick={loginClick}>{profile ? profile.name : 'Login' }</a></p>
+        </div>
       </div>
       {<DonationContainer />}
     </header>
