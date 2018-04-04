@@ -45,6 +45,7 @@
   }
 
   &__logo {
+    justify-content: space-between;
     position: relative;
     padding: 10px 30px 0px 30px;
 
@@ -53,11 +54,8 @@
     }
 
     ul {
-      position: absolute;
-      top: 16px;
-      right: 50px;
       list-style: none;
-      margin: 0;
+      margin: 5px 0 0 0;
 
       li {
         float: left;
@@ -84,12 +82,31 @@
       height: 36px;
     }
 
-    img.stars {
-      position: absolute;
-      right: 0;
-      margin-right: 20px;
-      width: 33px;
-      height: 33px;
+    .userHeader {
+      float: right;
+      width: 150px;
+      p {
+        text-align: right;
+        padding-top: 9px;
+        line-height: 1em;
+        margin: 0;
+        a {
+          color: $blue;
+          &:hover {
+            cursor: pointer;
+            text-decoration: none;
+          }
+        }
+      }
+
+      .stars {
+        float: right;
+        width: 33px;
+        height: 33px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 
