@@ -1,7 +1,9 @@
 import * as auth0base from 'auth0-js';
-// import history from './history';
+import * as jwt from 'jwt-decode';
 
 import * as Constants from '../../common/constants';
+import { UserProfile, setProfileActionCreator } from '../../redux/userState';
+import { store } from '../../redux/store';
 
 export default class Auth {
   auth0 = new auth0base.WebAuth({
@@ -29,42 +31,35 @@ export default class Auth {
         this.auth0.authorize();
       } else {
         // otherwise we get the refreshed details back and update them
-        this.setSession(result);
+        this.decodeAndSetProfile(result);
       }
     });
   }
 
   logout() {
-    // Clear access token and ID token from local storage
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
-    // remove redux stuff too?
+    // remove localstorage and redux?
 
     // history.push("/");
   }
 
-  handleAuthentication(completion: (auth: auth0base.Auth0DecodedHash) => void) {
+  handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
-        completion(authResult);
-        // history.replace('/home');
-      } else if (err) {
-        // history.replace('/home');
+      if (authResult === undefined) {
+        console.log('error with auth', err);
+      } else {
+        this.decodeAndSetProfile(authResult);
       }
     });
   }
 
-  setSession(authResult: auth0base.Auth0DecodedHash) {
-    // Set the time that the access token will expire at
-    if (authResult.expiresIn && authResult.accessToken && authResult.idToken) {
-      let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-      localStorage.setItem('access_token', authResult.accessToken);
-      localStorage.setItem('id_token', authResult.idToken);
-      localStorage.setItem('expires_at', expiresAt);
-      // navigate to the home route
-      // history.replace('/home');  
+  decodeAndSetProfile(auth0Hash: auth0base.Auth0DecodedHash) {
+    let profile: UserProfile | undefined;
+    if (auth0Hash.idToken !== undefined) {
+      // console.log('token is ', userAuth.idToken);
+      profile = jwt(auth0Hash.idToken);
+      // console.log('jwt decodes to', profile);
     }
+
+    store.dispatch(setProfileActionCreator(profile));
   }
 }

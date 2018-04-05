@@ -227,6 +227,17 @@ export const startup = () => {
     const state = getState();
     const loc = state.locationState.address;
 
+    if (state.userState.profile !== undefined) {
+      let expires = new Date(state.userState.profile.exp * 1000);
+      console.log('user expiration is', state.userState.profile.exp);
+      let now = new Date();
+      if (expires < now) {
+        console.log('EXPIRED');
+      } else {
+        console.log('not expired');
+      }
+    }
+
     if (loc) {
       dispatch(fetchAllIssues(loc))
       .then(() => {

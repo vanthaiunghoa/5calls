@@ -9,6 +9,10 @@
     address "^1.0.1"
     debug "^2.6.0"
 
+"@types/auth0-js@^8.11.2":
+  version "8.11.2"
+  resolved "https://registry.yarnpkg.com/@types/auth0-js/-/auth0-js-8.11.2.tgz#4890c662d40c41bea42d9e7b8490e9d88eac78c1"
+
 "@types/axios@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@types/axios/-/axios-0.14.0.tgz#ec2300fbe7d7dddd7eb9d3abf87999964cafce46"

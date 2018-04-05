@@ -15,6 +15,7 @@ export interface OutcomeData {
   contactId: string;
   groupId?: string;
   via?: string; // added in submitOutcome()
+  userId?: string; // added in submitOutcome()
 }
 
 /**
@@ -32,6 +33,10 @@ export function submitOutcome(data: OutcomeData) {
     const location = state.locationState.address;
     // FIXME: parse out zip code or geolocation
     data.location = formatLocationForBackEnd(location);
+
+    if (state.userState.profile !== undefined) {
+      data.userId = state.userState.profile.sub;
+    }
 
     const ga = ReactGA.ga();
     if (data.outcome === 'unavailable') {
