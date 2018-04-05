@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+
 import { DonationContainer } from '../donation/';
 import { UserState, UserProfile } from '../../redux/userState/reducer';
 import Auth from '../shared/loginUtil';
@@ -16,14 +17,17 @@ export const Header: React.StatelessComponent<Props> = (props: Props) => {
   if (props.currentUser !== undefined) {
     profile = props.currentUser.profile;
   }
-  // console.log("user is ",profile);
 
   const loginClick = () => {
     if (profile !== undefined) {
-      auth.logout();
     } else {
       auth.login();
     }
+  };
+
+  const logout = () => {
+    auth.logout();
+    
   };
 
   return (
@@ -42,6 +46,13 @@ export const Header: React.StatelessComponent<Props> = (props: Props) => {
             <img className="stars" src="/img/5calls-stars.png" alt="Make your voice heard" />
           </a>
           <p><a onClick={loginClick}>{profile ? profile.name : 'Login'}</a></p>
+          <div className="userHeader__menu">
+            <ul>
+              <li><Link to="/impact">My Impact</Link></li>
+              <li className="line"></li>
+              <li><a href="#" onClick={logout}><strong>Log out</strong></a></li>
+            </ul>
+          </div>
         </div>
       </div>
       {<DonationContainer />}
