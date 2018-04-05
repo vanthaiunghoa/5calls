@@ -34,6 +34,10 @@ export const userStateReducer: Reducer<UserState> = (
       const newState: UserState = { ...state, profile: profile };
       return newState;
     }
+    case UserStateActionType.CLEAR_USER_PROFILE: {
+      const newState: UserState = { ...state, profile: undefined };
+      return newState;
+    }
     default: {
       return state;
     }
