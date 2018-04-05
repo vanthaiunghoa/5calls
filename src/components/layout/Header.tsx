@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { DonationContainer } from '../donation/';
 import { UserState, UserProfile } from '../../redux/userState/reducer';
-import Auth from '../shared/loginUtil';
+import AuthUtil from '../shared/loginUtil';
 
 interface Props {
   readonly postcards?: boolean;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const Header: React.StatelessComponent<Props> = (props: Props) => {
-  const auth = new Auth();
+  const authutil = new AuthUtil();
 
   let profile: UserProfile | undefined;
   if (props.currentUser !== undefined) {
@@ -20,14 +20,15 @@ export const Header: React.StatelessComponent<Props> = (props: Props) => {
 
   const loginClick = () => {
     if (profile !== undefined) {
+      console.log('got a profile');
+      authutil.login();
     } else {
-      auth.login();
+      authutil.login();
     }
   };
 
   const logout = () => {
-    auth.logout();
-    
+    authutil.logout();
   };
 
   return (

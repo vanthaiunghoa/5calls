@@ -9,6 +9,7 @@ import { issuesActionCreator, groupIssuesActionCreator, callCountActionCreator }
 import { clearContactIndexes } from '../callState/';
 import { ApplicationState } from '../root';
 import { LocationUiState } from '../../common/model';
+import Auth from '../../components/shared/loginUtil';
 
 /**
  * Timer for calling fetchLocationByIP() if
@@ -204,11 +205,15 @@ export const fetchBrowserGeolocation = () => {
 export const startup = () => {
   return (dispatch: Dispatch<ApplicationState>,
           getState: () => ApplicationState) => {
-    // dispatch donations
-    dispatch(fetchDonations());
+    const state = getState();
+
     dispatch(setUiState(LocationUiState.FETCHING_LOCATION));
     // clear contact indexes loaded from local storage
     dispatch(clearContactIndexes());
+
+    // check expired login and handle or logout
+    const auth = new Auth();
+    auth.checkAndRenewSession(state.userState.profile);
 
     // if a location is passed as a query, override or set the location address manually
     // this will remove hashes, so... don't use them? Or fix this.
@@ -224,19 +229,7 @@ export const startup = () => {
     }
     window.history.replaceState(null, '', window.location.pathname);
 
-    const state = getState();
     const loc = state.locationState.address;
-
-    if (state.userState.profile !== undefined) {
-      let expires = new Date(state.userState.profile.exp * 1000);
-      console.log('user expiration is', state.userState.profile.exp);
-      let now = new Date();
-      if (expires < now) {
-        console.log('EXPIRED');
-      } else {
-        console.log('not expired');
-      }
-    }
 
     if (loc) {
       dispatch(fetchAllIssues(loc))
