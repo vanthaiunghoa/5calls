@@ -147,6 +147,7 @@ class CallPage extends React.Component<Props, State> {
   }
 
   getView() {
+    // hey this is a mess now, refactor needed
     const currentGroup = this.props.currentGroup ? this.props.currentGroup : undefined;
     let groupImage = '/img/5calls-stars.png';
     if (currentGroup && currentGroup.photoURL) {
@@ -156,6 +157,15 @@ class CallPage extends React.Component<Props, State> {
     let extraComponent;
     if (currentGroup) {
       extraComponent = <GroupDisclaimer/>;
+    }
+
+    let pageTitle = '5 Calls: Make your voice heard';
+    if (this.props.currentIssue) {
+      if (currentGroup) {
+        pageTitle = `${this.props.currentIssue.name} - ${currentGroup.name}: 5 Calls`;
+      } else {
+        pageTitle = `${this.props.currentIssue.name}: 5 Calls`;
+      }
     }
 
     if (this.props.currentIssue &&
@@ -168,6 +178,7 @@ class CallPage extends React.Component<Props, State> {
           currentGroup={currentGroup}
           extraComponent={extraComponent}
         >
+          <Helmet><title>{pageTitle}</title></Helmet>
           { currentGroup ?
           <div className="page__group">
             <div className="page__header">
@@ -206,14 +217,7 @@ class CallPage extends React.Component<Props, State> {
           currentGroup={currentGroup}
           extraComponent={extraComponent}
         >
-          <Helmet>
-            <title>
-              {this.props.currentIssue ?
-              `${this.props.currentIssue.name}: 5 Calls`
-              :
-              '5 Calls: Make your voice heard'}
-            </title>
-          </Helmet>
+          <Helmet><title>{pageTitle}</title></Helmet>
           { currentGroup ?
           <div className="page__group">
             <div className="page__header">
