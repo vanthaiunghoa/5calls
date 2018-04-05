@@ -2,11 +2,9 @@ import * as React from 'react';
 import { Redirect } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect, Dispatch } from 'react-redux';
-import * as jwt from 'jwt-decode';
 
 import Auth from './shared/loginUtil';
 import { ApplicationState } from '../redux/root';
-import { UserAuth, UserProfile, setProfileActionCreator } from '../redux/userState';
 
 interface InternalState {
   doneRedirect: boolean;
@@ -17,7 +15,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  readonly onGotToken: (userAuth: UserAuth) => void;
+  // readonly onGotToken: (auth0Hash: Auth0DecodedHash) => void;
 }
 
 class Auth0Callback extends React.Component<StateProps & DispatchProps, InternalState> {
@@ -27,9 +25,7 @@ class Auth0Callback extends React.Component<StateProps & DispatchProps, Internal
   }
 
   componentDidMount() {
-    new Auth().handleAuthentication((auth) => {
-      this.props.onGotToken(auth);
-    });
+    new Auth().handleAuthentication();
     this.setState({ doneRedirect: true });
   }
 
@@ -51,23 +47,7 @@ const mapStateToProps = (state: ApplicationState): StateProps => {
 
 const mapDispatchToProps = (dispatch: Dispatch<ApplicationState>): DispatchProps => {
   return bindActionCreators(
-    {
-      // ideally we'd push this logic into the action, but I can't get it to stick without dispatch
-      // onGotToken: (userAuth: UserAuth) => setAuthToken(userAuth),
-      onGotToken: (userAuth: UserAuth) => {
-        let profile: UserProfile | undefined;
-        if (userAuth.idToken !== undefined) {
-          // console.log('token is ', userAuth.idToken);
-          profile = jwt(userAuth.idToken);
-          // console.log('jwt decodes to', profile);
-        }
-        // genuinely no idea why we have to wrap this in dispatch sometimes
-        return (nextDispatch: Dispatch<ApplicationState>,
-                getState: () => ApplicationState) => {
-          dispatch(setProfileActionCreator(profile));    
-        };
-      },
-    },
+    {},
     dispatch);
 };
 

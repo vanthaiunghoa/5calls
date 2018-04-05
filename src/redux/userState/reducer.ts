@@ -16,6 +16,8 @@ export interface UserState {
 
 export interface UserProfile {
   name: string;
+  sub: string; // sub is the user id, either a unique userid or twitter|<twitterid>, etc
+  exp: number;
 }
 
 const initialState: UserState = {

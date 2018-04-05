@@ -33,7 +33,8 @@ export const postOutcomeData = (data: OutcomeData) => {
     contactid: data.contactId,
     issueid: data.issueId,
     groupid: data.groupId,
-    via: data.via
+    via: data.via,
+    userid: data.userId
   });
   // console.log('postOutcomeData() posted data:', postData)
   return axios.post(

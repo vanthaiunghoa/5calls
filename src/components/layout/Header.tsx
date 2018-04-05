@@ -19,12 +19,12 @@ export const Header: React.StatelessComponent<Props> = (props: Props) => {
   // console.log("user is ",profile);
 
   const loginClick = () => {
-    if (profile != undefined) {
+    if (profile !== undefined) {
       // logout?
     } else {
       auth.login();
     }
-  }
+  };
 
   return (
     <header className="logo__header" role="banner" >
@@ -41,7 +41,7 @@ export const Header: React.StatelessComponent<Props> = (props: Props) => {
           <a onClick={loginClick}>
             <img className="stars" src="/img/5calls-stars.png" alt="Make your voice heard" />
           </a>
-          <p><a onClick={loginClick}>{profile ? profile.name : 'Login' }</a></p>
+          <p><a onClick={loginClick}>{profile ? profile.name : 'Login'}</a></p>
         </div>
       </div>
       {<DonationContainer />}
