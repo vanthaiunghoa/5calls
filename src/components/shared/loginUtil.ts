@@ -6,7 +6,7 @@ import { UserProfile, setProfileActionCreator } from '../../redux/userState';
 import { store } from '../../redux/store';
 import { clearProfileActionCreator } from '../../redux/userState/action';
 
-export default class Auth {
+export default class AuthUtil {
   auth0 = new auth0base.WebAuth({
     domain: Constants.AUTH0_DOMAIN,
     clientID: Constants.AUTH0_CLIENT_ID,
@@ -24,24 +24,35 @@ export default class Auth {
     this.handleAuthentication = this.handleAuthentication.bind(this);
   }
 
-  login() {
-    this.auth0.checkSession({}, (err, result) => {
-      // console.log("check",err,result);
-      if (err !== undefined) {
-        // if we're not logged in, this will redirect to the login screen
-        this.auth0.authorize();
+  checkAndRenewSession(profile?: UserProfile) {
+    if (profile !== undefined) {
+      // only act on people who are logged in
+      let expires = new Date(profile.exp * 1000);
+      let now = new Date();
+      if (expires < now) {
+        // try to renew automatically
+        this.auth0.checkSession({}, (err, result) => {
+          if (err !== null) {
+            // not sure how this might happen, log out for now
+            console.log('error check session', err);
+            this.logout();
+          } else {
+            // otherwise we get the refreshed details back and update them
+            this.decodeAndSetProfile(result);
+          }
+        });    
       } else {
-        // otherwise we get the refreshed details back and update them
-        this.decodeAndSetProfile(result);
+        // we're good for now, don't do anything
       }
-    });
+    }
+  }
+
+  login() {
+    this.auth0.authorize();
   }
 
   logout() {
     store.dispatch(clearProfileActionCreator());
-    // remove localstorage and redux?
-
-    // history.push("/");
   }
 
   handleAuthentication() {
