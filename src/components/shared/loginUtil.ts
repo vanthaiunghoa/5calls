@@ -4,6 +4,7 @@ import * as jwt from 'jwt-decode';
 import * as Constants from '../../common/constants';
 import { UserProfile, setProfileActionCreator } from '../../redux/userState';
 import { store } from '../../redux/store';
+import { clearProfileActionCreator } from '../../redux/userState/action';
 
 export default class Auth {
   auth0 = new auth0base.WebAuth({
@@ -37,6 +38,7 @@ export default class Auth {
   }
 
   logout() {
+    store.dispatch(clearProfileActionCreator());
     // remove localstorage and redux?
 
     // history.push("/");

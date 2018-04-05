@@ -20,7 +20,7 @@ export const Header: React.StatelessComponent<Props> = (props: Props) => {
 
   const loginClick = () => {
     if (profile !== undefined) {
-      // logout?
+      auth.logout();
     } else {
       auth.login();
     }
