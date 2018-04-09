@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import { UserAuth, UserProfile } from './index';
+import { UserProfile } from './index';
 
 export enum UserStateActionType {
   SET_AUTH_TOKEN = 'SET_AUTH_TOKEN',
@@ -15,7 +15,7 @@ export interface UserStateAction extends Action {
 
 export interface SetAuthToken extends UserStateAction {
   type: UserStateActionType.SET_AUTH_TOKEN;
-  payload: UserAuth;
+  payload: string | undefined;
 }
 
 export interface SetUserProfile extends UserStateAction {
@@ -27,10 +27,10 @@ export interface ClearUserProfile extends UserStateAction {
   type: UserStateActionType.CLEAR_USER_PROFILE;
 }
 
-export const setAuthTokenActionCreator = (userAuth: UserAuth): SetAuthToken => {
+export const setAuthTokenActionCreator = (idToken?: string): SetAuthToken => {
   return {
     type: UserStateActionType.SET_AUTH_TOKEN,
-    payload: userAuth
+    payload: idToken
   };
 };
 

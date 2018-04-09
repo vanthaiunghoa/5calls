@@ -10,7 +10,7 @@ export class UserAuth {
 }
 
 export interface UserState {
-  userAuth?: UserAuth;
+  idToken?: string;
   profile?: UserProfile;
 }
 
@@ -21,13 +21,19 @@ export interface UserProfile {
 }
 
 const initialState: UserState = {
-  userAuth: undefined,
+  idToken: undefined,
   profile: undefined,
 };
 
 export const userStateReducer: Reducer<UserState> = (
   state: UserState = initialState as UserState, action: UserStateAction): UserState => {
   switch (action.type) {
+    case UserStateActionType.SET_AUTH_TOKEN: {
+      const idToken = action.payload as string | undefined;
+
+      const newState: UserState = { ...state, idToken: idToken };
+      return newState;      
+    }
     case UserStateActionType.SET_USER_PROFILE: {
       const profile = action.payload as UserProfile | undefined;
 
@@ -35,7 +41,8 @@ export const userStateReducer: Reducer<UserState> = (
       return newState;
     }
     case UserStateActionType.CLEAR_USER_PROFILE: {
-      const newState: UserState = { ...state, profile: undefined };
+      // called on log out, so clear both
+      const newState: UserState = { ...state, profile: undefined, idToken: undefined };
       return newState;
     }
     default: {
