@@ -4,7 +4,9 @@ import * as jwt from 'jwt-decode';
 import * as Constants from '../../common/constants';
 import { UserProfile, setProfileActionCreator } from '../../redux/userState';
 import { store } from '../../redux/store';
-import { clearProfileActionCreator } from '../../redux/userState/action';
+import { clearProfileActionCreator, setAuthTokenActionCreator } from '../../redux/userState/action';
+import { uploadStatsIfNeeded } from '../../redux/remoteData/asyncActionCreator';
+import { queueUntilRehydration } from '../../redux/rehydrationUtil';
 
 export default class AuthUtil {
   auth0 = new auth0base.WebAuth({
@@ -73,6 +75,12 @@ export default class AuthUtil {
       // console.log('jwt decodes to', profile);
     }
 
+    store.dispatch(setAuthTokenActionCreator(auth0Hash.idToken));
     store.dispatch(setProfileActionCreator(profile));
+
+    // check for unuploaded stats
+    queueUntilRehydration(() => {
+      store.dispatch(uploadStatsIfNeeded());
+    });
   }
 }

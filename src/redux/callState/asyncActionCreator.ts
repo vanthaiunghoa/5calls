@@ -57,11 +57,13 @@ export function submitOutcome(data: OutcomeData) {
         data.groupId = state.callState.group ? state.callState.group.id : '';        
       }
 
+      // if we have a userid, the call is counted server side
       const userContactData = {
         result: data.outcome,
         contactid: data.contactId || '',
         issueid: data.issueId,
         time: Date.now(),
+        uploaded: data.userId ? true : false,
       };
 
       dispatch(addCallEventActionCreator(userContactData));

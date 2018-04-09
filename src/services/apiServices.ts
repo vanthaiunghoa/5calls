@@ -3,6 +3,7 @@ import axios from 'axios';
 import * as querystring from 'querystring';
 import { ApiData, CountData, DonationGoal, Group, GroupIssues, VoterContact } from './../common/model';
 import * as Constants from '../common/constants';
+import { UserContactEvent } from '../redux/userStats';
 
 export const getAllIssues = (address: string): Promise<ApiData> => {
   return axios.get(`${Constants.ISSUES_API_URL}${encodeURIComponent(address)}`)
@@ -26,6 +27,43 @@ export const getCountData = (): Promise<CountData> => {
     .catch(e => Promise.reject(e));
 };
 
+interface BackfillData {
+  stats: BackfillOutcome[];
+}
+
+interface BackfillOutcome {
+  issueID: string;
+  contactID: string;
+  result: string;
+  time: string;
+}
+
+export const postBackfillOutcomes = (data: UserContactEvent[], idToken: string) => {
+  let postData: BackfillData = {stats: []};
+
+  for (let i = 0; i < data.length; i++) {
+    let outcome: BackfillOutcome = {
+      issueID: data[i].issueid,
+      contactID: data[i].contactid,
+      result: data[i].result,
+      time: data[i].time.toString(),
+    };
+
+    postData.stats.push(outcome);
+  }
+
+  return axios.post(
+    `${Constants.STATS_API_URL}`,
+    postData,
+    {
+      headers: {'Authorization': 'Bearer ' + idToken,
+                'Content-Type': 'application/json; charset=utf-8'}
+    })
+  .then(response => {
+    return Promise.resolve(null);
+  }).catch(e => Promise.reject(e));
+};
+
 export const postOutcomeData = (data: OutcomeData) => {
   const postData = querystring.stringify({
     location: data.location,
@@ -44,10 +82,8 @@ export const postOutcomeData = (data: OutcomeData) => {
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       })
     .then(response => {
-    // console.log('postOutcomeData() response: ', response.data);
-    return Promise.resolve(null);
-  })
-    .catch(e => Promise.reject(e));
+      return Promise.resolve(null);
+    }).catch(e => Promise.reject(e));
 };
 
 export const getDonations = (): Promise<DonationGoal> => {
