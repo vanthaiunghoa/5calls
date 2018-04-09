@@ -42,11 +42,13 @@ export const postBackfillOutcomes = (data: UserContactEvent[], idToken: string) 
   let postData: BackfillData = {stats: []};
 
   for (let i = 0; i < data.length; i++) {
+    let timeInSeconds = Math.round(data[i].time / 1000);
+
     let outcome: BackfillOutcome = {
       issueID: data[i].issueid,
       contactID: data[i].contactid,
       result: data[i].result,
-      time: data[i].time.toString(),
+      time: timeInSeconds.toString(),
     };
 
     postData.stats.push(outcome);
@@ -61,6 +63,29 @@ export const postBackfillOutcomes = (data: UserContactEvent[], idToken: string) 
     })
   .then(response => {
     return Promise.resolve(null);
+  }).catch(e => Promise.reject(e));
+};
+
+export interface RemoteUserStats {
+  stats: CallStats;
+}
+
+export interface CallStats {
+  contact: number;
+  voicemail: number;
+  unavailable: number;
+}
+
+export const getUserStats = (idToken: string) => {
+  return axios.get(
+    `${Constants.STATS_API_URL}`,
+    {
+      headers: {'Authorization': 'Bearer ' + idToken,
+                'Content-Type': 'application/json; charset=utf-8'}
+    })
+  .then(response => {
+    let userData = response.data as RemoteUserStats;
+    return Promise.resolve(userData);
   }).catch(e => Promise.reject(e));
 };
 
