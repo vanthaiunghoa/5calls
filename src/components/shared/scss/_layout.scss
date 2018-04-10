@@ -85,13 +85,17 @@
     .userHeader {
       position: relative;
       float: right;
-      width: 150px;
 
       p {
-        text-align: right;
-        padding-top: 9px;
+        float: right;
+        margin: 8px 0 0 0;
+
+        height: 20px;
+        max-width: 120px;
+        overflow: hidden;
+
         line-height: 1em;
-        margin: 0;
+        text-align: right;
 
         a {
           color: $blue;
@@ -140,8 +144,12 @@
 
       .stars {
         float: right;
+        margin-left: 6px;
+
         width: 33px;
         height: 33px;
+        border-radius: 17px;
+
         &:hover {
           cursor: pointer;
         }
