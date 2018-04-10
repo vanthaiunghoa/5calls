@@ -67,7 +67,11 @@ class HeaderImpl extends React.Component<Props, State> {
           </ul> */}
           <div className="userHeader">
             <a onClick={this.loginClick}>
-              <img className="stars" src={profile ? profile.picture : '/img/5calls-stars.png'} alt="Make your voice heard" />
+              <img
+                className="stars"
+                src={profile ? profile.picture : '/img/5calls-stars.png'}
+                alt="Make your voice heard"
+              />
             </a>
             <p><a onClick={this.loginClick}>{profile ? profile.name : 'Login'}</a></p>
             { !this.state.userMenuHidden && 
