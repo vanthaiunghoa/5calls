@@ -8,13 +8,21 @@ import { clearProfileActionCreator, setAuthTokenActionCreator } from '../../redu
 import { uploadStatsIfNeeded } from '../../redux/remoteData/asyncActionCreator';
 import { queueUntilRehydration } from '../../redux/rehydrationUtil';
 
+const callbackURI = () => {
+  if (window.location.host.includes('localhost')) {
+    return 'http://localhost:3000/auth0callback';
+  } else if (window.location.host.includes('test.5calls.org')) {
+    return 'https://test.5calls.org/auth0callback';    
+  }
+
+  return 'https://5calls.org/auth0callback';
+};
+
 export default class AuthUtil {
   auth0 = new auth0base.WebAuth({
     domain: Constants.AUTH0_DOMAIN,
     clientID: Constants.AUTH0_CLIENT_ID,
-    redirectUri: window.location.host.includes('localhost') ?
-      'http://localhost:3000/auth0callback' :
-      'https://admin.5calls.org/auth0callback',
+    redirectUri: callbackURI(),
     audience: 'https://5callsos.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid profile email',
