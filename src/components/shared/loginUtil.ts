@@ -2,7 +2,7 @@ import * as auth0base from 'auth0-js';
 import * as jwt from 'jwt-decode';
 
 import * as Constants from '../../common/constants';
-import { UserProfile, setProfileActionCreator } from '../../redux/userState';
+import { UserProfile, setProfileActionCreator, UserState } from '../../redux/userState';
 import { store } from '../../redux/store';
 import { clearProfileActionCreator, setAuthTokenActionCreator } from '../../redux/userState/action';
 import { uploadStatsIfNeeded } from '../../redux/remoteData/asyncActionCreator';
@@ -55,6 +55,14 @@ export default class AuthUtil {
         // we're good for now, don't do anything
       }
     }
+  }
+
+  isLoggedIn(user?: UserState): boolean {
+    if (user && user.idToken !== undefined) {
+      return true;
+    }
+
+    return false;
   }
 
   login() {

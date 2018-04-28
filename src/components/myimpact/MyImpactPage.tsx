@@ -8,16 +8,16 @@ import { UserStatsState } from '../../redux/userStats';
 import { UserState } from '../../redux/userState';
 
 interface Props extends RouteComponentProps<{ id: string }> {
+  readonly currentUser?: UserState;
   readonly userStats: UserStatsState;
-  readonly userState?: UserState;
   readonly totalCount: number;
 }
 
 const MyImpactPage: React.StatelessComponent<Props> = (props: Props) => (
   <LayoutContainer issueId={props.match.params.id}>
     <MyImpactTranslatable
+      currentUser={props.currentUser}
       userStats={props.userStats}
-      userState={props.userState}
       totalCount={props.totalCount}
       t={i18n.t}
     />
