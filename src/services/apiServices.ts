@@ -68,6 +68,7 @@ export const postBackfillOutcomes = (data: UserContactEvent[], idToken: string) 
 
 export interface RemoteUserStats {
   stats: CallStats;
+  weeklyStreak: number;
 }
 
 export interface CallStats {
