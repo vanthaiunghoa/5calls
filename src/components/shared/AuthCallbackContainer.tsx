@@ -10,8 +10,8 @@ interface State {}
 export class AuthCallbackContainer extends React.Component<Props, State> {
 
   handleAuthResponse = (authResponse: AuthResponse ) => {
-    // TODO: Dispatch redux action
-    console.log('AuthCallbackContainer.handleAuthResponse() called');
+    // tslint:disable-next-line:max-line-length
+    console.log(`AuthCallbackContainer.handleAuthResponse() called with token=${authResponse.authToken} and profile=${authResponse.userProfile}`);
     store.dispatch(setAuthTokenActionCreator(authResponse.authToken));
     store.dispatch(setProfileActionCreator(authResponse.userProfile));
   }

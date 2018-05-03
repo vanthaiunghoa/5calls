@@ -5,7 +5,7 @@ import { Login } from '@5calls/react-components';
 import { store } from '../../redux/store';
 
 import { DonationContainer } from '../donation/';
-import { UserState } from '../../redux/userState/reducer';
+import { UserState, UserProfile } from '../../redux/userState/reducer';
 import { clearProfileActionCreator } from '../../redux/userState/action';
 
 interface Props {
@@ -46,14 +46,15 @@ class HeaderImpl extends React.Component<Props, State> {
   logout = () => {
     // authutil.logout();
     // this.toggleMenu();
+    console.log('Header.logout() called');
     store.dispatch(clearProfileActionCreator());
   }
 
   render() {
-    // let profile: UserProfile | undefined;
-    // if (this.props.currentUser !== undefined) {
-    //   profile = this.props.currentUser.profile;
-    // }
+    let profile: UserProfile | undefined;
+    if (this.props.currentUser !== undefined) {
+      profile = this.props.currentUser.profile;
+    }
 
     return (
       <header className="logo__header" role="banner" >
@@ -66,7 +67,7 @@ class HeaderImpl extends React.Component<Props, State> {
             <li><Link className={props.postcards ? '' : 'active'} to="/">Calls</Link></li>
             <li><Link className={props.postcards ? 'active' : ''} to="/postcards">Postcards</Link></li>
           </ul> */}
-          <Login logout={this.logout} />
+          <Login userProfile={profile} logout={this.logout} />
         </div>
         {<DonationContainer />}
       </header>
