@@ -12,7 +12,7 @@ const callbackURI = () => {
   if (window.location.host.includes('localhost')) {
     return 'http://localhost:3000/auth0callback';
   } else if (window.location.host.includes('test.5calls.org')) {
-    return 'https://test.5calls.org/auth0callback';    
+    return 'https://test.5calls.org/auth0callback';
   }
 
   return 'https://5calls.org/auth0callback';
@@ -50,7 +50,7 @@ export default class AuthUtil {
             // otherwise we get the refreshed details back and update them
             this.decodeAndSetProfile(result);
           }
-        });    
+        });
       } else {
         // we're good for now, don't do anything
       }
@@ -86,7 +86,7 @@ export default class AuthUtil {
   decodeAndSetProfile(auth0Hash: auth0base.Auth0DecodedHash) {
     let profile: UserProfile | undefined;
     if (auth0Hash.idToken !== undefined) {
-      // console.log('token is ', userAuth.idToken);
+      // console.log('token is ', auth0Hash.idToken);
       profile = jwt(auth0Hash.idToken);
       // console.log('jwt decodes to', profile);
     }

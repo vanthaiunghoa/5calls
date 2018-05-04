@@ -32,7 +32,6 @@ class Auth0Callback extends React.Component<StateProps & DispatchProps, Internal
   render() {
     if (this.state.doneRedirect) {
       return <Redirect to="/"/>;
-      // return <span/>;
     } else {
       return <h1>Logging you in...</h1>;
     }
