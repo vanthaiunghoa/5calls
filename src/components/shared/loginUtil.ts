@@ -41,10 +41,11 @@ export default class AuthUtil {
       let now = new Date();
       if (expires < now) {
         // try to renew automatically
-        this.auth0.checkSession({}, (err, result) => {
-          if (err !== null) {
+        this.auth0.checkSession({}, (error, result) => {
+          if (error !== null) {
             // not sure how this might happen, log out for now
-            console.log('error check session', err);
+            // tslint:disable-next-line:no-console
+            console.error('error check session', error);
             this.logout();
           } else {
             // otherwise we get the refreshed details back and update them
@@ -74,9 +75,10 @@ export default class AuthUtil {
   }
 
   handleAuthentication() {
-    this.auth0.parseHash((err, authResult) => {
+    this.auth0.parseHash((error, authResult) => {
       if (authResult === undefined) {
-        console.log('error with auth', err);
+        // tslint:disable-next-line:no-console
+        console.error('error with auth', error);
       } else {
         this.decodeAndSetProfile(authResult);
       }
