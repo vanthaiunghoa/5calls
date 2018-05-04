@@ -27,7 +27,7 @@ import { MyImpactPageContainer } from './components/myimpact';
 import { GroupPageContainer, GroupCallPageContainer } from './components/groups';
 import './components/bundle.css';
 import * as ReactGA from 'react-ga';
-import { AuthCallbackContainer } from './components/shared';
+import Auth0Callback from './components/Auth0Callback';
 
 ReactGA.initialize('UA-90915119-1');
 const trackPageView = location => {
@@ -72,7 +72,7 @@ ReactDOM.render(
           <Route path="/about" exact={true} component={AboutPage} />
           <Route path="/phonebanks" exact={true} component={PhonebanksPage} />
           <Route path="/postcards" exact={true} component={PostcardsPage} />
-          <Route path="/auth0callback" exact={true} component={AuthCallbackContainer} />
+          <Route path="/auth0callback" exact={true} component={Auth0Callback} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </ConnectedRouter>
