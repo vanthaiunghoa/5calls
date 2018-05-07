@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import onClickOutside from 'react-onclickoutside';
 import { Login } from '@5calls/react-components';
 import { store } from '../../redux/store';
-import Auth from '../shared/loginUtil';
 import { DonationContainer } from '../donation/';
 import { UserState, UserProfile } from '../../redux/userState/reducer';
 import { clearProfileActionCreator } from '../../redux/userState/action';
@@ -35,11 +34,6 @@ class HeaderImpl extends React.Component<Props, State> {
     this.setState({ userMenuHidden: !this.state.userMenuHidden });
   }
 
-  login = () => {
-    const authutil = new Auth();
-    authutil.login();
-  }
-
   logout = () => {
     store.dispatch(clearProfileActionCreator());
   }
@@ -61,7 +55,7 @@ class HeaderImpl extends React.Component<Props, State> {
             <li><Link className={props.postcards ? '' : 'active'} to="/">Calls</Link></li>
             <li><Link className={props.postcards ? 'active' : ''} to="/postcards">Postcards</Link></li>
           </ul> */}
-          <Login userProfile={profile} login={this.login} logout={this.logout} />
+          <Login userProfile={profile} logoutHandler={this.logout} />
         </div>
         {<DonationContainer />}
       </header>
