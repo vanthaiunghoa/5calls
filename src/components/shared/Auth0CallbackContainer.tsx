@@ -10,12 +10,10 @@ interface Props {}
 interface State {}
 
 export class Auth0CallbackContainer extends React.Component<Props, State> {
-  // TODO: remove hard coded value
-  // skip for now: fakeTotalCount = 100;
 
   handleAuthentication = (authResponse: AuthResponse): Promise<AuthResponse> => {
-    console.log('AuthoCallbackContainer.handleAuthentication() token', authResponse.authToken);
-    console.log('AuthoCallbackContainer.handleAuthentication() user profile', authResponse.userProfile);
+    // console.log('AuthoCallbackContainer.handleAuthentication() token', authResponse.authToken);
+    // console.log('AuthoCallbackContainer.handleAuthentication() user profile', authResponse.userProfile);
     store.dispatch(setAuthTokenActionCreator(authResponse.authToken));
     store.dispatch(setProfileActionCreator(authResponse.userProfile));
 

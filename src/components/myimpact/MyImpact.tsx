@@ -9,7 +9,7 @@ import { UserStatsState } from '../../redux/userStats';
 import { getUserStats, RemoteUserStats } from '../../services/apiServices';
 import { UserState } from '../../redux/userState';
 import { queueUntilRehydration } from '../../redux/rehydrationUtil';
-import AuthUtil from '../shared/loginUtil';
+import { LoginService } from '@5calls/react-components';
 
 interface Props {
   readonly currentUser?: UserState;
@@ -22,7 +22,7 @@ interface State {
   remoteUserStats?: RemoteUserStats;
 }
 
-const authutil = new AuthUtil();
+const authutil = new LoginService();
 
 export class MyImpact extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -40,9 +40,10 @@ export class MyImpact extends React.Component<Props, State> {
         getUserStats(this.props.currentUser.idToken).then((userStats) => {
           this.setState({remoteUserStats: userStats});
         }).catch((error) => {
-          // console.log("error getting stats",error)
-        });  
-      }  
+          // tslint:disable-next-line:no-console
+          console.error('error getting user stats', error);
+        });
+      }
     });
   }
 
@@ -64,7 +65,7 @@ export class MyImpact extends React.Component<Props, State> {
       myTotalCalls = callSummaryParams.contactedCalls + callSummaryParams.vmCalls + callSummaryParams.unavailableCalls;
       streakLength = this.state.remoteUserStats.weeklyStreak;
     }
-  
+
     return (
     <section className="impact">
       <h1 className="impact__title">{this.props.t('impact.title')}</h1>
@@ -83,7 +84,7 @@ export class MyImpact extends React.Component<Props, State> {
       {myTotalCalls > 0 &&
         <div>
           <h2 className="impact_total">
-            { streakLength > 0 && 
+            { streakLength > 0 &&
               <React.Fragment>
                 {/*tslint:disable-next-line:max-line-length*/}
                 You've made <Pluralize singular="call" count={myTotalCalls} /> and your streak is <Pluralize singular="week" count={streakLength} />!
