@@ -6,9 +6,8 @@ import Pluralize from 'react-pluralize';
 
 import { CallCount } from '../shared';
 import { UserStatsState } from '../../redux/userStats';
-import { getUserStats, RemoteUserStats } from '../../services/apiServices';
+import { RemoteUserStats } from '../../services/apiServices';
 import { UserState } from '../../redux/userState';
-import { queueUntilRehydration } from '../../redux/rehydrationUtil';
 import { LoginService } from '@5calls/react-components';
 
 interface Props {
@@ -16,35 +15,17 @@ interface Props {
   readonly userStats: UserStatsState;
   readonly totalCount: number;
   readonly t: TranslationFunction;
+  readonly remoteUserStats?: RemoteUserStats;
 }
 
-interface State {
-  remoteUserStats?: RemoteUserStats;
-}
+interface State {}
 
 const authutil = new LoginService();
 
 export class MyImpact extends React.Component<Props, State> {
+
   constructor(props: Props) {
     super(props);
-
-    this.state = {
-      remoteUserStats: undefined,
-    };
-  }
-
-  componentDidMount() {
-    queueUntilRehydration(() => {
-      if (this.props.currentUser && this.props.currentUser.idToken) {
-
-        getUserStats(this.props.currentUser.idToken).then((userStats) => {
-          this.setState({remoteUserStats: userStats});
-        }).catch((error) => {
-          // tslint:disable-next-line:no-console
-          console.error('error getting user stats', error);
-        });
-      }
-    });
   }
 
   render() {
@@ -57,13 +38,13 @@ export class MyImpact extends React.Component<Props, State> {
     let streakLength = 0;
 
     // update stats from the server when we get them back
-    if (this.state.remoteUserStats && this.state.remoteUserStats.stats) {
-      callSummaryParams.contactedCalls = this.state.remoteUserStats.stats.contact;
-      callSummaryParams.vmCalls = this.state.remoteUserStats.stats.voicemail;
-      callSummaryParams.unavailableCalls = this.state.remoteUserStats.stats.unavailable;
+    if (this.props.remoteUserStats && this.props.remoteUserStats.stats) {
+      callSummaryParams.contactedCalls = this.props.remoteUserStats.stats.contact;
+      callSummaryParams.vmCalls = this.props.remoteUserStats.stats.voicemail;
+      callSummaryParams.unavailableCalls = this.props.remoteUserStats.stats.unavailable;
 
       myTotalCalls = callSummaryParams.contactedCalls + callSummaryParams.vmCalls + callSummaryParams.unavailableCalls;
-      streakLength = this.state.remoteUserStats.weeklyStreak;
+      streakLength = this.props.remoteUserStats.weeklyStreak;
     }
 
     return (
