@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import onClickOutside from 'react-onclickoutside';
-import { Login } from '@5calls/react-components';
+import { /*Login*/ CustomLoginUi } from '@5calls/react-components';
 import { store } from '../../redux/store';
 import { DonationContainer } from '../donation/';
 import { UserState, UserProfile } from '../../redux/userState/reducer';
@@ -55,7 +55,8 @@ class HeaderImpl extends React.Component<Props, State> {
             <li><Link className={props.postcards ? '' : 'active'} to="/">Calls</Link></li>
             <li><Link className={props.postcards ? 'active' : ''} to="/postcards">Postcards</Link></li>
           </ul> */}
-          <Login userProfile={profile} logoutHandler={this.logout} />
+          {/* <Login userProfile={profile} logoutHandler={this.logout} /> */}
+          <CustomLoginUi userProfile={profile} logoutHandler={this.logout}/>
         </div>
         {<DonationContainer />}
       </header>
