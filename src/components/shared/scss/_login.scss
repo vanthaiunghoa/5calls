@@ -1,0 +1,35 @@
+#root {
+  position: relative;
+}
+
+.login-modal {
+  position: absolute;
+  top: 200px;
+  left: 40%;
+  z-index: 999;
+  background-color: white;
+  border: 2px solid black;
+  padding: 25px;
+  border-radius: 5%;
+  box-shadow: 8px 8px #888888;
+}
+
+.login-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #000;
+  padding-bottom: 10px;
+}
+
+.login-error-message {
+  color: red;
+}
+
+.login-fieldset {
+  display: block;
+}
+
+.login-button {
+  width: 100%;
+}
