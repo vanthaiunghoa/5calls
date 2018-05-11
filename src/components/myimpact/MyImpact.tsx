@@ -9,6 +9,7 @@ import { UserStatsState } from '../../redux/userStats';
 import { RemoteUserStats } from '../../services/apiServices';
 import { UserState } from '../../redux/userState';
 import { LoginService } from '@5calls/react-components';
+import { Auth0Config } from '../../common/constants';
 
 interface Props {
   readonly currentUser?: UserState;
@@ -20,7 +21,7 @@ interface Props {
 
 interface State {}
 
-const authutil = new LoginService();
+const authutil = new LoginService(Auth0Config);
 
 export class MyImpact extends React.Component<Props, State> {
 

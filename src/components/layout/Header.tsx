@@ -6,6 +6,7 @@ import { store } from '../../redux/store';
 import { DonationContainer } from '../donation/';
 import { UserState, UserProfile } from '../../redux/userState/reducer';
 import { clearProfileActionCreator } from '../../redux/userState/action';
+import { Auth0Config } from '../../common/constants';
 
 interface Props {
   readonly postcards?: boolean;
@@ -55,8 +56,11 @@ class HeaderImpl extends React.Component<Props, State> {
             <li><Link className={props.postcards ? '' : 'active'} to="/">Calls</Link></li>
             <li><Link className={props.postcards ? 'active' : ''} to="/postcards">Postcards</Link></li>
           </ul> */}
-          {/* <Login userProfile={profile} logoutHandler={this.logout} /> */}
-          <CustomLogin userProfile={profile} logoutHandler={this.logout}/>
+          <CustomLogin
+            auth0Config={Auth0Config}
+            userProfile={profile}
+            logoutHandler={this.logout}
+          />
         </div>
         {<DonationContainer />}
       </header>

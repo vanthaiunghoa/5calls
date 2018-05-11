@@ -30,6 +30,11 @@
   display: block;
 }
 
+.btn-block:first-child {
+  display: inline;
+  color: red;
+}
+
 .login-button {
   width: 100%;
 }

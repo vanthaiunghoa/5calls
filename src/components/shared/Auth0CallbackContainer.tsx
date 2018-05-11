@@ -4,6 +4,7 @@ import { Auth0Callback, AuthResponse } from '@5calls/react-components';
 import { store } from '../../redux/store';
 import { setAuthTokenActionCreator, setProfileActionCreator } from '../../redux/userState';
 import { uploadStatsIfNeeded } from '../../redux/remoteData/asyncActionCreator';
+import { Auth0Config } from '../../common/constants';
 
 interface Props {}
 
@@ -27,7 +28,10 @@ export class Auth0CallbackContainer extends React.Component<Props, State> {
 
   render() {
     return (
-      <Auth0Callback handleAuthentication={this.handleAuthentication} />
+      <Auth0Callback
+        auth0Config={Auth0Config}
+        handleAuthentication={this.handleAuthentication}
+      />
     );
   }
 }
