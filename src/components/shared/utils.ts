@@ -74,7 +74,9 @@ export const getIssue = (remoteDataState: RemoteDataState, issueId: string): Iss
   }
 
   if (remoteDataState.groupIssues) {
-    const currentGroupIssue = find(remoteDataState.groupIssues, (i => i.id === issueId || i.slug === issueId));
+    // issueIDs are numbers from groups :/ they should be strings
+    const currentGroupIssue = find(remoteDataState.groupIssues,
+                                   (i => i.id.toString() === issueId || i.slug === issueId));
     if (currentGroupIssue) {
       return currentGroupIssue;
     }
