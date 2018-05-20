@@ -33,7 +33,7 @@ export const Postcards: React.StatelessComponent<Props> = (props: Props) => (
       {/*tslint:disable-next-line:max-line-length*/}
       <li>Since 2014, voters in Alabama have been required to bring ID to the polls. They can find information on acceptable ID or how to get a free ID at <a href="http://www.alabamavotes.gov" target="_blank">www.alabamavotes.gov</a></li>
       {/*tslint:disable-next-line:max-line-length*/}
-    <li>Keep messaging positive and encouraging. The best way to connect with other voters is to be sincere and authentic.</li>
+      <li>Keep messaging positive and encouraging. The best way to connect with other voters is to be sincere and authentic.</li>
     </ul>
     <h3>Postcard message examples:</h3>
     <blockquote>

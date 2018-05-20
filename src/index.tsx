@@ -14,6 +14,7 @@ import { transform, LegacyUserStatsState } from './services/legacyStats';
 import { setUserStatsActionCreator } from './redux/userStats';
 
 import NotFoundPage from './components/NotFoundPage';
+import Auth0Callback from './components/Auth0Callback';
 import { HomePageContainer } from './components/home';
 import { AboutPage } from './components/about';
 import { PhonebanksPage } from './components/phonebanks';
@@ -71,6 +72,7 @@ ReactDOM.render(
           <Route path="/about" exact={true} component={AboutPage} />
           <Route path="/phonebanks" exact={true} component={PhonebanksPage} />
           <Route path="/postcards" exact={true} component={PostcardsPage} />
+          <Route path="/auth0callback" exact={true} component={Auth0Callback} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </ConnectedRouter>
