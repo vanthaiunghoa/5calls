@@ -12,9 +12,9 @@ import i18n from './services/i18n';
 import { getAll } from './services/localStorage';
 import { transform, LegacyUserStatsState } from './services/legacyStats';
 import { setUserStatsActionCreator } from './redux/userStats';
+import * as ReactGA from 'react-ga';
 
 import NotFoundPage from './components/NotFoundPage';
-import Auth0Callback from './components/Auth0Callback';
 import { HomePageContainer } from './components/home';
 import { AboutPage } from './components/about';
 import { PhonebanksPage } from './components/phonebanks';
@@ -27,8 +27,6 @@ import { CallPageContainer } from './components/call';
 import { MyImpactPageContainer } from './components/myimpact';
 import { GroupPageContainer, GroupCallPageContainer } from './components/groups';
 import './components/bundle.css';
-import * as ReactGA from 'react-ga';
-// import Auth0Callback from './components/Auth0Callback';
 import { Auth0CallbackContainer } from './components/shared';
 
 ReactGA.initialize('UA-90915119-1');
