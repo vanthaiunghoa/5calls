@@ -26,7 +26,8 @@ export const Auth0Config = {
   domain: '5callsos.auth0.com',
   clientId: 'bVxfNRGD4azuJLWPDPHNNsfMElENPKjF',
   audience: 'https://5callsos.auth0.com/userinfo',
-  callbackUri: callbackURI()
+  callbackUri: callbackURI(),
+  poweredURL: 'https://5calls.org',
 };
 
 export const zipCodeRegex: RegExp = /^\d{5}(-\d{4})?$/;

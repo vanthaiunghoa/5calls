@@ -6,27 +6,46 @@ import Pluralize from 'react-pluralize';
 
 import { CallCount } from '../shared';
 import { UserStatsState } from '../../redux/userStats';
-import { RemoteUserStats } from '../../services/apiServices';
+import { RemoteUserStats, getUserStats } from '../../services/apiServices';
+import { queueUntilRehydration } from '../../redux/rehydrationUtil';
 import { UserState } from '../../redux/userState';
-import { LoginService } from '@5calls/react-components';
-import { Auth0Config } from '../../common/constants';
 
 interface Props {
   readonly currentUser?: UserState;
   readonly userStats: UserStatsState;
   readonly totalCount: number;
   readonly t: TranslationFunction;
-  readonly remoteUserStats?: RemoteUserStats;
 }
 
-interface State {}
-
-const authutil = new LoginService(Auth0Config);
+interface State {
+  fetchedStats: boolean;
+  remoteUserStats?: RemoteUserStats;
+}
 
 export class MyImpact extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
+
+    this.state = {
+      fetchedStats: false,
+      remoteUserStats: undefined
+    };
+  }
+
+  componentDidMount() {
+    queueUntilRehydration(() => {
+      if (this.props.currentUser && this.props.currentUser.idToken && !this.state.fetchedStats) {
+        this.setState({fetchedStats: true});
+
+        getUserStats(this.props.currentUser.idToken).then((userStats) => {
+          this.setState({remoteUserStats: userStats});
+        }).catch((error) => {
+          // tslint:disable-next-line:no-console
+          console.error('error getting user stats', error);
+        });
+      }
+    });  
   }
 
   render() {
@@ -39,13 +58,13 @@ export class MyImpact extends React.Component<Props, State> {
     let streakLength = 0;
 
     // update stats from the server when we get them back
-    if (this.props.remoteUserStats && this.props.remoteUserStats.stats) {
-      callSummaryParams.contactedCalls = this.props.remoteUserStats.stats.contact;
-      callSummaryParams.vmCalls = this.props.remoteUserStats.stats.voicemail;
-      callSummaryParams.unavailableCalls = this.props.remoteUserStats.stats.unavailable;
+    if (this.state.remoteUserStats && this.state.remoteUserStats.stats) {
+      callSummaryParams.contactedCalls = this.state.remoteUserStats.stats.contact;
+      callSummaryParams.vmCalls = this.state.remoteUserStats.stats.voicemail;
+      callSummaryParams.unavailableCalls = this.state.remoteUserStats.stats.unavailable;
 
       myTotalCalls = callSummaryParams.contactedCalls + callSummaryParams.vmCalls + callSummaryParams.unavailableCalls;
-      streakLength = this.props.remoteUserStats.weeklyStreak;
+      streakLength = this.state.remoteUserStats.weeklyStreak;
     }
 
     return (
@@ -54,11 +73,8 @@ export class MyImpact extends React.Component<Props, State> {
       {myTotalCalls === 0 &&
         <div>
           <h2 className="impact_total">{this.props.t('impact.noCallsYet')}</h2>
-          { !authutil.isLoggedIn(this.props.currentUser) &&
-            <p>
-              <a onClick={authutil.login}>Sign in</a>
-              &nbsp;to save your calls across devices, and track your weekly call streaks!
-            </p>
+          { this.props.currentUser && this.props.currentUser.idToken === undefined &&
+            <p>Sign in to save your calls across devices, and track your weekly call streaks!</p>
           }
         </div>
       }
@@ -78,11 +94,8 @@ export class MyImpact extends React.Component<Props, State> {
               </React.Fragment>
             }
           </h2>
-          { !authutil.isLoggedIn(this.props.currentUser) &&
-            <p>
-              <a onClick={authutil.login}>Sign in</a>
-              &nbsp;to save your calls across devices, and track your weekly call streaks!
-            </p>
+          { this.props.currentUser && this.props.currentUser.idToken &&
+            <p>Sign in to save your calls across devices, and track your weekly call streaks!</p>
           }
           <div className="impact_result">
             {this.props.t('impact.callSummaryText', callSummaryParams)}
