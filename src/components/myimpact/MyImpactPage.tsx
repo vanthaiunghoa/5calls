@@ -1,20 +1,18 @@
 import * as React from 'react';
-import { withRouter } from 'react-router';
-import { RouteComponentProps } from 'react-router-dom';
 import i18n from '../../services/i18n';
 import { MyImpactTranslatable } from './index';
 import { LayoutContainer } from '../layout';
 import { UserStatsState } from '../../redux/userStats';
 import { UserState } from '../../redux/userState';
 
-interface Props extends RouteComponentProps<{ id: string }> {
+interface Props {
   readonly currentUser?: UserState;
   readonly userStats: UserStatsState;
   readonly totalCount: number;
 }
 
 const MyImpactPage: React.StatelessComponent<Props> = (props: Props) => (
-  <LayoutContainer issueId={props.match.params.id}>
+  <LayoutContainer>
     <MyImpactTranslatable
       currentUser={props.currentUser}
       userStats={props.userStats}
@@ -24,4 +22,4 @@ const MyImpactPage: React.StatelessComponent<Props> = (props: Props) => (
   </LayoutContainer>
 );
 
-export default withRouter(MyImpactPage);
+export default MyImpactPage;

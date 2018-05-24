@@ -13,9 +13,22 @@ export const CONTACTS_API_URL = `${API_URL}/contacts`;
 export const IP_INFO_URL = 'https://ipinfo.io/json';
 export const DONATE_URL = 'https://secure.actblue.com/donate/5calls-donate';
 
-export const AUTH0_CLIENT_ID = 'bVxfNRGD4azuJLWPDPHNNsfMElENPKjF';
-export const AUTH0_CLIENT_SECRET = '3MGWBSsG56ml2euRwvihwsrF-soS6SKi4WOPcbL2uh7rqMj6ig2-0gG4Q_Ha4vrX';
-export const AUTH0_DOMAIN = '5callsos.auth0.com';
+const callbackURI = () => {
+  if (window.location.host.includes('localhost')) {
+    return 'http://localhost:3000/auth0callback';
+  } else if (window.location.host.includes('test.5calls.org')) {
+    return 'https://test.5calls.org/auth0callback';
+  }
+  return 'https://5calls.org/auth0callback';
+};
+
+export const Auth0Config = {
+  domain: '5callsos.auth0.com',
+  clientId: 'bVxfNRGD4azuJLWPDPHNNsfMElENPKjF',
+  audience: 'https://5callsos.auth0.com/userinfo',
+  callbackUri: callbackURI(),
+  poweredURL: 'https://5calls.org',
+};
 
 export const zipCodeRegex: RegExp = /^\d{5}(-\d{4})?$/;
 

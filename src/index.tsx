@@ -12,9 +12,9 @@ import i18n from './services/i18n';
 import { getAll } from './services/localStorage';
 import { transform, LegacyUserStatsState } from './services/legacyStats';
 import { setUserStatsActionCreator } from './redux/userStats';
+import * as ReactGA from 'react-ga';
 
 import NotFoundPage from './components/NotFoundPage';
-import Auth0Callback from './components/Auth0Callback';
 import { HomePageContainer } from './components/home';
 import { AboutPage } from './components/about';
 import { PhonebanksPage } from './components/phonebanks';
@@ -27,7 +27,7 @@ import { CallPageContainer } from './components/call';
 import { MyImpactPageContainer } from './components/myimpact';
 import { GroupPageContainer, GroupCallPageContainer } from './components/groups';
 import './components/bundle.css';
-import * as ReactGA from 'react-ga';
+import { Auth0CallbackContainer } from './components/shared';
 
 ReactGA.initialize('UA-90915119-1');
 const trackPageView = location => {
@@ -43,7 +43,7 @@ history.listen(trackPageView);
 
 const store = createStore({});
 
-// check for existing user stats in persisted redux store 
+// check for existing user stats in persisted redux store
 if (store.getState().userStatsState.all.length === 0) {
   // check for user stats from legacy choo app
   const legacyStatsStore = getAll('org.5calls.userStats');
@@ -72,7 +72,7 @@ ReactDOM.render(
           <Route path="/about" exact={true} component={AboutPage} />
           <Route path="/phonebanks" exact={true} component={PhonebanksPage} />
           <Route path="/postcards" exact={true} component={PostcardsPage} />
-          <Route path="/auth0callback" exact={true} component={Auth0Callback} />
+          <Route path="/auth0callback" exact={true} component={Auth0CallbackContainer} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </ConnectedRouter>

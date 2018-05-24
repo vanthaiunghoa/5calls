@@ -6,10 +6,9 @@ import Pluralize from 'react-pluralize';
 
 import { CallCount } from '../shared';
 import { UserStatsState } from '../../redux/userStats';
-import { getUserStats, RemoteUserStats } from '../../services/apiServices';
-import { UserState } from '../../redux/userState';
+import { RemoteUserStats, getUserStats } from '../../services/apiServices';
 import { queueUntilRehydration } from '../../redux/rehydrationUtil';
-import AuthUtil from '../shared/loginUtil';
+import { UserState } from '../../redux/userState';
 
 interface Props {
   readonly currentUser?: UserState;
@@ -19,31 +18,34 @@ interface Props {
 }
 
 interface State {
+  fetchedStats: boolean;
   remoteUserStats?: RemoteUserStats;
 }
 
-const authutil = new AuthUtil();
-
 export class MyImpact extends React.Component<Props, State> {
+
   constructor(props: Props) {
     super(props);
 
     this.state = {
-      remoteUserStats: undefined,
+      fetchedStats: false,
+      remoteUserStats: undefined
     };
   }
 
   componentDidMount() {
     queueUntilRehydration(() => {
-      if (this.props.currentUser && this.props.currentUser.idToken) {
+      if (this.props.currentUser && this.props.currentUser.idToken && !this.state.fetchedStats) {
+        this.setState({fetchedStats: true});
 
         getUserStats(this.props.currentUser.idToken).then((userStats) => {
           this.setState({remoteUserStats: userStats});
         }).catch((error) => {
-          // console.log("error getting stats",error)
-        });  
-      }  
-    });
+          // tslint:disable-next-line:no-console
+          console.error('error getting user stats', error);
+        });
+      }
+    });  
   }
 
   render() {
@@ -64,18 +66,15 @@ export class MyImpact extends React.Component<Props, State> {
       myTotalCalls = callSummaryParams.contactedCalls + callSummaryParams.vmCalls + callSummaryParams.unavailableCalls;
       streakLength = this.state.remoteUserStats.weeklyStreak;
     }
-  
+
     return (
     <section className="impact">
       <h1 className="impact__title">{this.props.t('impact.title')}</h1>
       {myTotalCalls === 0 &&
         <div>
           <h2 className="impact_total">{this.props.t('impact.noCallsYet')}</h2>
-          { !authutil.isLoggedIn(this.props.currentUser) &&
-            <p>
-              <a onClick={authutil.login}>Sign in</a>
-              &nbsp;to save your calls across devices, and track your weekly call streaks!
-            </p>
+          { this.props.currentUser && this.props.currentUser.idToken === undefined &&
+            <p>Sign in to save your calls across devices, and track your weekly call streaks!</p>
           }
         </div>
       }
@@ -83,7 +82,7 @@ export class MyImpact extends React.Component<Props, State> {
       {myTotalCalls > 0 &&
         <div>
           <h2 className="impact_total">
-            { streakLength > 0 && 
+            { streakLength > 0 &&
               <React.Fragment>
                 {/*tslint:disable-next-line:max-line-length*/}
                 You've made <Pluralize singular="call" count={myTotalCalls} /> and your streak is <Pluralize singular="week" count={streakLength} />!
@@ -95,11 +94,8 @@ export class MyImpact extends React.Component<Props, State> {
               </React.Fragment>
             }
           </h2>
-          { !authutil.isLoggedIn(this.props.currentUser) &&
-            <p>
-              <a onClick={authutil.login}>Sign in</a>
-              &nbsp;to save your calls across devices, and track your weekly call streaks!
-            </p>
+          { this.props.currentUser && this.props.currentUser.idToken &&
+            <p>Sign in to save your calls across devices, and track your weekly call streaks!</p>
           }
           <div className="impact_result">
             {this.props.t('impact.callSummaryText', callSummaryParams)}
