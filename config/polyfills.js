@@ -8,6 +8,12 @@ if (typeof Promise === 'undefined') {
   window.Promise = require('promise/lib/es6-extensions.js');
 }
 
+// using include in the callback selection requires a polyfill for ie
+require('string.prototype.includes');
+
+// some older browsers don't support Set, which apparently something compiles to
+require('es6-set');
+
 // fetch() polyfill for making API calls.
 require('whatwg-fetch');
 
