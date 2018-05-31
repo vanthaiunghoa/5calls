@@ -12,7 +12,7 @@ if (typeof Promise === 'undefined') {
 require('string.prototype.includes');
 
 // some older browsers don't support Set, which apparently something compiles to
-require('es6-set');
+require('core-js/fn/set');
 
 // fetch() polyfill for making API calls.
 require('whatwg-fetch');
