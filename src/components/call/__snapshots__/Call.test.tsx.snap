@@ -19,6 +19,7 @@ exports[`Call component should be rendered if passed a valid object 1`] = `
         "slug": "",
       }
     }
+    invalidAddress={false}
     t={[Function]}
   />
   <Translate(ContactDetails)
@@ -75,6 +76,7 @@ exports[`Call component should be rendered if passed a valid object 1`] = `
       Object {
         "address": "1234",
         "cachedCity": "Anytown",
+        "invalidAddress": false,
         "locationFetchType": "BROWSER_GEOLOCATION",
         "splitDistrict": false,
         "uiState": "LOCATION_FOUND",
