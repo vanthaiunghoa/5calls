@@ -66,7 +66,6 @@ export const fetchAllIssues = (address: string = '') => {
       .then((response: ApiData) => {
         if (response.invalidAddress) {
           dispatch(setUiState(LocationUiState.LOCATION_ERROR));
-          Promise.reject('Invalid address found');
         } else {
           const normalizedAddress = response.normalizedLocation as string;
           dispatch(setCachedCity(normalizedAddress));
@@ -82,8 +81,7 @@ export const fetchAllIssues = (address: string = '') => {
         // dispatch(apiErrorMessageActionCreator(error.message));
         // tslint:disable-next-line:no-console
         console.error(`getIssue error: ${error.message}`, error);
-        // throw error;
-        Promise.reject(error);
+        // can't return promises from this dispatch bullshit
       });
   };
 };
@@ -161,7 +159,6 @@ export const fetchLocationByIP = () => {
           console.error(`fetchLocationByIP error: ${error.message}`, error);
           // set location to empty string to trigger location error
           dispatch(fetchAllIssues(''));
-          Promise.resolve('');
         });
     // }
   };
