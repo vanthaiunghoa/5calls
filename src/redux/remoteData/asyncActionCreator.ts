@@ -14,6 +14,7 @@ import { Auth0Config } from '../../common/constants';
 import { UserContactEvent } from '../userStats';
 import { setUploadedActionCreator } from '../userStats/actionCreator';
 import { clearProfileActionCreator } from '../userState';
+import { setInvalidAddress } from '../location/actionCreator';
 
 /**
  * Timer for calling fetchLocationByIP() if
@@ -66,6 +67,7 @@ export const fetchAllIssues = (address: string = '') => {
       .then((response: ApiData) => {
         if (response.invalidAddress) {
           dispatch(setUiState(LocationUiState.LOCATION_ERROR));
+          dispatch(setInvalidAddress(response.invalidAddress));
         } else {
           const normalizedAddress = response.normalizedLocation as string;
           dispatch(setCachedCity(normalizedAddress));
@@ -74,6 +76,7 @@ export const fetchAllIssues = (address: string = '') => {
             dispatch(setUiState(LocationUiState.LOCATION_ERROR));
           }
           dispatch(setSplitDistrict(response.splitDistrict));
+          dispatch(setInvalidAddress(false));
           dispatch(setLocationFetchType(LocationFetchType.CACHED_ADDRESS));
           dispatch(issuesActionCreator(response.issues));
         }
@@ -93,7 +96,7 @@ export const fetchGroupIssues = (groupid: string, address: string = '') => {
       .then((response: GroupIssues) => {
         if (response.invalidAddress) {
           dispatch(setUiState(LocationUiState.LOCATION_ERROR));
-          Promise.reject('Invalid address found');
+          dispatch(setInvalidAddress(response.invalidAddress));
         } else {
           const normalizedAddress = response.normalizedLocation as string;
           dispatch(setCachedCity(normalizedAddress));
@@ -102,6 +105,7 @@ export const fetchGroupIssues = (groupid: string, address: string = '') => {
             dispatch(setUiState(LocationUiState.LOCATION_ERROR));
           }
           dispatch(setSplitDistrict(response.splitDistrict));
+          dispatch(setInvalidAddress(false));
           dispatch(setLocationFetchType(LocationFetchType.CACHED_ADDRESS));
           dispatch(groupIssuesActionCreator(response.issues));
         }
@@ -109,8 +113,6 @@ export const fetchGroupIssues = (groupid: string, address: string = '') => {
         // dispatch(apiErrorMessageActionCreator(error.message));
         // tslint:disable-next-line:no-console
         console.error(`getIssue error: ${error.message}`, error);
-        // throw error;
-        Promise.reject(error);
       });
   };
 };

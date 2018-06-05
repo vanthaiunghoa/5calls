@@ -10,6 +10,7 @@ test('Location component should show location prop value if locationState.addres
     address: '1234',
     cachedCity: '',
     splitDistrict: false,
+    invalidAddress: false,
     uiState: LocationUiState.LOCATION_FOUND,
     locationFetchType: LocationFetchType.BROWSER_GEOLOCATION
   };
@@ -33,6 +34,7 @@ test('Location component should show location prop value if locationState.cached
     address: '',
     cachedCity: 'Cached Address',
     splitDistrict: false,
+    invalidAddress: false,
     uiState: LocationUiState.LOCATION_FOUND,
     locationFetchType: LocationFetchType.BROWSER_GEOLOCATION
   };
@@ -56,6 +58,7 @@ test('Should show "Getting your location" label if fetching location', () => {
     address: '1234',
     cachedCity: '',
     splitDistrict: false,
+    invalidAddress: false,
     uiState: LocationUiState.FETCHING_LOCATION,
     locationFetchType: LocationFetchType.CACHED_ADDRESS
   };
@@ -80,6 +83,7 @@ test('Location component setLocation() should be called upon submit when enterin
     address: '1234',
     cachedCity: '',
     splitDistrict: false,
+    invalidAddress: false,
     uiState: LocationUiState.ENTERING_LOCATION,
     locationFetchType: LocationFetchType.CACHED_ADDRESS
   };
@@ -107,6 +111,7 @@ test('Location component clearLocation() should be called upon submit when enter
     address: 'Foobar USA',
     cachedCity: '',
     splitDistrict: false,
+    invalidAddress: false,
     uiState: LocationUiState.LOCATION_FOUND,
     locationFetchType: LocationFetchType.CACHED_ADDRESS
   };
@@ -131,6 +136,7 @@ test('If address is invalid, show proper message and form with input and "Go" bu
     address: 'Foobar USA',
     cachedCity: '',
     splitDistrict: false,
+    invalidAddress: false,
     uiState: LocationUiState.LOCATION_ERROR,
     locationFetchType: LocationFetchType.CACHED_ADDRESS
   };

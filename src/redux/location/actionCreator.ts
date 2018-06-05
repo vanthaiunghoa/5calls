@@ -2,6 +2,7 @@ import { LocationClearedAction, LocationSetAction,
   SetUiStateAction, LocationActionType, SetLocationFetchTypeAction,
   SetSplitDistrictAction } from './index';
 import { LocationFetchType, LocationUiState } from '../../common/model';
+import { SetInvalidAddressAction } from './action';
 
 export function setLocation(address: string): LocationSetAction {
   return {
@@ -41,5 +42,12 @@ export function setSplitDistrict(isDistrictSplit: boolean): SetSplitDistrictActi
   return {
     type: LocationActionType.SET_SPLIT_DISTRICT,
     payload: isDistrictSplit
+  };
+}
+
+export function setInvalidAddress(invalidAddress: boolean): SetInvalidAddressAction {
+  return {
+    type: LocationActionType.SET_INVALID_ADDRESS,
+    payload: invalidAddress
   };
 }

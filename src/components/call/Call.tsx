@@ -116,6 +116,7 @@ export class Call extends React.Component<Props, State> {
     return (
       <section className="call">
         <CallHeaderTranslatable
+          invalidAddress={this.props.locationState.invalidAddress}
           currentIssue={this.state.issue}
           t={i18n.t}
         />

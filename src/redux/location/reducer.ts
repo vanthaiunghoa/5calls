@@ -6,6 +6,7 @@ export interface LocationState {
   address: string;
   cachedCity: string;
   splitDistrict: boolean;
+  invalidAddress: boolean;
   uiState: LocationUiState;
   locationFetchType: LocationFetchType | undefined;
 }
@@ -14,6 +15,7 @@ const initialState: LocationState = {
   address: '',
   cachedCity: '',
   splitDistrict: false,
+  invalidAddress: false,
   uiState: LocationUiState.FETCHING_LOCATION,
   locationFetchType: undefined
 };
@@ -45,6 +47,10 @@ export const locationStateReducer: Reducer<LocationState> = (
     case LocationActionType.SET_SPLIT_DISTRICT:
       return Object.assign({}, state, {
         splitDistrict: action.payload
+      });
+    case LocationActionType.SET_INVALID_ADDRESS:
+      return Object.assign({}, state, {
+        invalidAddress: action.payload
       });
     case LocationActionType.SET_LOCATION_FETCH_TYPE:
       return Object.assign({}, state, {

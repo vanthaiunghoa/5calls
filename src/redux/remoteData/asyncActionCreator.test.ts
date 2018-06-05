@@ -30,6 +30,7 @@ test('getApiData() action creator functions correctly', () => {
     address: '',
     cachedCity: '',
     splitDistrict: false,
+    invalidAddress: false,
     uiState: LocationUiState.FETCHING_LOCATION,
     locationFetchType: LocationFetchType.CACHED_ADDRESS
   };

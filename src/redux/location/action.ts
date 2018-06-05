@@ -9,7 +9,8 @@ export enum LocationActionType {
   NEW_LOCATION_LOOKUP = 'NEW_LOCATION_LOOKUP',
   SET_UI_STATE = 'SET_UI_STATE',
   SET_LOCATION_FETCH_TYPE = 'SET_LOCATION_FETCH_TYPE',
-  SET_SPLIT_DISTRICT = 'SET_SPLIT_DISTRICT'
+  SET_SPLIT_DISTRICT = 'SET_SPLIT_DISTRICT',
+  SET_INVALID_ADDRESS = 'SET_INVALID_ADDRESS',
 }
 
 export interface LocationAction extends Action {
@@ -48,4 +49,8 @@ export interface NewLocationLookupAction extends LocationAction {
 
 export interface SetSplitDistrictAction extends LocationAction {
   type: LocationActionType.SET_SPLIT_DISTRICT;
+}
+
+export interface SetInvalidAddressAction extends LocationAction {
+  type: LocationActionType.SET_INVALID_ADDRESS;
 }

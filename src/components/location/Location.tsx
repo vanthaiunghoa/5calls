@@ -100,7 +100,14 @@ export class Location extends React.Component<Props, State> {
         const submitAddress = (e) => {
           e.preventDefault();
           const newLocation = e.target.elements.address.value;
-          this.props.setLocation(newLocation);
+
+          if (newLocation === '') {
+            // if the user hits "Go" with no location, clear what they had and refresh to try the default again
+            this.props.clearLocation();
+            window.location.reload();
+          } else {
+            this.props.setLocation(newLocation);
+          }
         };
         const clearTextBox = (e) => { e.target.value = ''; };
         widget = (

@@ -18,6 +18,7 @@ test('Call component should be rendered if passed a valid object', () => {
     address: '1234',
     cachedCity: 'Anytown',
     splitDistrict: false,
+    invalidAddress: false,
     uiState: LocationUiState.LOCATION_FOUND,
     locationFetchType: LocationFetchType.BROWSER_GEOLOCATION
   };

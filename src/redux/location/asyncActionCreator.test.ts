@@ -35,6 +35,7 @@ test('Expect setAddress() action creator to dispatch correctly', () => {
     cachedCity: '',
     useGeolocation: false,
     splitDistrict: false,
+    invalidAddress: false,
     uiState: LocationUiState.FETCHING_LOCATION,
     locationFetchType: LocationFetchType.CACHED_ADDRESS
   };
