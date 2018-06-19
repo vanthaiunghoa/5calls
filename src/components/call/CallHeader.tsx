@@ -21,6 +21,12 @@ export class CallHeader extends React.Component<Props, State> {
     this.state = { events: ['Waiting for live results...'] };
   }
 
+  componentWillReceiveProps(props: Props) {
+    if (props.currentIssue !== this.props.currentIssue) {
+      this.setState({ events: ['Waiting for live results...']});
+    }
+  }
+
   addEvent(event: string) {
     let newEvents = this.state.events;
 
