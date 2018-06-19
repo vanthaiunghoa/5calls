@@ -1,11 +1,12 @@
-import { } from './NoContact';
 import * as React from 'react';
+import * as Pusher from 'pusher-js';
+
 import i18n from '../../services/i18n';
 import { TranslationFunction } from 'i18next';
 import { translate } from 'react-i18next';
 import { Issue, Contact } from '../../common/model';
-import { CallHeaderTranslatable, ContactDetails, Outcomes,
-  ScriptTranslatable, NoContactSplitDistrict, IssueLink } from './index';
+import { ContactDetails, Outcomes,
+  ScriptTranslatable, NoContactSplitDistrict, IssueLink, CallHeader } from './index';
 import { CallState, OutcomeData } from '../../redux/callState';
 import { LocationState } from '../../redux/location/reducer';
 
@@ -26,7 +27,13 @@ export interface State {
   numberContactsLeft: number;
 }
 
+const socket = new Pusher('32d73b2be1326cfde4cb', {
+  cluster: 'us2',
+});
+
 export class Call extends React.Component<Props, State> {
+  private callHeaderRef: CallHeader | null;
+
   constructor(props: Props) {
     super(props);
     // set initial state
@@ -59,6 +66,30 @@ export class Call extends React.Component<Props, State> {
       numberContactsLeft: numberContactsLeft,
       issue: props.issue
     };
+  }
+
+  componentDidMount() {
+    const channel = socket.subscribe('callresults');
+    channel.bind('result', (evt) => {
+      if (this.callHeaderRef && this.props.issue) {
+        if (evt.issueID === this.props.issue.id) {
+          this.callHeaderRef.addEvent(this.prettifyContactID(evt.contactID));
+        }
+      }
+    });
+  }
+
+  prettifyContactID(contactID: string): string {
+    const splitContact = contactID.split('-');
+
+    const contactState = splitContact[0];
+    const contactName = splitContact[1].replace(/([A-Z])/g, ' $1');
+
+    return contactName + ' (' + contactState + ')';
+  }
+
+  componentWillUnmount() {
+    socket.unsubscribe('callresults');
   }
 
   componentWillReceiveProps(newProps: Props) {
@@ -115,10 +146,11 @@ export class Call extends React.Component<Props, State> {
   render() {
     return (
       <section className="call">
-        <CallHeaderTranslatable
+        <CallHeader
           invalidAddress={this.props.locationState.invalidAddress}
           currentIssue={this.state.issue}
           t={i18n.t}
+          ref={(ref) => this.callHeaderRef = ref}
         />
         {this.missingContacts(this.props.issue) ?
         <NoContactSplitDistrict

@@ -5,7 +5,7 @@ import { TranslationFunction } from 'i18next';
 import * as ReactMarkdown from 'react-markdown';
 
 import { Issue, VoterContact, Group } from '../../common/model';
-import { CallHeaderTranslatable, SupportOutcomes, ACAOutcomes } from './index';
+import { CallHeader, SupportOutcomes, ACAOutcomes } from './index';
 import { CallState, OutcomeData } from '../../redux/callState';
 import { LocationState } from '../../redux/location/reducer';
 import { getNextContact } from '../../services/apiServices';
@@ -130,7 +130,7 @@ export default class FetchCall extends React.Component<Props, State> {
   render() {
     return (
       <section className="call voter">
-        <CallHeaderTranslatable
+        <CallHeader
           invalidAddress={this.props.locationState.invalidAddress}
           currentIssue={this.state.issue}
           t={i18n.t}

@@ -1,7 +1,7 @@
 import { Call, CallTranslatable } from './Call';
 import FetchCall from './FetchCall';
 import CallDetail from './CallDetail';
-import { CallHeader, CallHeaderTranslatable } from './CallHeader';
+import { CallHeader } from './CallHeader';
 import ContactDetails from './ContactDetails';
 import { ContactOffices, ContactOfficesTranslatable } from './ContactOffices';
 import CallPage from './CallPage';
@@ -14,7 +14,7 @@ import SupportOutcomes from './SupportOutcomes';
 import ACAOutcomes from './ACAOutcomes';
 
 export {
-  Call, FetchCall, CallTranslatable, CallPageContainer, CallDetail, CallHeader, CallHeaderTranslatable,
+  Call, FetchCall, CallTranslatable, CallPageContainer, CallDetail, CallHeader,
   CallPage, ContactDetails, ContactOffices, ContactOfficesTranslatable, Outcomes, Script, ScriptTranslatable,
   IssueLink, NoContactSplitDistrict, SupportOutcomes, ACAOutcomes
 };
