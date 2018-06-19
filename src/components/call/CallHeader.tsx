@@ -24,7 +24,7 @@ export class CallHeader extends React.Component<Props, State> {
   addEvent(event: string) {
     let newEvents = this.state.events;
 
-    if (newEvents.length === 1 && newEvents[0].startsWith("Waiting")) {
+    if (newEvents.length === 1 && newEvents[0].startsWith('Waiting')) {
       newEvents = [];
     }
 
