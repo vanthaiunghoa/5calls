@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@5calls/react-components@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@5calls/react-components/-/react-components-0.0.5.tgz#173cebdef9e4b5f423538498d3f494448477e49e"
+"@5calls/react-components@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@5calls/react-components/-/react-components-0.0.9.tgz#0c581f32ca89c2cf1457053720b669894702ee7e"
   dependencies:
     auth0-js "^9.5.1"
     jwt-decode "^2.2.0"
