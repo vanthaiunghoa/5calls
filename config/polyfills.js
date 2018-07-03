@@ -14,6 +14,9 @@ require('string.prototype.includes');
 // some older browsers don't support Set, which apparently something compiles to
 require('core-js/fn/set');
 
+// seriously, not even map???
+require('core-js/es6/map');
+
 // fetch() polyfill for making API calls.
 require('whatwg-fetch');
 
