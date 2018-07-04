@@ -175,7 +175,12 @@ class CallPage extends React.Component<Props, State> {
 
     let canonicalURL: string | undefined = undefined;
     if (this.props.currentIssue) {
-      canonicalURL = Constants.APP_URL + '/issues/' + this.props.match.params.issueid;
+      let slug = this.props.currentIssue.slug;
+      if (slug === '') {
+        slug = this.props.currentIssue.id;
+      }
+      
+      canonicalURL = Constants.APP_URL + '/issues/' + slug;
     }
 
     if (this.props.currentIssue &&
