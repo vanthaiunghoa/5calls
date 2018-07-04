@@ -41,7 +41,7 @@ import { queueUntilRehydration } from '../../redux/rehydrationUtil';
 // feels a bit smelly to do <any> here but the route could either be normal { id } or group { groupid, issueid }
 // but we don't actually use this below, we just need it for types, so...?
 // tslint:disable-next-line:no-any
-interface RouteProps extends RouteComponentProps<any> { }
+interface RouteProps extends RouteComponentProps<{ groupid: string, issueid: string }> { }
 
 interface Props extends RouteProps {
   readonly issues: Issue[];
@@ -164,9 +164,13 @@ class CallPage extends React.Component<Props, State> {
       }
     }
 
-    let shareImgURL = this.props.currentIssue ?
-      'http://5callsorg-shareimages.s3-website-us-west-1.amazonaws.com/' + this.props.currentIssue.id
-      : '/img/5calls-twitter.png';
+    let shareImgURL = '/img/5calls-twitter.png';
+    if (this.props.currentIssue) {
+      shareImgURL = 'http://5callsorg-shareimages.s3-website-us-west-1.amazonaws.com/' + this.props.currentIssue.id;
+    } else {
+      shareImgURL = 
+        'http://5callsorg-shareimages.s3-website-us-west-1.amazonaws.com/' + this.props.match.params.issueid;
+    }
 
     if (this.props.currentIssue &&
         this.props.currentIssue.contactType &&

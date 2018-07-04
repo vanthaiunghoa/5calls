@@ -61,7 +61,7 @@ ReactDOM.render(
       <ConnectedRouter history={history}>
         <Switch>
           <Route path="/" exact={true} component={HomePageContainer} />
-          <Route path="/issue/:id" exact={true} component={CallPageContainer} />
+          <Route path="/issue/:issueid" exact={true} component={CallPageContainer} />
           <Route path="/done/:id" exact={true} component={DonePageContainer} />
           <Route path="/impact" exact={true} component={MyImpactPageContainer} />
           <Route path="/more" exact={true} component={MoreIssuesContainer} />

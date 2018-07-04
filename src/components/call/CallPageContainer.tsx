@@ -35,7 +35,7 @@ import { LocationState } from '../../redux/location/reducer';
     from everywhere in the application.  We have one entry point to it for every page, at the top level of the
     component hierarchy.
 */
-interface OwnProps extends RouteComponentProps<{ id: string }> { }
+interface OwnProps extends RouteComponentProps<{ issueid: string }> { }
 
 // This defines the data that we will pull off the Redux store
 interface StateProps {
@@ -62,7 +62,7 @@ interface DispatchProps {
  the object with the props (see the Call page for an example).
 */
 const mapStateToProps = (state: ApplicationState, ownProps: OwnProps): StateProps => {
-  const currentIssue: Issue | undefined = getIssue(state.remoteDataState, ownProps.match.params.id);
+  const currentIssue: Issue | undefined = getIssue(state.remoteDataState, ownProps.match.params.issueid);
 
   return {
     currentIssue: currentIssue,
