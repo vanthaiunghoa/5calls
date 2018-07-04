@@ -164,6 +164,10 @@ class CallPage extends React.Component<Props, State> {
       }
     }
 
+    let shareImgURL = this.props.currentIssue ?
+      'http://5callsorg-shareimages.s3-website-us-west-1.amazonaws.com/' + this.props.currentIssue.id
+      : '/img/5calls-twitter.png';
+
     if (this.props.currentIssue &&
         this.props.currentIssue.contactType &&
         this.props.currentIssue.contactType === 'FETCH') {
@@ -174,7 +178,11 @@ class CallPage extends React.Component<Props, State> {
           currentGroup={currentGroup}
           extraComponent={extraComponent}
         >
-          <Helmet><title>{pageTitle}</title></Helmet>
+          <Helmet>
+            <title>{pageTitle}</title>
+            <meta name="twitter:image:src" content={shareImgURL} />
+            <meta property="og:image" content={shareImgURL} />
+          </Helmet>
           { currentGroup ?
           <div className="page__group">
             <div className="page__header">
@@ -213,7 +221,11 @@ class CallPage extends React.Component<Props, State> {
           currentGroup={currentGroup}
           extraComponent={extraComponent}
         >
-          <Helmet><title>{pageTitle}</title></Helmet>
+          <Helmet>
+            <title>{pageTitle}</title>
+            <meta name="twitter:image:src" content={shareImgURL} />
+            <meta property="og:image" content={shareImgURL} />
+          </Helmet>
           { currentGroup ?
           <div className="page__group">
             <div className="page__header">
