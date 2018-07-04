@@ -10,6 +10,7 @@ import { CallState, OutcomeData } from '../../redux/callState';
 import { LocationState } from '../../redux/location/reducer';
 import { GroupDisclaimer } from '../groups/GroupPage';
 import { queueUntilRehydration } from '../../redux/rehydrationUtil';
+import * as Constants from '../../common/constants';
 
 /*
   This is the top level View component in the CallPage Component Hierarchy.  It is the
@@ -172,6 +173,11 @@ class CallPage extends React.Component<Props, State> {
         'http://5callsorg-shareimages.s3-website-us-west-1.amazonaws.com/' + this.props.match.params.issueid;
     }
 
+    let canonicalURL: string | undefined = undefined;
+    if (this.props.currentIssue) {
+      canonicalURL = Constants.APP_URL + '/issues/' + this.props.match.params.issueid;
+    }
+
     if (this.props.currentIssue &&
         this.props.currentIssue.contactType &&
         this.props.currentIssue.contactType === 'FETCH') {
@@ -229,6 +235,7 @@ class CallPage extends React.Component<Props, State> {
             <title>{pageTitle}</title>
             <meta name="twitter:image:src" content={shareImgURL} />
             <meta property="og:image" content={shareImgURL} />
+            {canonicalURL && <link rel="canonical" href={canonicalURL} />}
           </Helmet>
           { currentGroup ?
           <div className="page__group">
