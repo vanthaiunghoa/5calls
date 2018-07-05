@@ -168,7 +168,7 @@ class CallPage extends React.Component<Props, State> {
     let canonicalURL: string | undefined = undefined;
     if (this.props.currentIssue) {
       let slug = this.props.currentIssue.slug;
-      if (slug === '') {
+      if (slug === '' || slug === undefined) {
         slug = this.props.currentIssue.id;
       }
 
