@@ -165,22 +165,18 @@ class CallPage extends React.Component<Props, State> {
       }
     }
 
-    let shareImgURL = '/img/5calls-twitter.png';
-    if (this.props.currentIssue) {
-      shareImgURL = 'http://5callsorg-shareimages.s3-website-us-west-1.amazonaws.com/' + this.props.currentIssue.id;
-    } else {
-      shareImgURL = 
-        'http://5callsorg-shareimages.s3-website-us-west-1.amazonaws.com/' + this.props.match.params.issueid;
-    }
-
     let canonicalURL: string | undefined = undefined;
     if (this.props.currentIssue) {
       let slug = this.props.currentIssue.slug;
       if (slug === '') {
         slug = this.props.currentIssue.id;
       }
-      
-      canonicalURL = Constants.APP_URL + '/issues/' + slug;
+
+      if (this.props.currentGroup) {
+        canonicalURL = Constants.APP_URL + '/team/' + this.props.currentGroup.id + '/' + slug;
+      } else {
+        canonicalURL = Constants.APP_URL + '/issues/' + slug;
+      }
     }
 
     if (this.props.currentIssue &&
@@ -195,8 +191,7 @@ class CallPage extends React.Component<Props, State> {
         >
           <Helmet>
             <title>{pageTitle}</title>
-            <meta name="twitter:image:src" content={shareImgURL} />
-            <meta property="og:image" content={shareImgURL} />
+            {canonicalURL && <link rel="canonical" href={canonicalURL} />}
           </Helmet>
           { currentGroup ?
           <div className="page__group">
@@ -238,8 +233,6 @@ class CallPage extends React.Component<Props, State> {
         >
           <Helmet>
             <title>{pageTitle}</title>
-            <meta name="twitter:image:src" content={shareImgURL} />
-            <meta property="og:image" content={shareImgURL} />
             {canonicalURL && <link rel="canonical" href={canonicalURL} />}
           </Helmet>
           { currentGroup ?
