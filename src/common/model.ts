@@ -78,13 +78,15 @@ export interface UserStat {
 }
 
 export interface Group {
-  id: string;
+  // id: number;
+  groupID: string;
   name: string;
   subtitle: string;
   description: string;
   totalCalls: number;
   photoURL: string;
   customCalls: boolean;
+  subscribed: boolean;
 }
 
 /**
@@ -96,13 +98,14 @@ export interface Group {
  */
 export const getDefaultGroup = (groupId: string): Group => {
   return {
-    id: groupId,
+    groupID: groupId,
     name: '',
     subtitle: '',
     description: '',
     totalCalls: 0,
     photoURL: '',
     customCalls: false,
+    subscribed: false,
   };
 };
 

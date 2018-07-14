@@ -44,7 +44,7 @@ test('snapshot should render correctly with an issue and NO group', () => {
 
 const initPage = (group?: Group) => {
   return {
-    match: {params: {groupid: group ? group.id : '', issueid: '100'}, isExact: true, path: '', url: ''},
+    match: {params: {groupid: group ? group.groupID : '', issueid: '100'}, isExact: true, path: '', url: ''},
     location: {} as Location,
     history: {} as History,
     issues: [] as Issue[],

@@ -21,7 +21,7 @@ const SidebarHeader: React.StatelessComponent<Props> = (props: Props) => {
   if (props.currentGroup) {
     headerIntro = (
       <h3>
-        <Link to={`/team/${props.currentGroup.id}`}>{props.currentGroup.name} Home</Link>
+        <Link to={`/team/${props.currentGroup.groupID}`}>{props.currentGroup.name} Home</Link>
       </h3>
     );
   }

@@ -64,7 +64,7 @@ class GroupPage extends React.Component<Props, State> {
     // update current group
     if (this.props.currentGroup
       && nextProps.currentGroup &&
-      this.props.currentGroup.id !== nextProps.currentGroup.id) {
+      this.props.currentGroup.groupID !== nextProps.currentGroup.groupID) {
         // console.log('Resetting hasBeenCached');
         this.setState({...this.state, hasBeenCached: false});
     }

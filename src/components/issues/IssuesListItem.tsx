@@ -21,7 +21,7 @@ export class IssuesListItem extends React.Component<Props, State> {
 
     // need to provide alternative links for on group page
     const issueLink = this.props.currentGroup ?
-      `/team/${this.props.currentGroup.id}/${issueID}` : `/issue/${issueID}`;
+      `/team/${this.props.currentGroup.groupID}/${issueID}` : `/issue/${issueID}`;
     return (
       <li>
         <Link

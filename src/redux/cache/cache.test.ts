@@ -7,22 +7,24 @@ import {
   hasGroupCacheTimeoutExceeded } from './cache';
 
 const group1: Group = {
-  id: 'craig',
+  groupID: 'craig',
   name: 'Team Craig',
   description: 'Craig\'s issues',
   photoURL: 'http://craig.com/img',
   subtitle: 'Nick for Prez!',
   totalCalls: 999,
-  customCalls: false
+  customCalls: false,
+  subscribed: false,
 };
 const group2: Group = {
-  id: 'nick',
+  groupID: 'nick',
   name: 'Team Nick',
   description: 'Nick\'s issues',
   photoURL: 'http://nick.com/img',
   subtitle: 'I miss Swift!',
   totalCalls: 888,
-  customCalls: false
+  customCalls: false,
+  subscribed: false,
 };
 
 test('test cache creation', () => {
@@ -31,8 +33,8 @@ test('test cache creation', () => {
   const cache = new AppCache([cgroup1, cgroup2]);
 
   expect(cache.groups.length).toBe(2);
-  expect(cache.groups[0].group.id).toBe('craig');
-  expect(cache.groups[1].group.id).toBe('nick');
+  expect(cache.groups[0].group.groupID).toBe('craig');
+  expect(cache.groups[1].group.groupID).toBe('nick');
 });
 
 test('findCachableGroup() should work', () => {

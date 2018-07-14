@@ -11,7 +11,7 @@ export const updateGroup = (group: Group) => {
     ) => {
     const state = getState();
     if (state.groupState.groupLoadingStatus === GroupLoadingActionStatus.LOADING) {
-      dispatch(cacheGroup(group.id));
+      dispatch(cacheGroup(group.groupID));
     }
   };
 };

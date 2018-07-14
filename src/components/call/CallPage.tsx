@@ -114,7 +114,7 @@ class CallPage extends React.Component<Props, State> {
     // if group has changed, then reset the hasBeenCached flag
     if (this.props.currentGroup
       && newProps.currentGroup &&
-      this.props.currentGroup.id !== newProps.currentGroup.id) {
+      this.props.currentGroup.groupID !== newProps.currentGroup.groupID) {
         this.setState({...this.state, hasBeenCached: false});
     }
 
@@ -173,7 +173,7 @@ class CallPage extends React.Component<Props, State> {
       }
 
       if (this.props.currentGroup) {
-        canonicalURL = Constants.APP_URL + '/team/' + this.props.currentGroup.id + '/' + slug;
+        canonicalURL = Constants.APP_URL + '/team/' + this.props.currentGroup.groupID + '/' + slug;
       } else {
         canonicalURL = Constants.APP_URL + '/issues/' + slug;
       }

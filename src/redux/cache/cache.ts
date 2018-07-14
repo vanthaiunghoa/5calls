@@ -21,9 +21,9 @@ export class AppCache {
  * @param {string} id the group's id
  * @param {AppCache} cache the cache stored in the redux store
  */
-export function findCacheableGroup(id: string, cache: AppCache): CacheableGroup | undefined {
+export function findCacheableGroup(groupID: string, cache: AppCache): CacheableGroup | undefined {
     return cache.groups ? cache.groups
-        .filter(g => g.group.id === id)
+        .filter(g => g.group.groupID === groupID)
         .pop() : undefined;
     }
 
@@ -46,7 +46,7 @@ export function cacheableGroupFactory(group: Group): CacheableGroup | undefined 
 export function addOrReplaceCacheableGroup(groups: CacheableGroup[], group: Group): CacheableGroup[] {
     // remove old group if present
     const newGroups = groups.filter(cgroup => {
-        return cgroup.group.id !== group.id;
+        return cgroup.group.groupID !== group.groupID;
     });
     const newcgroup = cacheableGroupFactory(group);
     if (newGroups && newcgroup) {

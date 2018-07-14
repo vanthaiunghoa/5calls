@@ -49,13 +49,14 @@ test('fetchGroup() action creator functions correctly', ( ) => {
 
 const getMockGroup = (groupId): Group => {
   const mockResponse: Group = {
-    id: groupId,
+    groupID: groupId,
     name: `${groupId} group`,
     description: `${groupId} description`,
     photoURL: `http://${groupId}.com`,
     subtitle: `${groupId} subtitle`,
     totalCalls: 99,
-    customCalls: false
+    customCalls: false,
+    subscribed: false,
   };
   return mockResponse;
 };

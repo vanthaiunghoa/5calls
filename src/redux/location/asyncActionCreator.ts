@@ -17,7 +17,7 @@ export function setAddress(address: string) {
 export function newLocationLookup(location: string, group?: Group) {
   return (dispatch: Dispatch<ApplicationState>) => {
     if (group) {
-      return dispatch(fetchGroupIssues(group.id, location))
+      return dispatch(fetchGroupIssues(group.groupID, location))
       .then(() => {
         dispatch(setUiState(LocationUiState.LOCATION_FOUND));
       })

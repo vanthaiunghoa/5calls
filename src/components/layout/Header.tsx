@@ -12,6 +12,7 @@ import { Auth0Config } from '../../common/constants';
 interface Props {
   readonly postcards?: boolean;
   readonly currentUser?: UserState;
+  readonly hideDonation: boolean;
 }
 
 interface State {
@@ -63,7 +64,7 @@ class HeaderImpl extends React.Component<Props, State> {
             logoutHandler={this.logout}
           />
         </div>
-        {<DonationContainer />}
+        {!this.props.hideDonation && <DonationContainer />}
       </header>
     );
   }

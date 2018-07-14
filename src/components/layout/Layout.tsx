@@ -25,6 +25,14 @@ interface Props {
   readonly clearLocation: () => void;
 }
 
+function hideDonation(group?: Group): boolean {
+  if (group && group.subscribed) {
+    return true;
+  }
+
+  return false;
+}
+
 const Layout: React.StatelessComponent<Props> = (props: Props) => (
   <div>
     <Helmet>
@@ -33,6 +41,7 @@ const Layout: React.StatelessComponent<Props> = (props: Props) => (
     <Header
       postcards={props.postcards}
       currentUser={props.currentUser}
+      hideDonation={hideDonation(props.currentGroup)}
     />
     <div className="layout">
       <aside id="nav" role="contentinfo" className="layout__side">

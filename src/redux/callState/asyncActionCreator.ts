@@ -54,7 +54,7 @@ export function submitOutcome(data: OutcomeData) {
 
       // we've gone back and forth on how this data is set, but don't overwrite it
       if (data.groupId === undefined) {
-        data.groupId = state.callState.group ? state.callState.group.id : '';        
+        data.groupId = state.callState.group ? state.callState.group.groupID : '';        
       }
 
       // if we have a userid, the call is counted server side
