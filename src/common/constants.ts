@@ -10,8 +10,11 @@ export const STATS_API_URL = `${API_URL}/users/stats`;
 export const DONATIONS_API_URL = `${API_URL}/donations`;
 export const GROUP_API_URL = `${API_URL}/groups`;
 export const CONTACTS_API_URL = `${API_URL}/contacts`;
+export const REMINDER_API_URL = `${API_URL}/remind`;
 export const IP_INFO_URL = 'https://ipinfo.io/json';
 export const DONATE_URL = 'https://secure.actblue.com/donate/5calls-donate';
+
+export const SHARE_BUCKET_URL = 'http://5callsorg-shareimages.s3-website-us-west-1.amazonaws.com/';
 
 const callbackURI = () => {
   if (window.location.host.includes('localhost')) {
@@ -28,6 +31,7 @@ export const Auth0Config = {
   audience: 'https://5callsos.auth0.com/userinfo',
   callbackUri: callbackURI(),
   poweredURL: 'https://5calls.org',
+  popupAuth: false,
 };
 
 export const zipCodeRegex: RegExp = /^\d{5}(-\d{4})?$/;

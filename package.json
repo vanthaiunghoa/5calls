@@ -4,14 +4,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@5calls/react-components": "^0.0.9",
-    "auth0-js": "^9.1.0",
+    "@5calls/react-components": "^0.0.10",
     "axios": "^0.16.2",
     "core-js": "^2.5.7",
     "i18next": "^8.4.3",
     "i18next-browser-languagedetector": "^2.0.0",
     "i18next-xhr-backend": "^1.4.2",
     "jwt-decode": "^2.2.0",
+    "libphonenumber-js": "^1.2.21",
     "lodash": "^4.17.4",
     "querystring": "^0.2.0",
     "react": "16.2.0",
@@ -21,6 +21,7 @@
     "react-i18next": "^7.0.0",
     "react-markdown": "^2.5.0",
     "react-onclickoutside": "^6.7.1",
+    "react-phone-number-input": "^1.1.13",
     "react-pluralize": "^1.4.1",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
@@ -33,7 +34,6 @@
     "string.prototype.includes": "^1.0.0"
   },
   "devDependencies": {
-    "@types/auth0-js": "^8.11.2",
     "@types/axios": "^0.14.0",
     "@types/enzyme": "^3.1.5",
     "@types/enzyme-adapter-react-16": "^1.0.1",
