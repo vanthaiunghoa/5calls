@@ -18,7 +18,30 @@ const locationReg = /\[CITY,\s?ZIP\]|\[CITY,\s?STATE\]/gi;
 
 function getContactNameWithTitle(contacts: Contact[], contactIndex: number) {
   const currentContact = contacts[contactIndex];
-  const title = currentContact.area === 'House' ? 'Rep. ' : 'Senator ';
+  let title = '';
+  switch (currentContact.area) {
+    case 'House':
+      title = 'Rep. ';
+      break;
+    case 'Senate':
+      title = 'Senator ';
+      break;
+    case 'StateLower':
+    case 'StateUpper':
+      title = 'Legislator ';
+      break;
+    case 'Governor':
+      title = 'Governor ';
+      break;
+    case 'AttorneyGeneral':
+      title = 'Attorney General ';
+      break; 
+    case 'SecretaryOfState':
+      title = 'Secretary of State ';
+      break;  
+    default:
+      title = '';
+  }
   return title + currentContact.name;
 }
 
@@ -53,3 +76,5 @@ export const Script: React.StatelessComponent<Props> = ({ issue, contactIndex = 
 };
 
 export const ScriptTranslatable = translate()(Script);
+
+export { getContactNameWithTitle };
