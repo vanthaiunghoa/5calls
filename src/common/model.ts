@@ -1,3 +1,4 @@
+import { GroupState } from '../redux/group/reducer';
 
 export interface Issue {
   id: string;
@@ -77,7 +78,7 @@ export interface UserStat {
   unavailableCount: number;
 }
 
-export interface Group {
+export class Group {
   // id: number;
   groupID: string;
   name: string;
@@ -87,6 +88,25 @@ export interface Group {
   photoURL: string;
   customCalls: boolean;
   subscribed: boolean;
+
+  constructor(groupId: string) {
+    this.groupID = groupId;
+    this.name = '';
+    this.subtitle = '';
+    this.description = '';
+    this.totalCalls = 0;
+    this.photoURL = '';
+    this.customCalls = false;
+    this.subscribed = false;
+  }
+
+  static from(groupState: GroupState) {
+    if (groupState.currentGroup) {
+      return groupState.currentGroup;
+    }
+
+    return getDefaultGroup('');
+  }
 }
 
 /**

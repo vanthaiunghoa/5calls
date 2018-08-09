@@ -8,6 +8,8 @@ import { UserState } from '../../redux/userState/reducer';
 import { Issue, Group } from '../../common/model';
 import { SidebarHeader, Sidebar, Footer, Header } from './index';
 
+import { groupContext } from '../../contexts/GroupContext';
+
 interface Props {
   readonly children?: {};
   readonly extraComponent?: {};
@@ -45,22 +47,26 @@ const Layout: React.StatelessComponent<Props> = (props: Props) => (
     />
     <div className="layout">
       <aside id="nav" role="contentinfo" className="layout__side">
-        <div className="issues">
-          <SidebarHeader
-            callState={props.callState}
-            currentGroup={props.currentGroup}
-            locationState={props.locationState}
-            setLocation={props.setLocation}
-            clearLocation={props.clearLocation}
-          />
-          <Sidebar
-            issues={props.issues}
-            currentIssue={props.currentIssue ? props.currentIssue : undefined}
-            currentGroup={props.currentGroup}
-            completedIssueIds={props.completedIssueIds}
-            onSelectIssue={props.onSelectIssue}
-          />
-        </div>
+        <groupContext.Consumer>
+        {group =>
+          <div className="issues">
+            <SidebarHeader
+              callState={props.callState}
+              currentGroup={group}
+              locationState={props.locationState}
+              setLocation={props.setLocation}
+              clearLocation={props.clearLocation}
+            />
+            <Sidebar
+              issues={props.issues}
+              currentIssue={props.currentIssue ? props.currentIssue : undefined}
+              currentGroup={group}
+              completedIssueIds={props.completedIssueIds}
+              onSelectIssue={props.onSelectIssue}
+            />
+          </div>
+        }
+        </groupContext.Consumer>
       </aside>
       <main id="content" role="main" aria-live="polite" className="layout__main">
         {props.children}

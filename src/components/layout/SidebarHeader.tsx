@@ -8,7 +8,7 @@ import { LocationTranslatable } from '../location';
 import { Group } from '../../common/model';
 
 interface Props {
-  readonly callState: CallState;
+  readonly callState: CallState; // uneeded
   readonly currentGroup?: Group;
   readonly locationState: LocationState;
   readonly setLocation: (location: string) => void;
