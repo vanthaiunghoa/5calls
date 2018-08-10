@@ -1,6 +1,13 @@
 # 5calls
 
-[![Stories in Ready](https://badge.waffle.io/5calls/5calls.png?label=ready&title=Ready)](http://waffle.io/5calls/5calls)   [![CircleCI](https://circleci.com/gh/5calls/5calls.svg?style=svg)](https://circleci.com/gh/5calls/5calls)
+## Quicknav
+### Projects to start / in progress:
+[![Stories in Ready](https://badge.waffle.io/5calls/5calls.png?label=ready&title=Ready)](http://waffle.io/5calls/5calls)
+### Automated testing
+[![CircleCI](https://circleci.com/gh/5calls/5calls.svg?style=svg)](https://circleci.com/gh/5calls/5calls)
+### Cross-browser testing
+[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=5calls)](https://www.browserstack.com/automate/public-build/5calls)
+
 
 # Table of Contents
 * [Development](#Development)
