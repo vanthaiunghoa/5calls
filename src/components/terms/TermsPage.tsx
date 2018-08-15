@@ -6,7 +6,7 @@ import { LayoutContainer } from '../layout';
 
 interface Props extends RouteComponentProps<{ id: string }> { }
 
-const TermsPage: React.StatelessComponent<Props> = (props: Props) => (
+const TermsPage: React.SFC<Props> = (props: Props) => (
   <LayoutContainer>
     <Terms />
   </LayoutContainer>

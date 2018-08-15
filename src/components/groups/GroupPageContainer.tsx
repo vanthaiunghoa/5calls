@@ -72,7 +72,8 @@ const mapDispatchToProps = (dispatch: Dispatch<ApplicationState>, ownProps: OwnP
                 getState: () => ApplicationState) => {
           // this page knows about the path params, and sub-components may not,
           // attach the groupid to this method here
-          dispatch(getGroupIssuesIfNeeded(ownProps.match.params.groupid));
+          // tslint:disable-next-line:no-any
+          dispatch<any>(getGroupIssuesIfNeeded(ownProps.match.params.groupid));
         };
       },
       onJoinGroup: joinGroupActionCreator,

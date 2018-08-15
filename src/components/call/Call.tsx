@@ -1,4 +1,3 @@
-import { } from './NoContact';
 import * as React from 'react';
 import i18n from '../../services/i18n';
 import { TranslationFunction } from 'i18next';
