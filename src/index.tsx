@@ -1,8 +1,7 @@
 import { } from './components/home/HomePageContainer';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Route, Switch } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
+import { Route, Switch, Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
 
@@ -60,7 +59,7 @@ ReactDOM.render(
   <I18nextProvider i18n={i18n}>
     <Provider store={store}>
       <AppProvider store={store}>
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <Switch>
             <Route path="/" exact={true} component={HomePageContainer} />
             <Route path="/issue/:issueid" exact={true} component={CallPageContainer} />
@@ -77,7 +76,7 @@ ReactDOM.render(
             <Route path="/auth0callback" exact={true} component={Auth0CallbackContainer} />
             <Route path="*" component={NotFoundPage} />
           </Switch>
-        </ConnectedRouter>
+        </Router>
       </AppProvider>
     </Provider>
   </I18nextProvider>,
