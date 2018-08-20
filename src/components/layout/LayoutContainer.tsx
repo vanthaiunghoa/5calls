@@ -21,7 +21,7 @@ interface OwnProps {
 
 interface StateProps {
   readonly children?: {};
-  readonly issues: Issue[];
+  //  readonly issues: Issue[];
   readonly currentIssue?: Issue;
   readonly currentGroup?: Group;
   readonly currentUser?: UserState;
@@ -42,6 +42,7 @@ function mapStateToProps(state: ApplicationState, ownProps: OwnProps): StateProp
     currentIssue = find(state.remoteDataState.issues, i => i.id === ownProps.issueId);
   }
 
+  /*
   let issues: Issue[] = [];
   // overrise issues from above the layout container if needed and not on a group page
   // group pages will load issues themselves, and shouldn't default to normal issues
@@ -55,14 +56,15 @@ function mapStateToProps(state: ApplicationState, ownProps: OwnProps): StateProp
       // groups otherwise should get the normal issues from the front page
       if (state.remoteDataState.issues && state.remoteDataState.issues.length > 0) {
         issues = state.remoteDataState.issues;
-      }      
+      }
     }
   } else {
     issues = ownProps.issues ? ownProps.issues : state.remoteDataState.issues;
   }
+   */
 
   return {
-    issues: issues,
+  // issues: issues,
     currentIssue: currentIssue,
     currentGroup: ownProps.currentGroup ? ownProps.currentGroup : undefined,
     currentUser: state.userState,

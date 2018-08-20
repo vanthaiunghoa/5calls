@@ -1,6 +1,6 @@
 import { GroupState } from '../redux/group/reducer';
 
-export interface Issue {
+export class Issue {
   id: string;
   name: string;
   reason: string;
@@ -14,20 +14,21 @@ export interface Issue {
   link: string;
   linkTitle: string;
   slug: string;
-}
 
-export const DefaultIssue: Issue = {
-  id: '',
-  name: '',
-  reason: '',
-  script: '',
-  categories: [],
-  inactive: false,
-  outcomeModels: [],
-  link: '',
-  linkTitle: '',
-  slug: '',
-};
+  constructor() {
+    this.id = '';
+    this.name = '';
+    this.reason = '';
+    this.script = '';
+    this.categories = [];
+    this.inactive = false;
+    this.outcomeModels = [];
+    this.link = '';
+    this.linkTitle = '';
+    this.slug = '';
+  }
+
+}
 
 export interface Outcome {
   label: string;

@@ -8,14 +8,13 @@ import { UserState } from '../../redux/userState/reducer';
 import { Issue, Group } from '../../common/model';
 import { SidebarHeader, Sidebar, Footer, Header } from './index';
 
-import { groupContext } from '../../contexts/GroupContext';
+import { stateContext } from '../../contexts/GroupContext';
 
 interface Props {
   readonly children?: {};
   readonly extraComponent?: {};
   readonly postcards?: boolean;
   readonly issueId: string;
-  readonly issues: Issue[];
   readonly currentIssue?: Issue;
   readonly currentGroup?: Group;
   readonly currentUser?: UserState;
@@ -47,26 +46,26 @@ const Layout: React.StatelessComponent<Props> = (props: Props) => (
     />
     <div className="layout">
       <aside id="nav" role="contentinfo" className="layout__side">
-        <groupContext.Consumer>
-        {group =>
+        <stateContext.Consumer>
+        {state =>
           <div className="issues">
             <SidebarHeader
               callState={props.callState}
-              currentGroup={group}
+              currentGroup={state.group}
               locationState={props.locationState}
               setLocation={props.setLocation}
               clearLocation={props.clearLocation}
             />
             <Sidebar
-              issues={props.issues}
+              issues={state.issues}
               currentIssue={props.currentIssue ? props.currentIssue : undefined}
-              currentGroup={group}
+              currentGroup={state.group}
               completedIssueIds={props.completedIssueIds}
               onSelectIssue={props.onSelectIssue}
             />
           </div>
         }
-        </groupContext.Consumer>
+        </stateContext.Consumer>
       </aside>
       <main id="content" role="main" aria-live="polite" className="layout__main">
         {props.children}

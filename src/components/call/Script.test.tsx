@@ -3,11 +3,11 @@ import * as ReactMarkdown from 'react-markdown';
 import { shallow } from 'enzyme';
 import i18n from '../../services/i18n';
 import { Script } from './';
-import { Contact, Issue, DefaultIssue, LocationUiState, LocationFetchType } from '../../common/model';
+import { Contact, Issue, LocationUiState, LocationFetchType } from '../../common/model';
 import { LocationState } from '../../redux/location';
 
 test('Script component should be rendered if passed a valid object', () => {
-    const issue: Issue = Object.assign({}, DefaultIssue, { id: '1', name: 'testName' });
+    const issue: Issue = Object.assign({}, new Issue(), { id: '1', name: 'testName' });
     const locationState: LocationState = {
         address: '1234',
         cachedCity: 'Anytown',
@@ -41,7 +41,7 @@ describe('when the script text is shown', () => {
         }];
         const issue: Issue = Object.assign(
             {},
-            DefaultIssue,
+            new Issue(),
             { id: '1', name: 'testName', contacts: contacts, script: 'script_text' }
         );
         const locationState: LocationState = {

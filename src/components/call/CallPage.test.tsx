@@ -4,14 +4,14 @@ import { History, Location } from 'history';
 import i18n from '../../services/i18n';
 import { I18nextProvider } from 'react-i18next';
 import { CallPage } from './index';
-import { Issue, DefaultIssue, Group, getDefaultGroup } from '../../common/model';
+import { Issue, Group, getDefaultGroup } from '../../common/model';
 import { CallState } from '../../redux/callState';
 import { LocationState } from 'history';
 
 test('snapshot should render correctly with an issue and group', () => {
   const id = 'craig';
   const group: Group = getDefaultGroup(id);
-  const issue: Issue = Object.assign({}, DefaultIssue, { id: '1', name: 'testName' });
+  const issue: Issue = Object.assign({}, new Issue(), { id: '1', name: 'testName' });
   const pageProps = initPage(group);
   pageProps.currentIssue = issue;
   pageProps.issues = [issue];
@@ -27,7 +27,7 @@ test('snapshot should render correctly with an issue and group', () => {
 });
 
 test('snapshot should render correctly with an issue and NO group', () => {
-  const issue: Issue = Object.assign({}, DefaultIssue, { id: '1', name: 'testName' });
+  const issue: Issue = Object.assign({}, new Issue(), { id: '1', name: 'testName' });
   const pageProps = initPage();
   pageProps.currentIssue = issue;
   pageProps.issues = [issue];
